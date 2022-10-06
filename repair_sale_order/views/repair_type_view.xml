@@ -16,14 +16,6 @@
                     >{'invisible': [('create_sale_order', '=', True)]}</attribute>
                 </xpath>
                 <xpath
-                    expr="//field[@name='destination_location_id']"
-                    position="attributes"
-                >
-                    <attribute
-                        name="attrs"
-                    >{'invisible': [('create_sale_order', '=', True)]}</attribute>
-                </xpath>
-                <xpath
                     expr="//field[@name='source_location_add_part_id']"
                     position="attributes"
                 >
