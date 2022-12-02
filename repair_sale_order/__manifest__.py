@@ -5,7 +5,7 @@
     "name": "Repair To Sale Order",
     "version": "14.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/OCA/repair",
     "summary": "Repair To Sale Order",
     "category": "Repair",
     "depends": ["repair", "repair_type", "sale", "sales_team"],
