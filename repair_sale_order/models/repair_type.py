@@ -11,3 +11,7 @@ class RepairType(models.Model):
         string="Create sale order?",
         default=False,
     )
+    include_operations_in_sale_order = fields.Boolean(
+        string="Include operations in sale order?",
+        default=False,
+    )

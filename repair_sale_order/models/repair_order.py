@@ -72,13 +72,19 @@ class RepairOrder(models.Model):
                     line._get_sale_line_data(sale_order)
                 )
                 line.sale_line_id = sale_order_line.id
-        return self.action_show_sales_order(orders)
+            if self.repair_type_id.include_operations_in_sale_order:
+                for line in rec.fees_lines:
+                    sale_order_line = order_line_model.create(
+                        line._get_sale_line_data(sale_order)
+                    )
+                    line.sale_line_id = sale_order_line.id
+            return self.action_show_sales_order(orders)
 
     def action_validate(self):
         if self.filtered(lambda x: x.create_sale_order and not x.operations):
             raise UserError(
                 _(
-                    "You should input almost one part line to"
+                    "You should input at least one part line to"
                     " continue on create Sales Order from Repair Order"
                 )
             )
@@ -88,6 +94,27 @@ class RepairOrder(models.Model):
 class RepairLine(models.Model):
 
     _inherit = "repair.line"
+
+    def _get_sale_line_data(self, sale_order):
+        self.ensure_one()
+        res = {
+            "product_id": self.product_id.id,
+            "name": self.name,
+            "product_uom_qty": self.product_uom_qty,
+            "price_unit": self.price_unit,
+            "tax_id": self.tax_id and [(6, 0, self.tax_id.ids)] or [],
+            "order_id": sale_order.id,
+        }
+        return res
+
+    sale_line_id = fields.Many2one(
+        comodel_name="sale.order.line", string="Sale line", copy=False
+    )
+
+
+class RepairFee(models.Model):
+
+    _inherit = "repair.fee"
 
     def _get_sale_line_data(self, sale_order):
         self.ensure_one()
