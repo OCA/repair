@@ -22,7 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [repair_refurbish](repair_refurbish/) | 15.0.1.0.0 |  | Create refurbished products during repair
-[repair_stock_move](repair_stock_move/) | 15.0.1.0.0 |  | Ongoing Repair Stock Moves Definition in odoo
+[repair_stock_move](repair_stock_move/) | 15.0.1.0.1 |  | Ongoing Repair Stock Moves Definition in odoo
 
 [//]: # (end addons)
 
