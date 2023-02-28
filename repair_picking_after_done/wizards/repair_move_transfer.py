@@ -20,7 +20,14 @@ class MrpInventoryProcure(models.TransientModel):
 
     def _get_picking_type(self):
         self.ensure_one()
-        warehouse = self.repair_order_id.location_id.get_warehouse()
+        warehouse = (
+            self.env["stock.warehouse"]
+            .search([])
+            .filtered(
+                lambda l: self.repair_order_id.location_id.id
+                in l.view_location_id.child_ids.ids
+            )
+        )
         return warehouse.int_type_id
 
     def _prepare_picking_vals(self):
