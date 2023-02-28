@@ -14,9 +14,11 @@ class Repair(models.Model):
 
     @api.depends("repair_type_id")
     def _compute_location_id(self):
+        res = super()._compute_location_id()
         for rec in self:
             if rec.repair_type_id.source_location_id:
                 rec.location_id = rec.repair_type_id.source_location_id
+        return res
 
 
 class RepairLine(models.Model):
