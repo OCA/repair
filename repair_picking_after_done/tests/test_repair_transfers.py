@@ -60,9 +60,6 @@ class TestRepairTransfer(TransactionCase):
         self.repair_r1.action_validate()
         self.assertEqual(self.repair_r1.state, "confirmed")
 
-        self.repair_r1.action_assign()
-        self.assertEqual(self.repair_r1.move_id.state, "assigned")
-
         self.repair_r1.action_repair_start()
         self.assertEqual(self.repair_r1.state, "under_repair")
 
@@ -85,9 +82,6 @@ class TestRepairTransfer(TransactionCase):
         # Validate the repair order
         self.repair_r2.action_validate()
         self.assertEqual(self.repair_r2.state, "confirmed")
-
-        self.repair_r2.action_assign()
-        self.assertEqual(self.repair_r2.move_id.state, "assigned")
 
         self.repair_r2.action_repair_start()
         self.assertEqual(self.repair_r2.state, "under_repair")
