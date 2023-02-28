@@ -5,7 +5,7 @@
     "name": "Repair picking after done",
     "version": "14.0.1.0.1",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/OCA/repair",
     "summary": "Transfer repaired move to another location directly from repaire order",
     "category": "Repair",
     "depends": ["repair_type"],
