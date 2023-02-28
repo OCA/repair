@@ -36,7 +36,7 @@ class TestRepairTransfer(TransactionCase):
                 "categ_id": self.env.ref("product.product_category_all").id,
             }
         )
-        lot_id = self.env["stock.production.lot"].create(
+        lot_id = self.env["stock.lot"].create(
             {
                 "name": "LOT0001",
                 "product_id": product_with_lot.id,
@@ -99,7 +99,7 @@ class TestRepairTransfer(TransactionCase):
         transfer_repair_wizard.action_create_transfer()
         self.assertEqual(len(self.repair_r2.picking_ids), 1)
 
-        move_line = self.repair_r2.picking_ids.mapped("move_lines").mapped(
+        move_line = self.repair_r2.picking_ids.mapped("move_ids").mapped(
             "move_line_ids"
         )[0]
         self.assertEqual(move_line.lot_id.name, "LOT0001")

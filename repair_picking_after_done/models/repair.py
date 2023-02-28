@@ -16,7 +16,7 @@ class Repair(models.Model):
         for rec in self:
             remaining_quantity = rec.product_qty
             if rec.picking_ids:
-                stock_moves = rec.picking_ids.mapped("move_lines").filtered(
+                stock_moves = rec.picking_ids.mapped("move_ids").filtered(
                     lambda x: x.state != "cancel"
                 )
                 remaining_quantity = rec.product_qty - sum(
