@@ -28,6 +28,7 @@
                 <attribute name="attrs" />
             </field>
             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <field name="move_id" invisible="1" />
                 <button
                     name="action_open_stock_moves"
                     type="object"
