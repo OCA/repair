@@ -153,6 +153,7 @@ class RepairOrder(models.Model):
         if any(r.show_check_availability for r in self):
             raise UserError(_("Some related stock moves are not available."))
         # I can not everything has been reserved.
+        res = super().action_repair_end()
         self._force_qty_done_in_repair_lines()
         for repair in self:
             operation_moves = repair.mapped("operations.move_id")
@@ -167,7 +168,7 @@ class RepairOrder(models.Model):
         for move in self.mapped("operations.move_id"):
             move._set_quantity_done(move.product_uom_qty)
             move._action_done()
-        return super().action_repair_end()
+        return res
 
     def action_repair_done(self):
         self.ensure_one()
