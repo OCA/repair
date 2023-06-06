@@ -43,22 +43,16 @@ msgid "Destination Location Remove Component"
 msgstr "Ukloni komponentu sa odredišne lokacije"
 
 #. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_line__display_name
-#: model:ir.model.fields,field_description:repair_type.field_repair_order__display_name
 #: model:ir.model.fields,field_description:repair_type.field_repair_type__display_name
 msgid "Display Name"
 msgstr "Naziv"
 
 #. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_line__id
-#: model:ir.model.fields,field_description:repair_type.field_repair_order__id
 #: model:ir.model.fields,field_description:repair_type.field_repair_type__id
 msgid "ID"
 msgstr "ID"
 
 #. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_line____last_update
-#: model:ir.model.fields,field_description:repair_type.field_repair_order____last_update
 #: model:ir.model.fields,field_description:repair_type.field_repair_type____last_update
 msgid "Last Modified on"
 msgstr "Zadnje modificirano"
