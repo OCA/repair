@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Define a new tree view for the Repair Root Cause model -->
+    <record id="view_repair_order_root_cause_tree" model="ir.ui.view">
+        <field name="name">repair.reason.tree</field>
+        <field name="model">repair.reason</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Define a new form view for the Repair Root Cause model -->
+    <record id="view_repair_order_root_cause_form" model="ir.ui.view">
+        <field name="name">repair.reason.form</field>
+        <field name="model">repair.reason</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <group>
+                        <field name="name" />
+                        <field name="active" invisible="1" />
+                    </group>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view for RepairRoot Cause model -->
+    <record id="view_repair_order_root_cause_search" model="ir.ui.view">
+        <field name="name">repair.reason.search</field>
+        <field name="model">repair.reason</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="active" />
+                <field name="company_id" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_repair_order_root_cause_form" model="ir.actions.act_window">
+        <field name="name">Repair Order Root Causes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">repair.reason</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_repair_order_root_cause_search" />
+    </record>
+
+    <record id="menu_repair_order_root_cause" model="ir.ui.menu">
+        <field name="name">Repair Order Root Causes</field>
+        <field name="parent_id" ref="repair.repair_menu_config" />
+        <field name="action" ref="action_repair_order_root_cause_form" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('stock.group_stock_user')), (4, ref('stock.group_stock_manager'))]"
+        />
+    </record>
+
+</odoo>

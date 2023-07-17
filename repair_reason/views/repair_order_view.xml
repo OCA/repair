@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_repair_order_form_reason" model="ir.ui.view">
+        <field name="name">repair.order.form.reason.view</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="repair_reason_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
