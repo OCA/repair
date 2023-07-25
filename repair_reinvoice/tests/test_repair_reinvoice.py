@@ -1,8 +1,9 @@
 from odoo.fields import Date
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 
-class TestMrpRepairReinvoice(common.SavepointCase):
+@tagged("post_install", "-at_install")
+class TestMrpRepairReinvoice(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestMrpRepairReinvoice, cls).setUpClass()
@@ -45,6 +46,16 @@ class TestMrpRepairReinvoice(common.SavepointCase):
             }
         )
 
+        cls.journal = cls.env["account.journal"].create(
+            {
+                "name": "Test Journal",
+                "code": "test",
+                "type": "sale",
+                "invoice_reference_type": "invoice",
+                "invoice_reference_model": "odoo",
+            }
+        )
+
     def test_reinvoice(self):
         self.repair.action_validate()
         self.repair.action_repair_start()
@@ -62,6 +73,7 @@ class TestMrpRepairReinvoice(common.SavepointCase):
             .create(
                 {
                     "reason": "Please reverse",
+                    "journal_id": self.journal.id,
                     "refund_method": "cancel",
                     "date": today,
                 }
