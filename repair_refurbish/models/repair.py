@@ -49,6 +49,7 @@ class RepairOrder(models.Model):
             "product_uom_qty": self.product_qty,
             "partner_id": self.address_id and self.address_id.id or False,
             "location_id": self.location_dest_id.id,
+            "repair_id": self.id,
             "location_dest_id": self.refurbish_location_dest_id.id,
             "move_line_ids": [
                 (
