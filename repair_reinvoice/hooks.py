@@ -1,7 +1,8 @@
 # Copyright (C) 2023 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
-from odoo import SUPERUSER_ID, api
+from odoo import SUPERUSER_ID
+from odoo.api import Environment
 
 
 def fill_invoice_ids(env):
@@ -22,6 +23,5 @@ def fill_invoice_ids(env):
 
 
 def post_init_hook(cr, registry):
-    with api.Environment.manage():
-        env = api.Environment(cr, SUPERUSER_ID, {})
-        fill_invoice_ids(env)
+    env = Environment(cr, SUPERUSER_ID, {})
+    fill_invoice_ids(env)

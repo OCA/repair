@@ -3,13 +3,13 @@
 
 {
     "name": "Repair Reinvoice",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "development_status": "Alpha",
     "license": "LGPL-3",
     "category": "Repair",
     "summary": "Repair Reinvoice in odoo",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/OCA/repair",
     "depends": ["repair"],
     "data": ["views/repair_views.xml"],
     "maintainer": "mariadforgeflow",
