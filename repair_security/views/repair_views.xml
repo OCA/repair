@@ -1,0 +1,9 @@
+<odoo>
+
+    <record model="ir.ui.menu" id="repair.menu_repair_order">
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('repair_security.group_repair_user')])]"
+        />
+  </record>
+</odoo>
