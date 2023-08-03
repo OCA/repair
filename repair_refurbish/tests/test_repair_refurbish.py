@@ -74,8 +74,8 @@ class TestMrpMtoWithStock(TransactionCase):
         )
         line.onchange_product_id()
         line.onchange_operation_type()
-        self.assertEqual(line.location_id, repair.location_id)
         self.assertEqual(line.location_dest_id, self.customer_location)
+        self.assertEqual(line.location_id, repair.location_id)
         # Complete repair:
         repair.action_validate()
         repair.action_repair_start()
