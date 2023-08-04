@@ -24,12 +24,6 @@ class RepairOrder(models.Model):
         string="Refurbished Inventory Move", comodel_name="stock.move"
     )
 
-    @api.onchange("product_id")
-    def onchange_product_id(self):
-        res = super().onchange_product_id()
-        self.to_refurbish = True if self.product_id.refurbish_product_id else False
-        return res
-
     @api.onchange("to_refurbish", "product_id")
     def _onchange_to_refurbish(self):
         if self.to_refurbish:
