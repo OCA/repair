@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [repair_refurbish_repair_stock_move](repair_refurbish_repair_stock_move/) | 15.0.1.0.0 |  | Use refurbish and repair stock moves together
 [repair_stock_move](repair_stock_move/) | 15.0.1.0.2 |  | Ongoing Repair Stock Moves Definition in odoo
 [repair_type](repair_type/) | 15.0.1.0.0 |  | Repair type
+[repair_type_refurbish](repair_type_refurbish/) | 15.0.1.0.0 |  | Repair type
 
 [//]: # (end addons)
 
