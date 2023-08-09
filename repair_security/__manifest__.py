@@ -15,4 +15,5 @@
         "security/ir.model.access.csv",
         "views/repair_views.xml",
     ],
+    "post_init_hook": "post_init_hook",
 }
