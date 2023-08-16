@@ -10,7 +10,7 @@ class TestRepairSaleOrder(TransactionCase):
 
         self.repair_type = self.env["repair.type"].create(
             {
-                "name":  "Desk leg spare order",
+                "name": "Desk leg spare order",
                 "create_sale_order": True,
             }
         )
@@ -31,10 +31,12 @@ class TestRepairSaleOrder(TransactionCase):
             }
         )
 
-        self.partner = self.env['res.partner'].create({
-            'name': 'partner_a',
-            'company_id': False,
-        })
+        self.partner = self.env["res.partner"].create(
+            {
+                "name": "partner_a",
+                "company_id": False,
+            }
+        )
 
         self.repair_r1 = self.env["repair.order"].create(
             {
@@ -63,13 +65,10 @@ class TestRepairSaleOrder(TransactionCase):
 
         self.repair_r1.operations |= self.line
 
-
-
-
     def test_repair_sale_order(self):
         self.repair_r1.action_validate()
         action = self.repair_r1.action_create_sale_order()
-        self.sale_order = self.env['sale.order'].browse(action['res_id'])
+        self.sale_order = self.env["sale.order"].browse(action["res_id"])
         self.sale_order.action_confirm()
         self.move = self.sale_order._create_invoices()
         self.move.action_post()
