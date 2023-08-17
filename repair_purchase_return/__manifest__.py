@@ -9,7 +9,7 @@
     "category": "Repair",
     "summary": "Create a Purchase Return from a Repair",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/OCA/repair",
     "depends": ["repair", "purchase_return"],
     "data": [
         "security/ir.model.access.csv",
