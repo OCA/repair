@@ -83,3 +83,12 @@ class SaleOrderLine(models.Model):
         string="Repair lines",
         required=False,
     )
+
+    def _prepare_procurement_values(self, group_id=False):
+        res = super()._prepare_procurement_values(group_id)
+        res.update(
+            {
+                "repair_ids": self.repair_line_ids.mapped("repair_id.id"),
+            }
+        )
+        return res
