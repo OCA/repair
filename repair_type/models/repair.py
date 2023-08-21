@@ -33,6 +33,7 @@ class RepairLine(models.Model):
 
     @api.depends("type", "repair_id.repair_type_id")
     def _compute_location_id(self):
+        res = super()._compute_location_id()
         for rec in self:
             if (
                 rec.type == "add"
@@ -62,6 +63,7 @@ class RepairLine(models.Model):
                 rec.location_dest_id = (
                     rec.repair_id.repair_type_id.destination_location_remove_part_id
                 )
+        return res
 
     @api.onchange("type")
     def onchange_operation_type(self):
