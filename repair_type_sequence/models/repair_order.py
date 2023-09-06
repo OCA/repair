@@ -25,7 +25,5 @@ class RepairOrder(models.Model):
             new_rtype = self.env["repair.type"].browse(new_rtype_id)
             if new_rtype and new_rtype.sequence_id:
                 vals["name"] = new_rtype.sequence_id._next()
-            elif rec.repair_type_id and rec.repair_type_id.sequence_id:
-                vals["name"] = rec.repair_type_id.sequence_id._next()
             res = super(RepairOrder, rec).write(vals)
         return res
