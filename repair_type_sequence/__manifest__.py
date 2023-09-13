@@ -6,7 +6,7 @@
     "summary": """
         Adds sequence to repair orders defined in the repairs's
         type""",
-    "version": "15.0.1.0.1",
+    "version": "15.0.1.0.2",
     "license": "AGPL-3",
     "author": "ForgeFlow S.L.," "Odoo Community Association (OCA)",
     "maintainers": ["AaronHForgeFlow"],
