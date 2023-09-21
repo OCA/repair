@@ -23,7 +23,7 @@ Repair Stock Move
     :target: https://runbot.odoo-community.org/runbot/129/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 The purpose of this module is to modify the behaviour of the repair standard module. Achieving more flexibility in a repair process.
 
@@ -45,10 +45,21 @@ Another feature which this module includes is that it allows to add components d
 .. contents::
    :local:
 
+Description
+===========
+
+The purpose of this module is to add the possibility of create a purchase return order for some repair components products and operations directly from repair order.
+
 Usage
 =====
 
-Follow the Odoo standard repair module flow.
+#. Go to *Repair > Repair Orders > New* and create a new repair order. Add at least one line in *Parts* (with type *Add* and positive *Quantity*) and *Operations* (with positive *Quantity*).
+
+#. Click *Create Purchase Return* button.
+
+#.  On the wizard, choose a valid vendor and click *Create And View Purchase Return* button.
+
+In the *Purchase Return Order*, *Unit Price* of each product line would be the cost price of the product.
 
 Bug Tracker
 ===========
