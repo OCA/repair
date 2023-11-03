@@ -7,7 +7,7 @@ from odoo import _, fields, models
 class Repair(models.Model):
     _inherit = "repair.order"
 
-    picking_ids = fields.Many2many("stock.picking", string="Transfers")
+    picking_ids = fields.Many2many("stock.picking", string="Transfers", copy=False)
     remaining_quantity = fields.Float(
         "Remaining quantity to be transferred", compute="_compute_remaining_quantity"
     )
