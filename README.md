@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[repair_picking_after_done](repair_picking_after_done/) | 16.0.1.0.0 |  | Transfer repaired move to another location directly from repaire order
+[repair_picking_after_done](repair_picking_after_done/) | 16.0.1.0.1 |  | Transfer repaired move to another location directly from repaire order
 [repair_type](repair_type/) | 16.0.1.0.0 |  | Repair type
 
 [//]: # (end addons)
