@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_repair_scrap_wizard,Wizard repair scrap user,model_repair_make_scrap_wizard,stock.group_stock_user,1,1,1,1
+access_repair_scrap_wizard_item,Wizard item repair scrap user,model_repair_make_scrap_item_wizard,stock.group_stock_user,1,1,1,1

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="repair_type_view_tree_scrap" model="ir.ui.view">
+        <field name="name">Repair Types List - Scrap</field>
+        <field name="model">repair.type</field>
+        <field name="inherit_id" ref="repair_type.repair_type_view_tree" />
+        <field name="arch" type="xml">
+            <field name="destination_location_remove_part_id" position="after">
+                <field name="scrap_location_id" string="Destination Scrap Location" />
+            </field>
+        </field>
+    </record>
+
+    <record id="repair_type_view_form_scrap" model="ir.ui.view">
+        <field name="name">Repair Types Form - Scrap</field>
+        <field name="model">repair.type</field>
+        <field name="inherit_id" ref="repair_type.repair_type_view_form" />
+        <field name="arch" type="xml">
+            <field name="destination_location_remove_part_id" position="after">
+                <field name="scrap_location_id" string="Destination Scrap Location" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
