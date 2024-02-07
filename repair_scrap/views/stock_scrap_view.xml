@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_scrap_form_view_repair" model="ir.ui.view">
+        <field name="name">stock.scrap.form - Repair</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view" />
+        <field name="arch" type="xml">
+            <button name="action_get_stock_move_lines" position="after">
+                <button
+                    type="object"
+                    name="action_view_repair_order"
+                    class="oe_stat_button"
+                    icon="fa-eject"
+                    string="Repair Order"
+                    groups="stock.group_stock_user"
+                    attrs="{'invisible': [('repair_id', '=', False)]}"
+                >
+                </button>
+                <field name="repair_id" invisible="1" />
+            </button>
+        </field>
+    </record>
+</odoo>
