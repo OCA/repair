@@ -1,0 +1,226 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_scrap
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_order__scrap_count
+msgid "# Scrap"
+msgstr ""
+
+#. module: repair_scrap
+#: model_terms:ir.ui.view,arch_db:repair_scrap.view_repair_scrap
+msgid "Cancel"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__company_id
+msgid "Company"
+msgstr ""
+
+#. module: repair_scrap
+#: model_terms:ir.ui.view,arch_db:repair_scrap.view_repair_scrap
+msgid "Confirm"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.actions.act_window,name:repair_scrap.action_repair_scrap
+msgid "Create Scrap"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__create_uid
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__create_date
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: repair_scrap
+#: model_terms:ir.ui.view,arch_db:repair_scrap.repair_type_view_form_scrap
+#: model_terms:ir.ui.view,arch_db:repair_scrap.repair_type_view_tree_scrap
+msgid "Destination Scrap Location"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__display_name
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__id
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_stock_scrap__is_repair_scrap
+msgid "Is Repair Scrap"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_stock_move__is_repair_scrap
+msgid "Is repair Scrap"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_wizard__item_ids
+msgid "Items"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model,name:repair_scrap.model_repair_make_scrap_item_wizard
+msgid "Items to Scrap"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard____last_update
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__write_uid
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__write_date
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__lot_id
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__product_id
+msgid "Product"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__product_qty
+msgid "Quantity Ordered"
+msgstr ""
+
+#. module: repair_scrap
+#: code:addons/repair_scrap/wizards/repair_make_scrap.py:0
+#, python-format
+msgid "Repair %s is not confirmed"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model,name:repair_scrap.model_repair_order
+#: model_terms:ir.ui.view,arch_db:repair_scrap.stock_scrap_form_view_repair
+msgid "Repair Order"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model,name:repair_scrap.model_repair_type
+msgid "Repair Type"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_stock_scrap__repair_id
+msgid "Repair order"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model,name:repair_scrap.model_stock_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_order__scrap_ids
+#: model_terms:ir.ui.view,arch_db:repair_scrap.view_repair_order_form_scrap_button
+msgid "Scrap"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_type__scrap_location_id
+msgid "Scrap Destination Location"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__scrap_location_id
+msgid "Scrap Location"
+msgstr ""
+
+#. module: repair_scrap
+#: model_terms:ir.ui.view,arch_db:repair_scrap.view_repair_order_form_scrap
+msgid "Scraps"
+msgstr ""
+
+#. module: repair_scrap
+#: model_terms:ir.ui.view,arch_db:repair_scrap.view_repair_scrap
+msgid "Select lines for Scrap"
+msgstr ""
+
+#. module: repair_scrap
+#: model_terms:ir.ui.view,arch_db:repair_scrap.view_repair_scrap
+msgid "Select lines for picking"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__location_id
+msgid "Source Location"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model,name:repair_scrap.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model,name:repair_scrap.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,help:repair_scrap.field_stock_scrap__is_repair_scrap
+msgid "This Stock Move has been created from a Scrap operation in Repair."
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,help:repair_scrap.field_stock_move__is_repair_scrap
+msgid "This Stock Move has been created from a Scrap operation in the Repair."
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__uom_id
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__wiz_id
+msgid "Wizard"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model,name:repair_scrap.model_repair_make_scrap_wizard
+msgid "Wizard to create scrap from repair"
+msgstr ""
+
+#. module: repair_scrap
+#: model_terms:ir.ui.view,arch_db:repair_scrap.view_repair_scrap
+msgid "or"
+msgstr ""
+
+#. module: repair_scrap
+#: model:ir.model.fields,field_description:repair_scrap.field_repair_make_scrap_item_wizard__repair_id
+msgid "repair Order"
+msgstr ""
