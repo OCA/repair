@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [repair_stock_move](repair_stock_move/) | 15.0.1.0.2 |  | Ongoing Repair Stock Moves Definition in odoo
 [repair_type](repair_type/) | 15.0.1.0.0 |  | Repair type
 [repair_type_refurbish](repair_type_refurbish/) | 15.0.1.0.0 |  | Repair type
+[repair_type_security](repair_type_security/) | 15.0.1.0.0 |  | Glue module Repair Type and Repair Security
 [repair_type_sequence](repair_type_sequence/) | 15.0.1.0.2 | [![AaronHForgeFlow](https://github.com/AaronHForgeFlow.png?size=30px)](https://github.com/AaronHForgeFlow) | Adds sequence to repair orders defined in the repairs's type
 
 [//]: # (end addons)
