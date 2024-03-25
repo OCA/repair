@@ -22,7 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [repair_reason](repair_reason/) | 15.0.1.0.0 |  | Repair Reason
-[repair_refurbish](repair_refurbish/) | 15.0.1.0.1 |  | Create refurbished products during repair
+[repair_refurbish](repair_refurbish/) | 15.0.1.0.2 |  | Create refurbished products during repair
 [repair_refurbish_repair_stock_move](repair_refurbish_repair_stock_move/) | 15.0.1.0.0 |  | Use refurbish and repair stock moves together
 [repair_scrap](repair_scrap/) | 15.0.1.0.0 |  | To send to scrap components or irreparable components.
 [repair_security](repair_security/) | 15.0.1.0.0 |  | Create security groups for Repair
