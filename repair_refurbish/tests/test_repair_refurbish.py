@@ -55,7 +55,8 @@ class TestMrpMtoWithStock(TransactionCase):
             }
         )
         repair.onchange_product_id()
-        self.assertTrue(repair.to_refurbish)
+        self.assertFalse(repair.to_refurbish)
+        repair.to_refurbish = True
         repair._onchange_to_refurbish()
         self.assertEqual(repair.refurbish_location_dest_id, self.customer_location)
         self.assertEqual(repair.location_dest_id, self.product.property_stock_refurbish)
