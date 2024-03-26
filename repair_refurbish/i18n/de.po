@@ -23,7 +23,7 @@ msgid "Delivery Location"
 msgstr "Auslieferungslagerort"
 
 #. module: repair_refurbish
-#: model:ir.model,name:repair_refurbish.model_product_product
+#: model:ir.model,name:repair_refurbish.model_product_template
 msgid "Product"
 msgstr "Produkt"
 
@@ -33,9 +33,9 @@ msgid "Product Moves (Stock Move Line)"
 msgstr ""
 
 #. module: repair_refurbish
-#: model:ir.model,name:repair_refurbish.model_product_template
-msgid "Product Template"
-msgstr "Produktvorlage"
+#: model:ir.model,name:repair_refurbish.model_product_product
+msgid "Product Variant"
+msgstr ""
 
 #. module: repair_refurbish
 #: model_terms:ir.ui.view,arch_db:repair_refurbish.product_normal_form_view
@@ -107,3 +107,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__to_refurbish
 msgid "To Refurbish"
 msgstr "Wiederaufbereiten"
+
+#~ msgid "Product Template"
+#~ msgstr "Produktvorlage"
