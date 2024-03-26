@@ -23,7 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [repair_picking_after_done](repair_picking_after_done/) | 16.0.1.0.1 |  | Transfer repaired move to another location directly from repaire order
 [repair_reason](repair_reason/) | 16.0.1.0.0 |  | Repair Reason
-[repair_sale_order](repair_sale_order/) | 16.0.1.0.0 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Repair To Sale Order
+[repair_sale_order](repair_sale_order/) | 16.0.1.0.1 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Repair To Sale Order
 [repair_security](repair_security/) | 16.0.1.0.0 |  | Create security groups for Repair
 [repair_type](repair_type/) | 16.0.1.0.1 |  | Repair type
 [repair_type_sequence](repair_type_sequence/) | 16.0.1.0.0 | [![AaronHForgeFlow](https://github.com/AaronHForgeFlow.png?size=30px)](https://github.com/AaronHForgeFlow) | Adds sequence to repair orders defined in the repairs's type
