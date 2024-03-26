@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="repair_type_refurbish_view_form" model="ir.ui.view">
+        <field name="name">Repair Types Refurbish Form</field>
+        <field name="model">repair.type</field>
+        <field name="inherit_id" ref="repair_type.repair_type_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='source_location_id']/.." positon="inside">
+                <field name="refurbish_location_dest_id" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
