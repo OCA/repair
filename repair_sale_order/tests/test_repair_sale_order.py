@@ -44,6 +44,7 @@ class TestRepairSaleOrder(TransactionCase):
                 "product_id": self.product1.id,
                 "partner_id": self.partner.id,
                 "location_id": self.env.ref("stock.stock_location_14").id,
+                "partner_invoice_id": self.partner.id,
                 "repair_type_id": self.repair_type.id,
             }
         )
