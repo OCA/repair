@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-repair_picking_after_done>=16.0dev,<16.1dev',
         'odoo-addon-repair_reason>=16.0dev,<16.1dev',
+        'odoo-addon-repair_refurbish>=16.0dev,<16.1dev',
         'odoo-addon-repair_sale_order>=16.0dev,<16.1dev',
         'odoo-addon-repair_security>=16.0dev,<16.1dev',
         'odoo-addon-repair_type>=16.0dev,<16.1dev',
