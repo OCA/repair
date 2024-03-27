@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo-addon-repair_refurbish>=16.0dev,<16.1dev',
         'odoo-addon-repair_sale_order>=16.0dev,<16.1dev',
         'odoo-addon-repair_security>=16.0dev,<16.1dev',
+        'odoo-addon-repair_stock_move>=16.0dev,<16.1dev',
         'odoo-addon-repair_type>=16.0dev,<16.1dev',
         'odoo-addon-repair_type_refurbish>=16.0dev,<16.1dev',
         'odoo-addon-repair_type_sequence>=16.0dev,<16.1dev',

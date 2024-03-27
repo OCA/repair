@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [repair_refurbish](repair_refurbish/) | 16.0.1.0.0 |  | Create refurbished products during repair
 [repair_sale_order](repair_sale_order/) | 16.0.1.0.1 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Repair To Sale Order
 [repair_security](repair_security/) | 16.0.1.0.0 |  | Create security groups for Repair
+[repair_stock_move](repair_stock_move/) | 16.0.1.0.0 |  | Ongoing Repair Stock Moves Definition in odoo
 [repair_type](repair_type/) | 16.0.1.0.1 |  | Repair type
 [repair_type_refurbish](repair_type_refurbish/) | 16.0.1.0.0 |  | Repair type
 [repair_type_sequence](repair_type_sequence/) | 16.0.1.0.0 | [![AaronHForgeFlow](https://github.com/AaronHForgeFlow.png?size=30px)](https://github.com/AaronHForgeFlow) | Adds sequence to repair orders defined in the repairs's type
