@@ -6,48 +6,54 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-04-03 12:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: repair_type_sequence
 #: model:ir.model.fields,field_description:repair_type_sequence.field_repair_type__sequence_id
 msgid "Entry Sequence"
-msgstr ""
+msgstr "Sequenza di immissione"
 
 #. module: repair_type_sequence
 #: model:ir.model.fields,field_description:repair_type_sequence.field_repair_type__sequence_number_next
 msgid "Next Number"
-msgstr ""
+msgstr "Numero successivo"
 
 #. module: repair_type_sequence
 #: model:ir.model,name:repair_type_sequence.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Ordine di riparazione"
 
 #. module: repair_type_sequence
 #: model:ir.model,name:repair_type_sequence.model_repair_type
 msgid "Repair Type"
-msgstr ""
+msgstr "Tipo riparazione"
 
 #. module: repair_type_sequence
 #: model:ir.model.fields,field_description:repair_type_sequence.field_repair_type__sequence_prefix
 msgid "Sequence Prefix"
-msgstr ""
+msgstr "Prefisso sequenza"
 
 #. module: repair_type_sequence
 #: model:ir.model.fields,help:repair_type_sequence.field_repair_type__sequence_number_next
 msgid "The next sequence number will be used for the next rorder."
 msgstr ""
+"Il numero di sequenza successivo verrà utilizzato per il prossimo ordine di "
+"riparazione."
 
 #. module: repair_type_sequence
 #: model:ir.model.fields,help:repair_type_sequence.field_repair_type__sequence_prefix
 msgid "The rorder's sequence will be created using this prefix."
 msgstr ""
+"La sequenza dell'ordine di riparazione verrà creata utilizzando questo "
+"prefisso."
 
 #. module: repair_type_sequence
 #: model:ir.model.fields,help:repair_type_sequence.field_repair_type__sequence_id
@@ -55,3 +61,5 @@ msgid ""
 "This field contains the information related to the numbering of the rorders "
 "belonging to this rtype."
 msgstr ""
+"Questo campo contiene l'informazione relativa alla numerazione degli ordini "
+"di riparazione appartenenti a questo tipo."
