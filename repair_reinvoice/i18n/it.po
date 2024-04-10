@@ -6,43 +6,45 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-04-10 08:41+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: repair_reinvoice
 #: model:ir.model,name:repair_reinvoice.model_account_move_reversal
 msgid "Account Move Reversal"
-msgstr ""
+msgstr "Storno movimento conto"
 
 #. module: repair_reinvoice
 #: model:ir.model.fields,field_description:repair_reinvoice.field_repair_order__invoice_count
 msgid "Bill Count"
-msgstr ""
+msgstr "Conteggio fatture"
 
 #. module: repair_reinvoice
 #: model:ir.model.fields,field_description:repair_reinvoice.field_repair_order__invoiced
 msgid "Invoiced"
-msgstr ""
+msgstr "Fatturato"
 
 #. module: repair_reinvoice
 #: model:ir.model.fields,field_description:repair_reinvoice.field_repair_order__invoice_ids
 #: model_terms:ir.ui.view,arch_db:repair_reinvoice.view_repair_order_form
 msgid "Invoices"
-msgstr ""
+msgstr "Fatture"
 
 #. module: repair_reinvoice
 #. odoo-python
 #: code:addons/repair_reinvoice/models/repair_order.py:0
 #, python-format
 msgid "Invoices created"
-msgstr ""
+msgstr "Fatture create"
 
 #. module: repair_reinvoice
 #: model:ir.model,name:repair_reinvoice.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Ordine di riparazione"
