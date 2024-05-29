@@ -9,7 +9,7 @@ class RepairOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        rorder = super(RepairOrder, self).create(vals)
+        rorder = super().create(vals)
         if rorder.repair_type_id:
             sequence_id = (
                 self.env["repair.type"].browse(vals["repair_type_id"]).sequence_id

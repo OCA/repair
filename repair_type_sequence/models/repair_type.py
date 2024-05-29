@@ -72,7 +72,7 @@ class RepairType(models.Model):
             vals["sequence_prefix"] = (
                 self.env["ir.sequence"].browse(vals["sequence_id"]).prefix
             )
-        result = super(RepairType, self).create(vals)
+        result = super().create(vals)
         self._compute_rorder_code()
         return result
 
@@ -84,7 +84,7 @@ class RepairType(models.Model):
             vals["sequence_prefix"] = (
                 self.env["ir.sequence"].browse(vals["sequence_id"]).prefix
             )
-        result = super(RepairType, self).write(vals)
+        result = super().write(vals)
         self._compute_rorder_code()
         return result
 

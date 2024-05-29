@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestRepairType(TransactionCase):
     def setUp(self, *args, **kwargs):
-        super(TestRepairType, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
 
         # add repair model
         self.repair_model = self.env["repair.order"]
