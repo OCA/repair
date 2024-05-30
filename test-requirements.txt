@@ -1,0 +1,1 @@
+odoo-addon-repair_type @ git+https://github.com/OCA/repair.git@refs/pull/43/head#subdirectory=repair_type
