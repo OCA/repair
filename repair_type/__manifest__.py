@@ -3,7 +3,7 @@
 
 {
     "name": "Repair Type",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.2",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/repair",
     "summary": "Repair type",
