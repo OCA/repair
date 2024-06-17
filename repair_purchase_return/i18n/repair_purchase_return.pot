@@ -1,0 +1,169 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_purchase_return
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: repair_purchase_return
+#: model_terms:ir.ui.view,arch_db:repair_purchase_return.view_repair_order_form
+msgid "Add purchase return notes."
+msgstr ""
+
+#. module: repair_purchase_return
+#: model_terms:ir.ui.view,arch_db:repair_purchase_return.view_repair_purchase_return_wiz
+msgid "Cancel"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model_terms:ir.ui.view,arch_db:repair_purchase_return.view_repair_order_form
+#: model_terms:ir.ui.view,arch_db:repair_purchase_return.view_repair_purchase_return_wiz
+msgid "Create Purchase Return"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model_terms:ir.ui.view,arch_db:repair_purchase_return.view_repair_purchase_return_wiz
+msgid "Create Purchase Return Order from Repair"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.actions.act_window,name:repair_purchase_return.action_repair_purchase_return_wiz
+msgid "Create Purchase Return Orders"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model_terms:ir.ui.view,arch_db:repair_purchase_return.view_repair_purchase_return_wiz
+msgid "Create and View Purchase Return"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_purchase_return_wiz__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_purchase_return_wiz__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_purchase_return_wiz__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_purchase_return_wiz__id
+msgid "ID"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_purchase_return_wiz____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_purchase_return_wiz__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_purchase_return_wiz__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_order__purchase_return_ids
+msgid "Purchase Return"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_fee__purchase_return_line_ids
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_line__purchase_return_line_ids
+msgid "Purchase Return Line"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model,name:repair_purchase_return.model_purchase_return_order
+msgid "Purchase Return Order"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model,name:repair_purchase_return.model_purchase_return_order_line
+msgid "Purchase Return Order Line"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model_terms:ir.ui.view,arch_db:repair_purchase_return.view_repair_order_form
+msgid "Purchase Returns"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model_terms:ir.ui.view,arch_db:repair_purchase_return.view_repair_purchase_return_wiz
+msgid ""
+"Purchase Returns will be created in draft so that you\n"
+"                        can review them before validation."
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_purchase_return_order_line__repair_fee_ids
+msgid "Repair Fee"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model,name:repair_purchase_return.model_repair_fee
+msgid "Repair Fees"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_purchase_return_order_line__repair_line_ids
+msgid "Repair Line"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model,name:repair_purchase_return.model_repair_line
+msgid "Repair Line (parts)"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model,name:repair_purchase_return.model_repair_order
+#: model:ir.model.fields,field_description:repair_purchase_return.field_purchase_return_order__repair_order_ids
+msgid "Repair Order"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model_terms:ir.ui.view,arch_db:repair_purchase_return.purchase_return_order_form
+msgid "Repair Orders"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_purchase_return_order__repair_order_count
+msgid "Repair Orders Count"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model,name:repair_purchase_return.model_repair_purchase_return_wiz
+msgid "RepairPurchaseReturnWizard"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_order__purchase_return_count
+msgid "Return Purchase Count"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_order__purchase_return_notes
+msgid "Return Purchase Notes"
+msgstr ""
+
+#. module: repair_purchase_return
+#: model:ir.model.fields,field_description:repair_purchase_return.field_repair_purchase_return_wiz__vendor_id
+msgid "Vendor"
+msgstr ""
