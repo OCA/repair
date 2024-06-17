@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [repair_picking_after_done](repair_picking_after_done/) | 16.0.1.0.1 |  | Transfer repaired move to another location directly from repaire order
+[repair_purchase_return](repair_purchase_return/) | 16.0.1.0.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Create a Purchase Return from a Repair
 [repair_reason](repair_reason/) | 16.0.1.0.0 |  | Repair Reason
 [repair_refurbish](repair_refurbish/) | 16.0.1.0.0 |  | Create refurbished products during repair
 [repair_reinvoice](repair_reinvoice/) | 16.0.1.0.0 |  | Repair Reinvoice in odoo
