@@ -28,8 +28,10 @@ Repair Type
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds the type to a repair order. If we select a type on a
-Repair Order, Odoo will automatically fill some fields of the order.
+This module adds the source location from removing and recycling
+components. If we select the both locations on stock picking type when
+you select that in a Repair Order, Odoo will automatically set that in
+stock moves for that components.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -41,26 +43,13 @@ Repair Order, Odoo will automatically fill some fields of the order.
 .. contents::
    :local:
 
-Configuration
-=============
-
-No configuration needed for this module.
-
 Usage
 =====
 
-Go to Configuration>Repair Types and create a new repair type.
-Afterwards selecting a type on a Repair Order will automatically fill
-some fields.
-
-Known issues / Roadmap
-======================
-
-Possible improvements for future versions:
-
--  Destination Location of the product to repair is not used currently,
-   so that's why is invisible. We still save the field for future new
-   module implementations.
+Set stock picking type for repairs and select source locations for
+removing and recycling components. Afterwards selecting that stock
+picking type on a Repair Order will automatically put that source
+location on stock moves of that components.
 
 Bug Tracker
 ===========
@@ -86,6 +75,11 @@ Contributors
 -  `ForgeFlow <https://forgeflow.com>`__:
 
       -  Bernat Puig <bernat.puig@forgeflow.com>
+
+-  `APSL-Nagarro <https://apsl.tech>`__:
+
+      -  Antoni Marroig <amarroig@apsl.net>
+      -  Miquel Alzanillas <malzanillas@apsl.net>>
 
 Maintainers
 -----------

@@ -1,2 +1,1 @@
-This module adds the type to a repair order. If we select a type on a
-Repair Order, Odoo will automatically fill some fields of the order.
+This module adds the source location from removing and recycling components. If we select the both locations on stock picking type when you select that in a Repair Order, Odoo will automatically set that in stock moves for that components.
