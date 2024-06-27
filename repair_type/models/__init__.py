@@ -1,2 +1,2 @@
-from . import repair
-from . import repair_type
+from . import stock_move
+from . import stock_picking_type
