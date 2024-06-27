@@ -1,3 +1,2 @@
-Go to Configuration\>Repair Types and create a new repair type.
-Afterwards selecting a type on a Repair Order will automatically fill
-some fields.
+Set stock picking type for repairs and select source locations for removing and recycling components.
+Afterwards selecting that stock picking type on a Repair Order will automatically put that source location on stock moves of that components.
