@@ -1,16 +1,19 @@
 # Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests import common
+from odoo.tests.common import TransactionCase
 
 
-class TestMrpRepairDiscount(common.SavepointCase):
+class TestMrpRepairDiscount(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestMrpRepairDiscount, cls).setUpClass()
+
+        # Create product and service
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test product",
+                "type": "product",
                 "standard_price": 10,
                 "list_price": 20,
             }
@@ -18,16 +21,21 @@ class TestMrpRepairDiscount(common.SavepointCase):
         cls.product_service = cls.env["product.product"].create(
             {
                 "name": "Test product service",
+                "type": "service",
                 "standard_price": 10,
                 "list_price": 20,
             }
         )
+
+        # Create partner and location
         cls.partner = cls.env.ref("base.res_partner_address_1")
         cls.location = cls.env["stock.location"].create(
             {
                 "name": "Test location",
             }
         )
+
+        # Create repair order
         cls.repair = cls.env["repair.order"].create(
             {
                 "product_id": cls.product.id,
@@ -38,8 +46,12 @@ class TestMrpRepairDiscount(common.SavepointCase):
                 "invoice_method": "b4repair",
             }
         )
+
+        # Find stock location
         domain_location = [("usage", "=", "production")]
         stock_location_id = cls.env["stock.location"].search(domain_location, limit=1)
+
+        # Create repair line
         cls.repair_line = cls.env["repair.line"].create(
             {
                 "repair_id": cls.repair.id,
@@ -55,6 +67,7 @@ class TestMrpRepairDiscount(common.SavepointCase):
             }
         )
 
+        # Create repair fee
         cls.repair_fee = cls.env["repair.fee"].create(
             {
                 "repair_id": cls.repair.id,
