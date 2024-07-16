@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-repair Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-repair_calendar_view>=16.0dev,<16.1dev',
         'odoo-addon-repair_picking_after_done>=16.0dev,<16.1dev',
         'odoo-addon-repair_purchase_return>=16.0dev,<16.1dev',
         'odoo-addon-repair_reason>=16.0dev,<16.1dev',
