@@ -27,27 +27,6 @@ msgid "Discount (%)"
 msgstr "Descuento (%)"
 
 #. module: repair_discount
-#: model:ir.model.fields,field_description:repair_discount.field_repair_fee__display_name
-#: model:ir.model.fields,field_description:repair_discount.field_repair_line__display_name
-#: model:ir.model.fields,field_description:repair_discount.field_repair_order__display_name
-msgid "Display Name"
-msgstr "Nombre a Mostrar"
-
-#. module: repair_discount
-#: model:ir.model.fields,field_description:repair_discount.field_repair_fee__id
-#: model:ir.model.fields,field_description:repair_discount.field_repair_line__id
-#: model:ir.model.fields,field_description:repair_discount.field_repair_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: repair_discount
-#: model:ir.model.fields,field_description:repair_discount.field_repair_fee____last_update
-#: model:ir.model.fields,field_description:repair_discount.field_repair_line____last_update
-#: model:ir.model.fields,field_description:repair_discount.field_repair_order____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: repair_discount
 #: model:ir.model,name:repair_discount.model_repair_fee
 msgid "Repair Fees"
 msgstr "Tasas de Reparación"
@@ -61,3 +40,12 @@ msgstr "Línea de Reparación (piezas)"
 #: model:ir.model,name:repair_discount.model_repair_order
 msgid "Repair Order"
 msgstr "Pedido de reparación"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre a Mostrar"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
