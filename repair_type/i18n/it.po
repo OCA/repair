@@ -17,125 +17,134 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__create_uid
-msgid "Created by"
-msgstr "Creato da"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__create_date
-msgid "Created on"
-msgstr "Creato il"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_line__location_dest_id
-msgid "Dest. Location"
-msgstr "Ubicazione dest."
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__destination_location_add_part_id
-msgid "Destination Location Add Component"
-msgstr "Aggiungi componente ubicazione destinazione"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__destination_location_remove_part_id
-msgid "Destination Location Remove Component"
-msgstr "Rimuovi componente ubicazione destinazione"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__id
-msgid "ID"
-msgstr "ID"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__write_uid
-msgid "Last Updated by"
-msgstr "Ultimo aggiornamento di"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__write_date
-msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_order__location_id
-msgid "Location"
-msgstr "Ubicazione"
-
-#. module: repair_type
-#: model:ir.model,name:repair_type.model_repair_line
-msgid "Repair Line (parts)"
-msgstr "Riga riparazione (componenti)"
-
-#. module: repair_type
-#: model:ir.model,name:repair_type.model_repair_order
-msgid "Repair Order"
-msgstr "Ordine di riparazione"
-
-#. module: repair_type
-#: model:ir.model,name:repair_type.model_repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_order__repair_type_id
-msgid "Repair Type"
-msgstr "Tipo riparazione"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__name
-msgid "Repair Type Name"
-msgstr "Nome tipo riparazione"
-
-#. module: repair_type
-#: model:ir.actions.act_window,name:repair_type.repair_type_action
-#: model:ir.ui.menu,name:repair_type.repair_type_menu
-msgid "Repair Types"
-msgstr "Tipi riparazione"
-
-#. module: repair_type
-#: model_terms:ir.ui.view,arch_db:repair_type.repair_type_view_form
-msgid "Repair types"
-msgstr "Tipi riparazione"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_line__location_id
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__source_location_id
-msgid "Source Location"
-msgstr "Ubicazione di origine"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__source_location_add_part_id
-msgid "Source Location Add Component"
-msgstr "Aggiungi componente ubicazione origine"
-
-#. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__source_location_remove_part_id
-msgid "Source Location Remove Component"
-msgstr "Rimuovi componente ubicazione origine"
-
-#. module: repair_type
-#: model:ir.model.fields,help:repair_type.field_repair_type__destination_location_add_part_id
-#: model:ir.model.fields,help:repair_type.field_repair_type__source_location_add_part_id
-msgid "This is the location where the part of the product to add is located."
+#: model:ir.model.fields,field_description:repair_type.field_stock_picking_type__default_add_location_dest_id
+msgid "Default Add Destination Location"
 msgstr ""
-"Questa è l'ubicazione dove si trova il componenti del prodotto da aggiungere."
 
 #. module: repair_type
-#: model:ir.model.fields,help:repair_type.field_repair_type__destination_location_remove_part_id
-#: model:ir.model.fields,help:repair_type.field_repair_type__source_location_remove_part_id
+#: model:ir.model.fields,field_description:repair_type.field_stock_picking_type__default_add_location_src_id
+msgid "Default Add Source Location"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_stock_picking_type__default_recycle_location_src_id
+msgid "Default Recycle Source Location"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_stock_picking_type__default_remove_location_src_id
+msgid "Default Remove Source Location"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model,name:repair_type.model_stock_picking_type
+msgid "Picking Type"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model,name:repair_type.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,help:repair_type.field_stock_picking_type__default_add_location_dest_id
 msgid ""
-"This is the location where the part of the product to remove is located."
+"This is the default add destination location when you create a repair order "
+"with this operation type."
 msgstr ""
-"Questa è l'ubicazione dove si trava il componente del prodotto da rimuovere."
 
 #. module: repair_type
-#: model:ir.model.fields,help:repair_type.field_repair_order__location_id
-#: model:ir.model.fields,help:repair_type.field_repair_type__source_location_id
-msgid "This is the location where the product to repair is located."
-msgstr "Questa è l'ubicazione dove si trova il prodotto da riparare."
+#: model:ir.model.fields,help:repair_type.field_stock_picking_type__default_add_location_src_id
+msgid ""
+"This is the default add source location when you create a repair order with "
+"this operation type."
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,help:repair_type.field_stock_picking_type__default_recycle_location_src_id
+msgid ""
+"This is the default recycle source location when you create a repair order "
+"with this operation type."
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,help:repair_type.field_stock_picking_type__default_remove_location_src_id
+msgid ""
+"This is the default remove source location when you create a repair order "
+"with this operation type."
+msgstr ""
+
+#~ msgid "Created by"
+#~ msgstr "Creato da"
+
+#~ msgid "Created on"
+#~ msgstr "Creato il"
+
+#~ msgid "Dest. Location"
+#~ msgstr "Ubicazione dest."
+
+#~ msgid "Destination Location Add Component"
+#~ msgstr "Aggiungi componente ubicazione destinazione"
+
+#~ msgid "Destination Location Remove Component"
+#~ msgstr "Rimuovi componente ubicazione destinazione"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Ultimo aggiornamento di"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Ultimo aggiornamento il"
+
+#~ msgid "Location"
+#~ msgstr "Ubicazione"
+
+#~ msgid "Repair Line (parts)"
+#~ msgstr "Riga riparazione (componenti)"
+
+#~ msgid "Repair Order"
+#~ msgstr "Ordine di riparazione"
+
+#~ msgid "Repair Type"
+#~ msgstr "Tipo riparazione"
+
+#~ msgid "Repair Type Name"
+#~ msgstr "Nome tipo riparazione"
+
+#~ msgid "Repair Types"
+#~ msgstr "Tipi riparazione"
+
+#~ msgid "Repair types"
+#~ msgstr "Tipi riparazione"
+
+#~ msgid "Source Location"
+#~ msgstr "Ubicazione di origine"
+
+#~ msgid "Source Location Add Component"
+#~ msgstr "Aggiungi componente ubicazione origine"
+
+#~ msgid "Source Location Remove Component"
+#~ msgstr "Rimuovi componente ubicazione origine"
+
+#~ msgid ""
+#~ "This is the location where the part of the product to add is located."
+#~ msgstr ""
+#~ "Questa è l'ubicazione dove si trova il componenti del prodotto da "
+#~ "aggiungere."
+
+#~ msgid ""
+#~ "This is the location where the part of the product to remove is located."
+#~ msgstr ""
+#~ "Questa è l'ubicazione dove si trava il componente del prodotto da "
+#~ "rimuovere."
+
+#~ msgid "This is the location where the product to repair is located."
+#~ msgstr "Questa è l'ubicazione dove si trova il prodotto da riparare."
