@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-03 12:35+0000\n"
+"PO-Revision-Date: 2024-08-04 21:58+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,37 +14,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: repair_type
 #: model:ir.model.fields,field_description:repair_type.field_stock_picking_type__default_add_location_dest_id
 msgid "Default Add Destination Location"
-msgstr ""
+msgstr "Aggiungi ubicazione destinazione in modo predefinito"
 
 #. module: repair_type
 #: model:ir.model.fields,field_description:repair_type.field_stock_picking_type__default_add_location_src_id
 msgid "Default Add Source Location"
-msgstr ""
+msgstr "Aggiungi ubicazione origine in modo predefinito"
 
 #. module: repair_type
 #: model:ir.model.fields,field_description:repair_type.field_stock_picking_type__default_recycle_location_src_id
 msgid "Default Recycle Source Location"
-msgstr ""
+msgstr "Ricicla ubicazione origine in modo predefinito"
 
 #. module: repair_type
 #: model:ir.model.fields,field_description:repair_type.field_stock_picking_type__default_remove_location_src_id
 msgid "Default Remove Source Location"
-msgstr ""
+msgstr "Rimuovi ubicazione origine in modo predefinito"
 
 #. module: repair_type
 #: model:ir.model,name:repair_type.model_stock_picking_type
 msgid "Picking Type"
-msgstr ""
+msgstr "Tipologia prelievo"
 
 #. module: repair_type
 #: model:ir.model,name:repair_type.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: repair_type
 #: model:ir.model.fields,help:repair_type.field_stock_picking_type__default_add_location_dest_id
@@ -52,6 +52,8 @@ msgid ""
 "This is the default add destination location when you create a repair order "
 "with this operation type."
 msgstr ""
+"Questa è la destinazione predefinita aggiunta quando si crea un ordine di "
+"riparazione con questo tipo di operazione."
 
 #. module: repair_type
 #: model:ir.model.fields,help:repair_type.field_stock_picking_type__default_add_location_src_id
@@ -59,6 +61,8 @@ msgid ""
 "This is the default add source location when you create a repair order with "
 "this operation type."
 msgstr ""
+"Questa è l'ubicazione origine predefinita aggiunta quando si crea un ordine "
+"di riparazione con questo tipo operazione."
 
 #. module: repair_type
 #: model:ir.model.fields,help:repair_type.field_stock_picking_type__default_recycle_location_src_id
@@ -66,6 +70,8 @@ msgid ""
 "This is the default recycle source location when you create a repair order "
 "with this operation type."
 msgstr ""
+"Questa è l'ubicazione riciclo predefinita aggiunta quando si crea un ordine "
+"di riparazione con questo tipo operazione."
 
 #. module: repair_type
 #: model:ir.model.fields,help:repair_type.field_stock_picking_type__default_remove_location_src_id
@@ -73,6 +79,8 @@ msgid ""
 "This is the default remove source location when you create a repair order "
 "with this operation type."
 msgstr ""
+"Questa è l'ubicazione rimozione predefinita aggiunta quando si crea un "
+"ordine di riparazione con questo tipo operazione."
 
 #~ msgid "Created by"
 #~ msgstr "Creato da"
