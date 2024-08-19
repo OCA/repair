@@ -7,7 +7,9 @@ from odoo import fields, models
 class RepairOrder(models.Model):
     _inherit = "repair.order"
 
-    scrap_count = fields.Integer(compute="_compute_scrap_count", string="# Scrap")
+    scrap_count = fields.Integer(
+        compute="_compute_scrap_count", string="# Scrap", compute_sudo=True
+    )
 
     scrap_ids = fields.One2many("stock.scrap", "repair_id")
 
