@@ -39,6 +39,11 @@ class RepairOrder(models.Model):
 
     @api.depends("state")
     def _compute_show_check_availability(self):
+        group_stock_user = self.env.ref("stock.group_stock_user")
+        if group_stock_user not in self.env.user.groups_id:
+            for rec in self:
+                rec.show_check_availability = False
+            return
         for rec in self:
             rec.show_check_availability = (
                 any(

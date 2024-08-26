@@ -13,14 +13,14 @@
                     string="Check Availability"
                     type="object"
                     class="oe_highlight"
-                    groups="base.group_user"
+                    groups="stock.group_stock_user"
                 />
                 <button
                     name="action_force_availability"
                     attrs="{'invisible': [('show_check_availability', '=', False)]}"
                     string="Force Availability"
                     type="object"
-                    groups="base.group_user"
+                    groups="stock.group_stock_user"
                 />
                 <field name="show_check_availability" invisible="1" />
             </header>
@@ -35,6 +35,7 @@
                     class="oe_stat_button"
                     icon="fa-exchange"
                     attrs="{'invisible': [('move_id', '=', False)]}"
+                    groups="stock.group_stock_user"
                 >
                         <div class="o_field_widget o_stat_info">
                             <span class="o_stat_text">Stock Moves</span>
