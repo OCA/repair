@@ -27,7 +27,7 @@ addon | version | maintainers | summary
 [repair_sale_order](repair_sale_order/) | 15.0.1.0.0 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Repair To Sale Order
 [repair_scrap](repair_scrap/) | 15.0.1.0.0 |  | To send to scrap components or irreparable components.
 [repair_security](repair_security/) | 15.0.1.0.0 |  | Create security groups for Repair
-[repair_stock_move](repair_stock_move/) | 15.0.1.0.2 |  | Ongoing Repair Stock Moves Definition in odoo
+[repair_stock_move](repair_stock_move/) | 15.0.1.1.0 |  | Ongoing Repair Stock Moves Definition in odoo
 [repair_type](repair_type/) | 15.0.1.0.0 |  | Repair type
 [repair_type_refurbish](repair_type_refurbish/) | 15.0.1.0.0 |  | Repair type
 [repair_type_security](repair_type_security/) | 15.0.1.0.0 |  | Glue module Repair Type and Repair Security
