@@ -3,7 +3,7 @@
 
 {
     "name": "Repair Stock",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "category": "Repair",
     "website": "https://github.com/OCA/repair",
@@ -12,4 +12,5 @@
         "views/repair_order_view.xml",
     ],
     "license": "AGPL-3",
+    "development_status": "Alpha",
 }
