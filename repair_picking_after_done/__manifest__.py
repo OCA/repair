@@ -3,12 +3,12 @@
 
 {
     "name": "Repair picking after done",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.2",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/repair",
     "summary": "Transfer repaired move to another location directly from repaire order",
     "category": "Repair",
-    "depends": ["repair_type"],
+    "depends": ["repair_type", "repair_stock"],
     "data": [
         "security/ir.model.access.csv",
         "views/repair.xml",
