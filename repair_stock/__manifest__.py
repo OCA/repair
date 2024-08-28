@@ -6,7 +6,7 @@
     "version": "14.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "category": "Repair",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/OCA/repair",
     "depends": ["repair_stock_move"],
     "data": [
         "views/repair_order_view.xml",
