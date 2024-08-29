@@ -23,13 +23,14 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [repair_calendar_view](repair_calendar_view/) | 16.0.1.0.0 |  | Repair Calendar View
 [repair_discount](repair_discount/) | 16.0.1.0.0 |  | Repair Discount
-[repair_picking_after_done](repair_picking_after_done/) | 16.0.1.0.1 |  | Transfer repaired move to another location directly from repaire order
+[repair_picking_after_done](repair_picking_after_done/) | 16.0.1.0.2 |  | Transfer repaired move to another location directly from repaire order
 [repair_purchase_return](repair_purchase_return/) | 16.0.1.0.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Create a Purchase Return from a Repair
 [repair_reason](repair_reason/) | 16.0.1.0.0 |  | Repair Reason
 [repair_refurbish](repair_refurbish/) | 16.0.1.0.0 |  | Create refurbished products during repair
 [repair_reinvoice](repair_reinvoice/) | 16.0.1.0.0 |  | Repair Reinvoice in odoo
 [repair_sale_order](repair_sale_order/) | 16.0.1.0.1 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Repair To Sale Order
 [repair_security](repair_security/) | 16.0.1.0.0 |  | Create security groups for Repair
+[repair_stock](repair_stock/) | 16.0.1.0.0 |  | Repair Stock
 [repair_stock_move](repair_stock_move/) | 16.0.1.1.0 |  | Ongoing Repair Stock Moves Definition in odoo
 [repair_type](repair_type/) | 16.0.1.0.2 |  | Repair type
 [repair_type_refurbish](repair_type_refurbish/) | 16.0.1.0.0 |  | Repair type
