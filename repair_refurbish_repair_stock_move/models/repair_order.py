@@ -13,6 +13,27 @@ class RepairOrder(models.Model):
         move.quantity_done = self.product_qty
         self.refurbish_move_id = move.id
 
+    def _create_and_confirm_stock_moves(self):
+        res = super()._create_and_confirm_stock_moves()
+        # if the repair order is started the action assign needs to be called
+        for rec in self.filtered(lambda l: l.state == "under_repair"):
+            moves = rec.mapped("stock_move_ids")
+            moves.filtered(lambda l: l.state == "confirmed")._action_assign()
+        return res
+
+    def write(self, values):
+        res = super().write(values)
+        if "to_refurbish" in values.keys():
+            if self.mapped("stock_move_ids") and self.state not in (
+                "draft",
+                "done",
+                "cancel",
+            ):
+                # recreate stock moves
+                self.mapped("stock_move_ids")._action_cancel()
+                self._create_and_confirm_stock_moves()
+        return res
+
     def _prepare_repair_stock_move(self):
         res = super()._prepare_repair_stock_move()
         if not self.to_refurbish:
@@ -23,9 +44,10 @@ class RepairOrder(models.Model):
         return res
 
     def action_repair_end(self):
+        res = super().action_repair_end()
         for r in self.filtered(lambda l: l.to_refurbish):
             r.refurbish_move_id._action_done()
-        return super().action_repair_end()
+        return res
 
     def action_open_stock_moves(self):
         res = super().action_open_stock_moves()
