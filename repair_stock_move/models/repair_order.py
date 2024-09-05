@@ -77,8 +77,7 @@ class RepairOrder(models.Model):
         move_dict = self._prepare_repair_stock_move()
         return self.env["stock.move"].create(move_dict)
 
-    def action_repair_confirm(self):
-        res = super().action_repair_confirm()
+    def _create_and_confirm_stock_moves(self):
         for repair in self:
             moves = self.env["stock.move"]
             for operation in repair.operations:
@@ -88,6 +87,11 @@ class RepairOrder(models.Model):
             move = repair._create_repair_stock_move()
             repair.move_id = move
         self.mapped("stock_move_ids")._action_confirm()
+        return self.mapped("stock_move_ids")
+
+    def action_repair_confirm(self):
+        res = super().action_repair_confirm()
+        self._create_and_confirm_stock_moves()
         return res
 
     def action_assign(self):
