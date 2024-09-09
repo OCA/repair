@@ -1,7 +1,7 @@
 # Copyright 2024 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestMrpMtoWithStock(TransactionCase):
@@ -11,10 +11,13 @@ class TestMrpMtoWithStock(TransactionCase):
         self.repair_line_obj = self.env["repair.line"]
         self.product_obj = self.env["product.product"]
         self.move_obj = self.env["stock.move"]
+        self.move_line_obj = self.env["stock.move.line"]
+        self.stock_production_lot_obj = self.env["stock.production.lot"]
 
         self.stock_location_stock = self.env.ref("stock.stock_location_stock")
         self.customer_location = self.env.ref("stock.stock_location_customers")
         self.refurbish_loc = self.env.ref("repair_refurbish.stock_location_refurbish")
+        self.company = self.env.ref("base.main_company")
 
         self.refurbish_product = self.product_obj.create(
             {"name": "Refurbished Awesome Screen", "type": "product"}
@@ -94,3 +97,44 @@ class TestMrpMtoWithStock(TransactionCase):
                 self.assertTrue(
                     False, "Unexpected product: %s" % m.product_id.display_name
                 )
+
+    def test_02_lot_selection_existing_lot(self):
+        existing_lot_refurbish = self.stock_production_lot_obj.create(
+            {
+                "product_id": self.refurbish_product.id,
+                "name": "Lot B",
+                "company_id": self.company.id,
+            }
+        )
+        repair = self.repair_obj.create(
+            {
+                "product_id": self.product.id,
+                "product_qty": 3.0,
+                "product_uom": self.product.uom_id.id,
+                "location_dest_id": self.customer_location.id,
+                "location_id": self.stock_location_stock.id,
+            }
+        )
+        # Complete repair:
+        repair.action_validate()
+        repair.action_repair_start()
+        # Make it "to refurbish" in the middle
+        repair_form = Form(repair)
+        repair.refurbish_product_id = self.refurbish_product
+        repair.refurbish_location_dest_id = repair.location_dest_id
+        repair.location_dest_id = repair.product_id.property_stock_refurbish
+        repair.to_refurbish = True
+        repair = repair_form.save()
+        # assign the lot after saving
+        repair_form = Form(repair)
+        repair.refurbish_lot_id = existing_lot_refurbish
+        repair = repair_form.save()
+        repair.action_repair_end()
+        moves = self.move_line_obj.search(
+            [
+                ("move_id.reference", "=", repair.name),
+                ("state", "!=", "cancel"),
+                ("product_id", "=", self.refurbish_product.id),
+            ]
+        )
+        self.assertEqual(moves.lot_id, existing_lot_refurbish)

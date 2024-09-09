@@ -23,15 +23,26 @@ class RepairOrder(models.Model):
 
     def write(self, values):
         res = super().write(values)
-        if "to_refurbish" in values.keys():
-            if self.mapped("stock_move_ids") and self.state not in (
-                "draft",
-                "done",
-                "cancel",
-            ):
-                # recreate stock moves
-                self.mapped("stock_move_ids")._action_cancel()
-                self._create_and_confirm_stock_moves()
+        for repair in self:
+            if "to_refurbish" in values.keys():
+                if repair.mapped("stock_move_ids") and repair.state not in (
+                    "draft",
+                    "done",
+                    "cancel",
+                ):
+                    # recreate stock moves
+                    repair.mapped("stock_move_ids")._action_cancel()
+                    repair._create_and_confirm_stock_moves()
+            if "refurbish_lot_id" in values.keys():
+                if repair.mapped("stock_move_ids") and repair.state not in (
+                    "draft",
+                    "done",
+                    "cancel",
+                ):
+                    # assign new lot
+                    repair.mapped("stock_move_ids.move_line_ids").filtered(
+                        lambda l: l.product_id == repair.refurbish_product_id
+                    ).lot_id = repair.refurbish_lot_id.id
         return res
 
     def _prepare_repair_stock_move(self):
