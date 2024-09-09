@@ -38,6 +38,7 @@ class RepairOrder(models.Model):
     def _get_refurbish_stock_move_dict(self):
         return {
             "name": self.name,
+            "origin": self.name,
             "product_id": self.refurbish_product_id.id,
             "product_uom": self.product_uom.id or self.refurbish_product_id.uom_id.id,
             "product_uom_qty": self.product_qty,
