@@ -40,7 +40,6 @@ class RepairLine(models.Model):
             "repair_line_ids": [(4, self.id)],
             "date_planned": fields.Datetime.now(),
             "refund_only": True,
-            "display_type": "product",
         }
         self._execute_purchase_return_line_onchange(vals)
         return vals
