@@ -45,10 +45,12 @@ class RepairLine(models.Model):
             res.move_id = move
         return res
 
-    @api.onchange("product_id")
-    def _onchange_location(self):
-        if self.state == "draft":
+    @api.onchange("type")
+    def onchange_operation_type(self):
+        res = super().onchange_operation_type()
+        if self.state == "draft" and self.type == "add":
             self.location_id = self.repair_id.location_id
+        return res
 
     # TODO: write qty - update stock move.
     # TODO: default repair location in repair lines.
