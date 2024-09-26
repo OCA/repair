@@ -24,6 +24,8 @@ class StockMove(models.Model):
     ):
         if self.repair_line_id and self.repair_line_id.lot_id:
             lot_id = self.repair_line_id.lot_id
+        if self.repair_id and not self.repair_line_id and self.repair_id.lot_id:
+            lot_id = self.repair_id.lot_id
 
         return super()._get_available_quantity(
             location_id,
@@ -46,6 +48,8 @@ class StockMove(models.Model):
     ):
         if self.repair_line_id and self.repair_line_id.lot_id:
             lot_id = self.repair_line_id.lot_id
+        if self.repair_id and not self.repair_line_id and self.repair_id.lot_id:
+            lot_id = self.repair_id.lot_id
         return super(StockMove, self)._update_reserved_quantity(
             need,
             available_quantity,
@@ -62,6 +66,6 @@ class StockMove(models.Model):
         )
         if self.repair_line_id and self.repair_line_id.lot_id:
             vals["lot_id"] = self.repair_line_id.lot_id.id
-        elif self.repair_id and self.repair_id.lot_id:
+        elif self.repair_id and not self.repair_line_id and self.repair_id.lot_id:
             vals["lot_id"] = self.repair_id.lot_id.id
         return vals
