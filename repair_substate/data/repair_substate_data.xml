@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="base_substate_type_repair" model="base.substate.type">
+        <field name="name">Repair order Substate</field>
+        <field name="model">repair.order</field>
+        <field name="target_state_field">state</field>
+    </record>
+    <!-- repair related substate to repair state (draft, repair) -->
+    <record id="target_state_value_draft" model="target.state.value">
+        <field name="name">New</field>
+        <field name="base_substate_type_id" ref="base_substate_type_repair" />
+        <field name="target_state_value">draft</field>
+        </record>
+    <record id="target_state_value_repair" model="target.state.value">
+        <field name="name">Confirmed</field>
+        <field name="base_substate_type_id" ref="base_substate_type_repair" />
+        <field name="target_state_value">confirmed</field>
+    </record>
+ </odoo>
