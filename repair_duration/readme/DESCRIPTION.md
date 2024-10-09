@@ -1,0 +1,1 @@
+This module adds a Repair Duration field to the repair order form, allowing users to specify the time taken for a repair. The field is only editable when the repair order status is Under Repair, ensuring that the duration can only be adjusted during the repair process.

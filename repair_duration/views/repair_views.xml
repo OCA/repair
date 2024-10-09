@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="view_repair_order_form_inherit" model="ir.ui.view">
+    <field name="name">repair.order.form.inherit</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//group[@name='locations']" position="after">
+        <group string="Repair Duration" name="group_repair_duration">
+          <field
+                        name="repair_duration"
+                        widget="float_time"
+                        readonly="state != 'under_repair'"
+                    />
+        </group>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="view_repair_order_tree_inherit" model="ir.ui.view">
+    <field name="name">repair.order.tree.inherit</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_tree" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='state']" position="after">
+        <field name="repair_duration" widget="float_time" optional="hide" />
+      </xpath>
+    </field>
+  </record>
+</odoo>
