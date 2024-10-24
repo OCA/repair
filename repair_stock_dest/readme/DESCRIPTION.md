@@ -1,0 +1,3 @@
+This module enhances the repair process by adding the ability to transfer a repaired product to a specified destination location upon completion of the repair. It introduces a Product Destination Location field in the repair order, which defines where the repaired product will be transferred. The default value for this field is set from the Default Product Destination Location field of the associated Operation Type.
+
+Upon the completion of a repair order, an additional stock move is automatically created to transfer the repaired product to the specified destination location.
