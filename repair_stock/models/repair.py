@@ -29,9 +29,7 @@ class RepairOrder(models.Model):
         for order in self:
             moves = self.env["stock.move"].search(
                 [
-                    "|",
                     ("repair_id", "=", order.id),
-                    ("repair_line_id", "in", order.operations.ids),
                 ]
             )
             order.picking_ids = moves.mapped("picking_id")

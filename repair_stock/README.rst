@@ -64,6 +64,9 @@ Contributors
 ------------
 
 -  David Jimenez <david.jimenez@forgeflow.com>
+-  `APSL-Nagarro <https://www.apsl.tech>`__:
+
+   -  Patryk Pyczko <ppyczko@apsl.net>
 
 Maintainers
 -----------

@@ -3,11 +3,11 @@
 
 {
     "name": "Repair Stock",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "category": "Repair",
     "website": "https://github.com/OCA/repair",
-    "depends": ["repair_stock_move"],
+    "depends": ["repair"],
     "data": [
         "views/repair_order_view.xml",
     ],

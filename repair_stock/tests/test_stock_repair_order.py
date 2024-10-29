@@ -8,13 +8,12 @@ class TestStockRepairOrder(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
         cls.repair_model = cls.env["repair.order"]
-        cls.repair_line_model = cls.env["repair.line"]
         cls.product_model = cls.env["product.product"]
         cls.stock_location_model = cls.env["stock.location"]
         cls.warehouse_model = cls.env["stock.warehouse"]
         cls.company = cls.env.ref("base.main_company")
+
         cls.warehouse = cls.warehouse_model.create(
             {
                 "name": "Test Warehouse",
@@ -37,6 +36,7 @@ class TestStockRepairOrder(common.TransactionCase):
                 "company_id": cls.company.id,
             }
         )
+
         cls.repair_location = cls.stock_location_model.create(
             {
                 "name": "Repair Location",
@@ -52,6 +52,7 @@ class TestStockRepairOrder(common.TransactionCase):
                 "company_id": cls.company.id,
             }
         )
+
         cls.env["stock.quant"].create(
             {
                 "product_id": cls.product1.id,
@@ -67,31 +68,17 @@ class TestStockRepairOrder(common.TransactionCase):
             }
         )
 
-    def test_compute_pickings(self):
-        repair_order = self.repair_model.create(
+    def _create_repair_order(self, product):
+        return self.repair_model.create(
             {
-                "product_id": self.product1.id,
-                "product_uom": self.product1.uom_id.id,
+                "product_id": product.id,
+                "product_uom": product.uom_id.id,
                 "location_id": self.repair_location.id,
                 "company_id": self.company.id,
             }
         )
-        self.repair_line_model.create(
-            {
-                "name": "Repair Line 2",
-                "repair_id": repair_order.id,
-                "product_id": self.product2.id,
-                "type": "add",
-                "product_uom_qty": 1,
-                "product_uom": self.product2.uom_id.id,
-                "price_unit": 1,
-                "location_id": self.repair_location.id,
-                "location_dest_id": self.production_location.id,
-            }
-        )
-        repair_order.action_repair_confirm()
-        repair_order._compute_picking_ids()
-        self.assertEqual(len(repair_order.picking_ids), 0)
+
+    def _create_picking_and_move(self, repair_order):
         picking = self.env["stock.picking"].create(
             {
                 "partner_id": False,
@@ -100,6 +87,7 @@ class TestStockRepairOrder(common.TransactionCase):
                 "move_type": "direct",
                 "location_id": self.repair_location.id,
                 "location_dest_id": self.production_location.id,
+                "company_id": self.company.id,
             }
         )
         self.env["stock.move"].create(
@@ -113,10 +101,34 @@ class TestStockRepairOrder(common.TransactionCase):
                 "company_id": picking.company_id.id,
                 "picking_type_id": self.warehouse.int_type_id.id,
                 "product_uom_qty": 1,
-                "product_uom": repair_order.move_id.product_uom.id,
+                "product_uom": repair_order.product_id.uom_id.id,
                 "repair_id": repair_order.id,
             }
         )
+        return picking
+
+    def test_compute_pickings(self):
+        repair_order = self._create_repair_order(self.product1)
+        repair_order._action_repair_confirm()
+        repair_order._compute_picking_ids()
+        self.assertEqual(len(repair_order.picking_ids), 0)
+
+        self._create_picking_and_move(repair_order)
         repair_order._compute_picking_ids()
         self.assertTrue(repair_order.picking_ids)
         self.assertEqual(len(repair_order.picking_ids), 1)
+
+    def test_action_view_pickings(self):
+        repair_order = self._create_repair_order(self.product1)
+        repair_order._action_repair_confirm()
+
+        picking = self._create_picking_and_move(repair_order)
+        repair_order._compute_picking_ids()
+
+        action = repair_order.action_view_pickings()
+        self.assertEqual(action["type"], "ir.actions.act_window")
+        self.assertEqual(action["res_model"], "stock.picking")
+        self.assertIn("domain", action)
+        self.assertEqual(action["domain"], [("id", "in", repair_order.picking_ids.ids)])
+        self.assertEqual(len(repair_order.picking_ids), 1)
+        self.assertEqual(repair_order.picking_ids[0], picking)

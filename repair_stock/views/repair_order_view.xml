@@ -15,7 +15,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-truck"
-                    attrs="{'invisible': [('picking_count', '=', 0)]}"
+                    invisible="picking_count == 0"
                     help="Transfers associated with this repair order"
                 >
                     <field name="picking_count" widget="statinfo" string="Transfers" />
