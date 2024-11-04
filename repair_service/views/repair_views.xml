@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_repair_order_form_inherit" model="ir.ui.view">
+        <field name="name">repair.order.form.inherit.operations - repair_service</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='parts']" position="after">
+                <page string="Services">
+                    <field
+                        name="repair_service_ids"
+                        readonly="state in ('cancel', 'done')"
+                    >
+                        <tree editable="bottom">
+                            <field name="product_id" />
+                            <field name="display_name" />
+                            <field
+                                name="product_uom_category_id"
+                                column_invisible="True"
+                            />
+                            <field name="product_uom" />
+                            <field name="product_uom_qty" string="Quantity" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
