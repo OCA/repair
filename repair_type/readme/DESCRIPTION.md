@@ -1,1 +1,1 @@
-This module adds the source location from removing and recycling components. If we select the both locations on stock picking type when you select that in a Repair Order, Odoo will automatically set that in stock moves for that components.
+This module adds support for source locations when adding, removing, or recycling components. If you specify any of these types in a Repair Order, Odoo will automatically apply the corresponding locations from the related stock picking type to the stock moves.

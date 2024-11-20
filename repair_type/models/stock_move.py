@@ -16,7 +16,7 @@ class StockMove(models.Model):
             ):
                 res = (
                     self.repair_id.picking_type_id.default_add_location_src_id,
-                    self.repair_id.picking_type_id.default_add_location_dest_id,
+                    res[1],
                 )
             elif (
                 repair_line_type == "remove"

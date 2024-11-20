@@ -370,10 +370,10 @@ ul.auto-toc {
 !! source digest: sha256:4bc94fb9082c60cda55c55f3f7a252f12eff375a752e9a1dc186d8345ddeeec0
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/repair/tree/17.0/repair_type"><img alt="OCA/repair" src="https://img.shields.io/badge/github-OCA%2Frepair-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/repair-17-0/repair-17-0-repair_type"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/repair&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module adds the source location from removing and recycling
-components. If we select the both locations on stock picking type when
-you select that in a Repair Order, Odoo will automatically set that in
-stock moves for that components.</p>
+<p>This module adds support for source locations when adding, removing, or
+recycling components. If you specify any of these types in a Repair
+Order, Odoo will automatically apply the corresponding locations from
+the related stock picking type to the stock moves.</p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">This is an alpha version, the data model and design can change at any time without warning.
@@ -395,10 +395,13 @@ Only for development or testing purpose, do not use in production.
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
-<p>Set stock picking type for repairs and select source locations for
-removing and recycling components. Afterwards selecting that stock
-picking type on a Repair Order will automatically put that source
-location on stock moves of that components.</p>
+<ul class="simple">
+<li>Set the stock picking type for repairs and define source locations
+for adding, removing and recycling components.</li>
+<li>When you select this stock picking type in a Repair Order, Odoo will
+automatically assign the specified source locations to the stock
+moves for the respective components.</li>
+</ul>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>
