@@ -5,68 +5,90 @@ from odoo.tests.common import TransactionCase
 
 
 class TestRepairType(TransactionCase):
-    def test_get_repair_locations_remove(self):
-        self.env.ref(
-            "repair.picking_type_warehouse0_repair"
-        ).default_remove_location_src_id = self.env.ref(
-            "stock.stock_location_customers"
-        )
-        repair = self.env["repair.order"].create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.picking_type = cls.env.ref("repair.picking_type_warehouse0_repair")
+        cls.product_4 = cls.env.ref("product.product_product_4")
+        cls.product_3 = cls.env.ref("product.product_product_3")
+        cls.product_11 = cls.env.ref("product.product_product_11")
+        cls.uom_unit = cls.env.ref("uom.product_uom_unit")
+        cls.customer_location = cls.env.ref("stock.stock_location_customers")
+
+    def _create_repair_order(
+        self,
+        picking_type_ref,
+        product_ref,
+        repair_line_type,
+        product_qty,
+        component_ref,
+    ):
+        """Helper method to create a repair order."""
+        return self.env["repair.order"].create(
             {
-                "picking_type_id": self.env.ref(
-                    "repair.picking_type_warehouse0_repair"
-                ).id,
-                "product_id": self.env.ref("product.product_product_4").id,
-                "product_uom": self.env.ref("uom.product_uom_unit").id,
+                "picking_type_id": picking_type_ref.id,
+                "product_id": product_ref.id,
+                "product_uom": self.uom_unit.id,
                 "move_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Remove Component 1",
-                            "repair_line_type": "remove",
-                            "product_id": self.env.ref("product.product_product_3").id,
-                            "product_uom_qty": 3,
+                            "name": f"{repair_line_type.capitalize()} Component",
+                            "repair_line_type": repair_line_type,
+                            "product_id": component_ref.id,
+                            "product_uom_qty": product_qty,
                         },
                     )
                 ],
             }
         )
+
+    def _set_default_location(self, location_field, location_ref):
+        """Helper method to set default locations."""
+        self.picking_type[location_field] = location_ref
+
+    def _test_repair_location(
+        self, repair_line_type, location_field, location_ref, component_ref, product_qty
+    ):
+        """Reusable test logic for validating repair locations."""
+        self._set_default_location(location_field, location_ref)
+        repair = self._create_repair_order(
+            self.picking_type,
+            self.product_4,
+            repair_line_type,
+            product_qty,
+            component_ref,
+        )
         repair._action_repair_confirm()
         self.assertEqual(
             repair.move_ids.move_line_ids.location_id,
-            self.env.ref("stock.stock_location_customers"),
+            location_ref,
+        )
+
+    def test_get_repair_locations_remove(self):
+        self._test_repair_location(
+            repair_line_type="remove",
+            location_field="default_remove_location_src_id",
+            location_ref=self.customer_location,
+            component_ref=self.product_3,
+            product_qty=3,
         )
 
     def test_get_repair_locations_recycle(self):
-        self.env.ref(
-            "repair.picking_type_warehouse0_repair"
-        ).default_recycle_location_src_id = self.env.ref(
-            "stock.stock_location_customers"
+        self._test_repair_location(
+            repair_line_type="recycle",
+            location_field="default_recycle_location_src_id",
+            location_ref=self.customer_location,
+            component_ref=self.product_11,
+            product_qty=3,
         )
-        repair = self.env["repair.order"].create(
-            {
-                "picking_type_id": self.env.ref(
-                    "repair.picking_type_warehouse0_repair"
-                ).id,
-                "product_id": self.env.ref("product.product_product_4").id,
-                "product_uom": self.env.ref("uom.product_uom_unit").id,
-                "move_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "Recycle Component",
-                            "repair_line_type": "recycle",
-                            "product_uom_qty": 3,
-                            "product_id": self.env.ref("product.product_product_11").id,
-                        },
-                    )
-                ],
-            }
-        )
-        repair._action_repair_confirm()
-        self.assertEqual(
-            repair.move_ids.move_line_ids.location_id,
-            self.env.ref("stock.stock_location_customers"),
+
+    def test_get_repair_locations_add(self):
+        self._test_repair_location(
+            repair_line_type="add",
+            location_field="default_add_location_src_id",
+            location_ref=self.customer_location,
+            component_ref=self.product_3,
+            product_qty=5,
         )

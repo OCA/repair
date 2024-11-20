@@ -1,2 +1,2 @@
-Set stock picking type for repairs and select source locations for removing and recycling components.
-Afterwards selecting that stock picking type on a Repair Order will automatically put that source location on stock moves of that components.
+- Set the stock picking type for repairs and define source locations for adding, removing and recycling components.
+- When you select this stock picking type in a Repair Order, Odoo will automatically assign the specified source locations to the stock moves for the respective components.

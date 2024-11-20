@@ -28,10 +28,10 @@ Repair Type
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds the source location from removing and recycling
-components. If we select the both locations on stock picking type when
-you select that in a Repair Order, Odoo will automatically set that in
-stock moves for that components.
+This module adds support for source locations when adding, removing, or
+recycling components. If you specify any of these types in a Repair
+Order, Odoo will automatically apply the corresponding locations from
+the related stock picking type to the stock moves.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -46,10 +46,11 @@ stock moves for that components.
 Usage
 =====
 
-Set stock picking type for repairs and select source locations for
-removing and recycling components. Afterwards selecting that stock
-picking type on a Repair Order will automatically put that source
-location on stock moves of that components.
+-  Set the stock picking type for repairs and define source locations
+   for adding, removing and recycling components.
+-  When you select this stock picking type in a Repair Order, Odoo will
+   automatically assign the specified source locations to the stock
+   moves for the respective components.
 
 Bug Tracker
 ===========
