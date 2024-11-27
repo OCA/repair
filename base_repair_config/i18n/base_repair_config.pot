@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,16 +15,15 @@ msgstr ""
 
 #. module: base_repair_config
 #: model_terms:ir.ui.view,arch_db:base_repair_config.res_config_settings_view_form
-msgid "Configure Repair"
+msgid "Repair"
 msgstr ""
 
 #. module: base_repair_config
 #: model:ir.actions.act_window,name:base_repair_config.action_repair_config_settings
-#: model:ir.ui.menu,name:base_repair_config.menu_repair_config_settings
-msgid "General Settings"
+msgid "Repair Settings"
 msgstr ""
 
 #. module: base_repair_config
-#: model_terms:ir.ui.view,arch_db:base_repair_config.res_config_settings_view_form
-msgid "Repair"
+#: model:ir.ui.menu,name:base_repair_config.menu_repair_config_settings
+msgid "Settings"
 msgstr ""
