@@ -3,41 +3,32 @@
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.repair</field>
         <field name="model">res.config.settings</field>
+        <field name="priority" eval="30" />
         <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('settings')]" position="inside">
-                <div
-                    data-key="repair"
-                    class="app_settings_block"
-                    data-string="Repair"
-                    string="Repair"
-                    groups="stock.group_stock_user"
-                >
-                    <h2>Repair</h2>
-                    <div
-                        id="configure_repair"
-                        class="row mt16 o_settings_container"
-                        title="Configure Repair"
-                    >
-                    </div>
-                </div>
+            <xpath expr="//form" position="inside">
+                <app data-string="Repair" string="Repair" name="repair">
+                    <block title="Repair" name="repair_setting_container">
+                    </block>
+                </app>
             </xpath>
         </field>
     </record>
     <record id="action_repair_config_settings" model="ir.actions.act_window">
-        <field name="name">General Settings</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="name">Repair Settings</field>
         <field name="res_model">res.config.settings</field>
         <field name="view_mode">form</field>
         <field name="target">inline</field>
-        <field name="context">{'module' : 'repair'}</field>
+        <field name="context">{'module': 'repair', 'bin_size': False}</field>
     </record>
     <menuitem
         id="menu_repair_config_settings"
+        name="Settings"
         parent="repair.repair_menu_config"
-        sequence="1"
+        sequence="0"
         action="action_repair_config_settings"
-        groups="stock.group_stock_user"
+        groups="stock.group_stock_manager"
     />
 </odoo>

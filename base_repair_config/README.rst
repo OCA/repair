@@ -16,14 +16,14 @@ Base Repair Config
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
-.. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/13.0/base_repair_config
-    :alt: OCA/manufacture
+.. |badge3| image:: https://img.shields.io/badge/github-OCA%2Frepair-lightgray.png?logo=github
+    :target: https://github.com/OCA/repair/tree/17.0/base_repair_config
+    :alt: OCA/repair
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-13-0/manufacture-13-0-base_repair_config
+    :target: https://translation.odoo-community.org/projects/repair-17-0/repair-17-0-base_repair_config
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=13.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/repair&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -34,55 +34,51 @@ configuration.
 This is a technical module and it doesn't provide any new functionality.
 Extend this module to add general settings related to the repair app.
 
-When extending the general settings view, here is an example of how the code
-would look like:
+When extending the general settings view, here is an example of how the
+code would look like:
 
 .. code:: xml
 
-    <record id="res_config_settings_view_form" model="ir.ui.view">
-        <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="base_repair_config.res_config_settings_view_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//div[@id='configure_repair']" position="after">
-                <div class="col-xs-12 col-md-6 o_setting_box">
-                    <div class="o_setting_right_pane">
-                        <label for="new_field_name"/>
-                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/>
-                        <div class="row">
-                            <div class="text-muted col-md-8">
-                                Set some configuration data for this field ...
-                            </div>
-                        </div>
-                        <div class="content-group">
-                            <div class="mt16">
-                                <field name="new_field_name" class="o_light_label"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </xpath>
-        </field>
-    </record>
+   <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+       <field name="name">res.config.settings.view.form.inherit.repair</field>
+       <field name="model">res.config.settings</field>
+       <field name="inherit_id" ref="base_repair_config.res_config_settings_view_form"/>
+       <field name="arch" type="xml">
+           <xpath expr="//block[@name='repair_setting_container']" position="inside">
+               <setting id="extra_repair_setting" help="Enable extra repair configuration options.">
+                   <field name="extra_repair_field"/>
+               </setting>
+               <setting id="another_repair_setting" help="Another repair-related setting.">
+                   <field name="another_repair_field"/>
+               </setting>
+           </xpath>
+       </field>
+   </record>
 
 **Table of contents**
 
 .. contents::
    :local:
 
+Configuration
+=============
+
+
+
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go to *Repair > Configuration > General Settings*.
+1. Go to *Repair > Configuration > Settings*.
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/OCA/repair/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20base_repair_config%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/repair/issues/new?body=module:%20base_repair_config%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -90,17 +86,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Escodoo
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Marcel Savegnago <marcel.savegnago@escodoo.com.br>
+-  Marcel Savegnago <marcel.savegnago@escodoo.com.br>
+-  `APSL-Nagarro <https://www.apsl.tech>`__:
+
+   -  Patryk Pyczko <ppyczko@apsl.net>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -120,6 +119,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-marcelsavegnago| 
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/13.0/base_repair_config>`_ project on GitHub.
+This module is part of the `OCA/repair <https://github.com/OCA/repair/tree/17.0/base_repair_config>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
