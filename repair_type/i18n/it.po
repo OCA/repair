@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2024-11-27 15:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -34,11 +35,6 @@ msgstr "Rimuovi ubicazione origine in modo predefinito"
 #: model:ir.model,name:repair_type.model_stock_picking_type
 msgid "Picking Type"
 msgstr "Tipologia prelievo"
-
-#. module: repair_type
-#: model:ir.model,name:repair_type.model_repair_order
-msgid "Repair Order"
-msgstr "Ordine di riparazione"
 
 #. module: repair_type
 #: model:ir.model,name:repair_type.model_stock_move
@@ -71,3 +67,6 @@ msgid ""
 msgstr ""
 "Questa è l'ubicazione rimozione predefinita aggiunta quando si crea un "
 "ordine di riparazione con questo tipo operazione."
+
+#~ msgid "Repair Order"
+#~ msgstr "Ordine di riparazione"
