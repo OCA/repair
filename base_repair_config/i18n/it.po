@@ -18,16 +18,21 @@ msgstr ""
 
 #. module: base_repair_config
 #: model_terms:ir.ui.view,arch_db:base_repair_config.res_config_settings_view_form
-msgid "Configure Repair"
-msgstr "Configura riparazione"
+msgid "Repair"
+msgstr "Riparazione"
 
 #. module: base_repair_config
 #: model:ir.actions.act_window,name:base_repair_config.action_repair_config_settings
-#: model:ir.ui.menu,name:base_repair_config.menu_repair_config_settings
-msgid "General Settings"
-msgstr "Impostazioni generali"
+msgid "Repair Settings"
+msgstr ""
 
 #. module: base_repair_config
-#: model_terms:ir.ui.view,arch_db:base_repair_config.res_config_settings_view_form
-msgid "Repair"
-msgstr "Riparazione"
+#: model:ir.ui.menu,name:base_repair_config.menu_repair_config_settings
+msgid "Settings"
+msgstr ""
+
+#~ msgid "Configure Repair"
+#~ msgstr "Configura riparazione"
+
+#~ msgid "General Settings"
+#~ msgstr "Impostazioni generali"
