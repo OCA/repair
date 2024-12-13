@@ -107,7 +107,7 @@ class RepairOrder(models.Model):
 
     def action_repair_start(self):
         res = super().action_repair_start()
-        self.mapped("stock_move_ids")._action_assign()
+        self.mapped("stock_move_ids")._action_confirm()
         return res
 
     def action_force_availability(self):
