@@ -6,3 +6,4 @@
 
   > - Antoni Marroig \<<amarroig@apsl.net>\>
   > - Miquel Alzanillas \<<malzanillas@apsl.net>>\>
+- `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`_
