@@ -10,8 +10,7 @@
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
                 <app data-string="Repair" string="Repair" name="repair">
-                    <block title="Repair" name="repair_setting_container">
-                    </block>
+                    <block title="Repair" name="repair_setting_container" />
                 </app>
             </xpath>
         </field>
