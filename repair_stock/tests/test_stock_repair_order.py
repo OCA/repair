@@ -25,15 +25,15 @@ class TestStockRepairOrder(common.TransactionCase):
         cls.product1 = cls.product_model.create(
             {
                 "name": "Product 1",
-                "type": "product",
                 "company_id": cls.company.id,
+                "is_storable": True,
             }
         )
         cls.product2 = cls.product_model.create(
             {
                 "name": "Product 2",
-                "type": "product",
                 "company_id": cls.company.id,
+                "is_storable": True,
             }
         )
 

@@ -14,7 +14,7 @@ class RepairOrder(models.Model):
         string="Transfers",
     )
     picking_count = fields.Integer(
-        string="Transfers", copy=False, compute="_compute_picking_ids"
+        string="Transfers Count", copy=False, compute="_compute_picking_ids"
     )
 
     def action_view_pickings(self):
@@ -29,7 +29,7 @@ class RepairOrder(models.Model):
         for order in self:
             moves = self.env["stock.move"].search(
                 [
-                    ("repair_id", "=", order.id),
+                    ("related_repair_id", "=", order.id),
                 ]
             )
             order.picking_ids = moves.mapped("picking_id")
