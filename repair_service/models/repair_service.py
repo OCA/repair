@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 class RepairService(models.Model):
     _name = "repair.service"
+    _description = "Repair Service"
 
     repair_id = fields.Many2one(
         "repair.order", "Repair Order Reference", ondelete="cascade", required=True
