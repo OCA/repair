@@ -7,7 +7,7 @@
         Adds services to repair orders, so that they can be added
         as sale order lines.
     """,
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Repair",
     "website": "https://github.com/OCA/repair",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
