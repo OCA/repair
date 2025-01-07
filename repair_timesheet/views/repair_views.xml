@@ -8,7 +8,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Timesheets">
                     <field name="timesheet_ids">
-                        <tree editable="bottom" delete="true">
+                        <list editable="bottom" delete="true">
                             <field name="company_id" column_invisible="1" />
                             <field name="project_id" />
                             <field name="task_id" />
@@ -20,7 +20,7 @@
                                 string="Duration (Hour(s))"
                                 widget="float_time"
                             />
-                        </tree>
+                        </list>
                     </field>
                     <group class="oe_subtotal_footer oe_right">
                         <field name="timesheet_total_hours" widget="float_time" />
