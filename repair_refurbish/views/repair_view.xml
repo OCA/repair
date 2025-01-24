@@ -10,26 +10,28 @@
             </field>
         </field>
     </record>
+
     <record id="view_repair_order_form" model="ir.ui.view">
         <field name="name">repair.order.form</field>
         <field name="model">repair.order</field>
         <field name="inherit_id" ref="repair.view_repair_order_form" />
         <field name="arch" type="xml">
-            <field name="location_id" position="after">
+            <xpath
+                expr="//group[@name='locations']/field[@name='location_id']"
+                position="after"
+            >
                 <field
                     name="location_dest_id"
-                    attrs="{'invisible': [('to_refurbish', '=', False)], 'required': [('to_refurbish', '=', True)]}"
+                    invisible="not to_refurbish"
+                    required="to_refurbish"
                 />
-            </field>
+            </xpath>
             <xpath expr="//group[1]" position="inside">
                 <group>
                     <field name="to_refurbish" />
                 </group>
-                <group attrs="{'invisible': [('to_refurbish', '=', False)]}">
-                    <field
-                        name="refurbish_product_id"
-                        attrs="{'required': [('to_refurbish', '=', True)]}"
-                    />
+                <group invisible="not to_refurbish">
+                    <field name="refurbish_product_id" required="to_refurbish" />
                     <field
                         name="refurbish_lot_id"
                         domain="[('product_id', '=', refurbish_product_id)]"
@@ -38,14 +40,18 @@
                     />
                     <field
                         name="refurbish_location_dest_id"
-                        attrs="{'required': [('to_refurbish', '=', True)]}"
+                        required="to_refurbish"
+                        groups="stock.group_stock_multi_locations"
                     />
                 </group>
             </xpath>
-            <field name="operations" position='attributes'>
+            <field name="move_ids" position='attributes'>
                 <attribute
                     name='context'
-                >{'default_product_uom_qty': product_qty, 'to_refurbish': to_refurbish, 'refurbish_location_dest_id': location_dest_id}</attribute>
+                > {'default_repair_id': id, 'default_product_uom_qty': 1,
+                    'default_company_id': company_id, 'default_date': schedule_date,
+                    'default_repair_line_type': 'add','to_refurbish': to_refurbish}
+                </attribute>
             </field>
         </field>
     </record>
