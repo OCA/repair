@@ -76,12 +76,6 @@ msgid "Refurbished product"
 msgstr "Wiederaufbereitetes Produkt"
 
 #. module: repair_refurbish
-#: model:ir.model,name:repair_refurbish.model_repair_line
-#, fuzzy
-msgid "Repair Line (parts)"
-msgstr "Instandsetzungslinie"
-
-#. module: repair_refurbish
 #: model:ir.model,name:repair_refurbish.model_repair_order
 msgid "Repair Order"
 msgstr "Reparaturauftrag"
@@ -89,6 +83,11 @@ msgstr "Reparaturauftrag"
 #. module: repair_refurbish
 #: model:ir.model,name:repair_refurbish.model_stock_move
 msgid "Stock Move"
+msgstr ""
+
+#. module: repair_refurbish
+#: model:ir.model.fields,help:repair_refurbish.field_repair_order__location_dest_id
+msgid "This is the location where the repaired product is located."
 msgstr ""
 
 #. module: repair_refurbish
@@ -107,6 +106,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__to_refurbish
 msgid "To Refurbish"
 msgstr "Wiederaufbereiten"
+
+#, fuzzy
+#~ msgid "Repair Line (parts)"
+#~ msgstr "Instandsetzungslinie"
 
 #~ msgid "Product Template"
 #~ msgstr "Produktvorlage"
