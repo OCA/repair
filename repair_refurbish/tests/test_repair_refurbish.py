@@ -5,32 +5,30 @@ from odoo.tests.common import TransactionCase
 
 
 class TestMrpMtoWithStock(TransactionCase):
-    def setUp(self, *args, **kwargs):
-        super(TestMrpMtoWithStock, self).setUp(*args, **kwargs)
-        self.repair_obj = self.env["repair.order"]
-        self.repair_line_obj = self.env["repair.line"]
-        self.product_obj = self.env["product.product"]
-        self.move_obj = self.env["stock.move"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.repair_obj = cls.env["repair.order"]
+        cls.product_obj = cls.env["product.product"]
+        cls.move_obj = cls.env["stock.move"]
 
-        self.stock_location_stock = self.env.ref("stock.stock_location_stock")
-        self.customer_location = self.env.ref("stock.stock_location_customers")
-        self.refurbish_loc = self.env.ref("repair_refurbish.stock_location_refurbish")
+        cls.stock_location_stock = cls.env.ref("stock.stock_location_stock")
+        cls.customer_location = cls.env.ref("stock.stock_location_customers")
+        cls.refurbish_loc = cls.env.ref("repair_refurbish.stock_location_refurbish")
 
-        self.refurbish_product = self.product_obj.create(
+        cls.refurbish_product = cls.product_obj.create(
             {"name": "Refurbished Awesome Screen", "type": "product"}
         )
-        self.product = self.product_obj.create(
+        cls.product = cls.product_obj.create(
             {
                 "name": "Awesome Screen",
                 "type": "product",
-                "refurbish_product_id": self.refurbish_product.id,
+                "refurbish_product_id": cls.refurbish_product.id,
             }
         )
-        self.material = self.product_obj.create({"name": "Materials", "type": "consu"})
-        self.material2 = self.product_obj.create(
-            {"name": "Materials", "type": "product"}
-        )
-        self._update_product_qty(self.product, self.stock_location_stock, 10.0)
+        cls.material = cls.product_obj.create({"name": "Materials", "type": "consu"})
+        cls.material2 = cls.product_obj.create({"name": "Materials", "type": "product"})
+        cls._update_product_qty(cls, cls.product, cls.stock_location_stock, 10.0)
 
     def _update_product_qty(self, product, location, quantity):
         self.env["stock.quant"].create(
@@ -54,29 +52,12 @@ class TestMrpMtoWithStock(TransactionCase):
                 "location_id": self.stock_location_stock.id,
             }
         )
-        repair.onchange_product_id()
         self.assertFalse(repair.to_refurbish)
         repair.to_refurbish = True
         repair._onchange_to_refurbish()
         self.assertEqual(repair.refurbish_location_dest_id, self.customer_location)
         self.assertEqual(repair.location_dest_id, self.product.property_stock_refurbish)
-        line = self.repair_line_obj.with_context(
-            to_refurbish=repair.to_refurbish,
-            refurbish_location_dest_id=repair.refurbish_location_dest_id,
-        ).new(
-            {
-                "name": "consume stuff to repair",
-                "repair_id": repair.id,
-                "type": "add",
-                "product_id": self.material.id,
-                "product_uom": self.material.uom_id.id,
-                "product_uom_qty": 1.0,
-            }
-        )
-        line.onchange_product_id()
-        line.onchange_operation_type()
-        self.assertEqual(line.location_dest_id, self.customer_location)
-        self.assertEqual(line.location_id, repair.location_id)
+
         # Complete repair:
         repair.action_validate()
         repair.action_repair_start()
@@ -117,27 +98,23 @@ class TestMrpMtoWithStock(TransactionCase):
                 "location_dest_id": self.customer_location.id,
                 "to_refurbish": False,
                 "location_id": self.stock_location_stock.id,
+                "move_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.material2.id,
+                            "product_uom_qty": 1.0,
+                            "state": "draft",
+                            "repair_line_type": "add",
+                            "location_id": self.stock_location_stock.id,
+                            "location_dest_id": self.customer_location.id,
+                        },
+                    )
+                ],
             }
         )
 
-        line = self.repair_line_obj.with_context(
-            to_refurbish=repair.to_refurbish,
-            refurbish_location_dest_id=repair.refurbish_location_dest_id,
-        ).create(
-            {
-                "name": "consume stuff to repair",
-                "repair_id": repair.id,
-                "type": "add",
-                "product_id": self.material2.id,
-                "product_uom": self.material2.uom_id.id,
-                "product_uom_qty": 1.0,
-                "price_unit": 50.0,
-                "location_id": self.stock_location_stock.id,
-                "location_dest_id": self.customer_location.id,
-            }
-        )
-        line.onchange_product_id()
-        line.onchange_operation_type()
         # Complete repair:
         repair.action_validate()
         repair.action_repair_start()
