@@ -12,5 +12,5 @@
         "views/repair_order_view.xml",
     ],
     "license": "AGPL-3",
-    "development_status": "Alpha",
+    "development_status": "Production/Stable",
 }
