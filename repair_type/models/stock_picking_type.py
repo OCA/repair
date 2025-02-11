@@ -48,6 +48,13 @@ class PickingType(models.Model):
             stock_location = picking_type.warehouse_id.lot_stock_id
             if picking_type.code == "repair_operation":
                 picking_type.default_add_location_src_id = stock_location.id
-                picking_type.default_remove_location_src_id = stock_location.id
-                picking_type.default_recycle_location_src_id = stock_location.id
+                prod_location = self.env["stock.location"].search(
+                    [
+                        ("usage", "=", "production"),
+                        ("company_id", "=", picking_type.company_id.id),
+                    ],
+                    limit=1,
+                )
+                picking_type.default_remove_location_src_id = prod_location.id
+                picking_type.default_recycle_location_src_id = prod_location.id
         return res
