@@ -27,6 +27,9 @@ class RepairOrder(models.Model):
 
     def _compute_picking_ids(self):
         for order in self:
+            # TODO: migration note: `repair_id` should not be used here
+            #  in v18, use `related_repair_id` instead while migrating
+            #  modules depending on this.
             moves = self.env["stock.move"].search(
                 [
                     ("related_repair_id", "=", order.id),

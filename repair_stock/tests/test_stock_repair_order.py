@@ -102,7 +102,7 @@ class TestStockRepairOrder(common.TransactionCase):
                 "picking_type_id": self.warehouse.int_type_id.id,
                 "product_uom_qty": 1,
                 "product_uom": repair_order.product_id.uom_id.id,
-                "repair_id": repair_order.id,
+                "related_repair_id": repair_order.id,
             }
         )
         return picking
@@ -123,6 +123,7 @@ class TestStockRepairOrder(common.TransactionCase):
         repair_order._action_repair_confirm()
 
         picking = self._create_picking_and_move(repair_order)
+        self.assertEqual(picking.picking_type_id, self.warehouse.int_type_id)
         repair_order._compute_picking_ids()
 
         action = repair_order.action_view_pickings()
