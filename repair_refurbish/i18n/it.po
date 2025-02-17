@@ -17,9 +17,9 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 
 #. module: repair_refurbish
-#: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__location_dest_id
-msgid "Delivery Location"
-msgstr "Ubicazione consegna"
+#: model:ir.model.fields,help:repair_refurbish.field_repair_order__refurbish_tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr ""
 
 #. module: repair_refurbish
 #: model:ir.model,name:repair_refurbish.model_product_template
@@ -70,6 +70,11 @@ msgid "Refurbished Product"
 msgstr "Prodotto ricondizionato"
 
 #. module: repair_refurbish
+#: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__refurbish_tracking
+msgid "Refurbished Product Tracking"
+msgstr ""
+
+#. module: repair_refurbish
 #: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__refurbish_product_id
 msgid "Refurbished product"
 msgstr "Prodotto ricondizionato"
@@ -83,11 +88,6 @@ msgstr "Ordine di riparazione"
 #: model:ir.model,name:repair_refurbish.model_stock_move
 msgid "Stock Move"
 msgstr "Movimento di magazzino"
-
-#. module: repair_refurbish
-#: model:ir.model.fields,help:repair_refurbish.field_repair_order__location_dest_id
-msgid "This is the location where the repaired product is located."
-msgstr "Questa è l'ubicazione dove è posizionato il prpdotto riparato."
 
 #. module: repair_refurbish
 #: model:ir.model.fields,help:repair_refurbish.field_product_product__property_stock_refurbish
@@ -105,6 +105,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__to_refurbish
 msgid "To Refurbish"
 msgstr "Da ricondizionare"
+
+#~ msgid "Delivery Location"
+#~ msgstr "Ubicazione consegna"
+
+#~ msgid "This is the location where the repaired product is located."
+#~ msgstr "Questa è l'ubicazione dove è posizionato il prpdotto riparato."
 
 #~ msgid "Repair Line (parts)"
 #~ msgstr "Riga riparazione (componenti)"
