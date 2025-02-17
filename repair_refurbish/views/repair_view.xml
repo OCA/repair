@@ -32,11 +32,13 @@
                 </group>
                 <group invisible="not to_refurbish">
                     <field name="refurbish_product_id" required="to_refurbish" />
+                    <field name="refurbish_tracking" invisible="1" />
                     <field
                         name="refurbish_lot_id"
                         domain="[('product_id', '=', refurbish_product_id)]"
                         context="{'default_product_id': refurbish_product_id, 'default_company_id': company_id}"
                         groups="stock.group_production_lot"
+                        invisible="refurbish_tracking not in ['serial', 'lot']"
                     />
                     <field
                         name="refurbish_location_dest_id"

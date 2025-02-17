@@ -12,6 +12,7 @@ class TestMrpMtoWithStock(TransactionCase):
         cls.product_obj = cls.env["product.product"]
         cls.move_obj = cls.env["stock.move"]
 
+        cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.stock_location_stock = cls.env.ref("stock.stock_location_stock")
         cls.customer_location = cls.env.ref("stock.stock_location_customers")
         cls.refurbish_loc = cls.env.ref("repair_refurbish.stock_location_refurbish")
@@ -29,6 +30,7 @@ class TestMrpMtoWithStock(TransactionCase):
         cls.material = cls.product_obj.create({"name": "Materials", "type": "consu"})
         cls.material2 = cls.product_obj.create({"name": "Materials", "type": "product"})
         cls._update_product_qty(cls, cls.product, cls.stock_location_stock, 10.0)
+        cls._update_product_qty(cls, cls.material2, cls.stock_location_stock, 10.0)
 
     def _update_product_qty(self, product, location, quantity):
         self.env["stock.quant"].create(
@@ -48,21 +50,20 @@ class TestMrpMtoWithStock(TransactionCase):
                 "product_id": self.product.id,
                 "product_qty": 3.0,
                 "product_uom": self.product.uom_id.id,
-                "location_dest_id": self.customer_location.id,
-                "location_id": self.stock_location_stock.id,
+                "picking_type_id": self.warehouse.repair_type_id.id,
             }
         )
         self.assertFalse(repair.to_refurbish)
         repair.to_refurbish = True
         repair._onchange_to_refurbish()
-        self.assertEqual(repair.refurbish_location_dest_id, self.customer_location)
-        self.assertEqual(repair.location_dest_id, self.product.property_stock_refurbish)
+        self.assertEqual(repair.location_id, self.stock_location_stock)
+        self.assertEqual(repair.refurbish_location_dest_id, self.stock_location_stock)
 
         # Complete repair:
         repair.action_validate()
         repair.action_repair_start()
         repair.action_repair_end()
-        moves = self.move_obj.search([("reference", "=", repair.name)])
+        moves = self.move_obj.search([("repair_id", "=", repair.id)])
         self.assertEqual(len(moves), 2)
         for m in moves:
             self.assertEqual(m.state, "done")
@@ -77,12 +78,13 @@ class TestMrpMtoWithStock(TransactionCase):
                 )
             elif m.product_id == self.refurbish_product:
                 self.assertEqual(m.location_id, self.refurbish_loc)
-                self.assertEqual(m.location_dest_id, self.customer_location)
+                self.assertEqual(m.location_dest_id, self.stock_location_stock)
                 self.assertEqual(
                     m.mapped("move_line_ids.location_id"), self.refurbish_loc
                 )
                 self.assertEqual(
-                    m.mapped("move_line_ids.location_dest_id"), self.customer_location
+                    m.mapped("move_line_ids.location_dest_id"),
+                    self.stock_location_stock,
                 )
             else:
                 self.assertTrue(False, "Unexpected move.")
@@ -95,9 +97,8 @@ class TestMrpMtoWithStock(TransactionCase):
                 "product_id": self.product.id,
                 "product_qty": 3.0,
                 "product_uom": self.product.uom_id.id,
-                "location_dest_id": self.customer_location.id,
+                "picking_type_id": self.warehouse.repair_type_id.id,
                 "to_refurbish": False,
-                "location_id": self.stock_location_stock.id,
                 "move_ids": [
                     (
                         0,
@@ -118,8 +119,19 @@ class TestMrpMtoWithStock(TransactionCase):
         # Complete repair:
         repair.action_validate()
         repair.action_repair_start()
-        repair.action_repair_end()
+        # Component
         move = self.move_obj.search(
-            [("product_id", "=", self.material2.id)], order="create_date desc", limit=1
-        )[0]
-        self.assertEqual(move.location_dest_id, self.customer_location)
+            [("product_id", "=", self.material2.id), ("repair_id", "=", repair.id)],
+        )
+        self.assertEqual(len(move), 1)
+        self.assertEqual(move.location_dest_id, repair.location_dest_id)
+        move.move_line_ids.picked = True
+        # Repaired product:
+        res = repair.action_repair_end()
+        self.assertFalse(isinstance(res, dict), "action_repair_end has failed")
+        repaired_move = self.move_obj.search(
+            [("product_id", "=", self.product.id), ("repair_id", "=", repair.id)],
+        )
+        self.assertEqual(len(repaired_move), 1)
+        self.assertEqual(repaired_move.location_id, self.stock_location_stock)
+        self.assertEqual(repaired_move.location_dest_id, self.stock_location_stock)
