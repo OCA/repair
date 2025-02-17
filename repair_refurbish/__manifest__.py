@@ -3,7 +3,7 @@
 {
     "name": "Repair Refurbish",
     "summary": "Create refurbished products during repair",
-    "version": "17.0.1.0.0",
+    "version": "17.0.2.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/repair",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
