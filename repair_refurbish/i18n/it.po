@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-01-25 15:06+0000\n"
+"PO-Revision-Date: 2025-02-18 11:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: repair_refurbish
 #: model:ir.model.fields,help:repair_refurbish.field_repair_order__refurbish_tracking
 msgid "Ensure the traceability of a storable product in your warehouse."
-msgstr ""
+msgstr "Consente la tracciabilità di un prodotto stoccabile nel magazzino."
 
 #. module: repair_refurbish
 #: model:ir.model,name:repair_refurbish.model_product_template
@@ -72,7 +72,7 @@ msgstr "Prodotto ricondizionato"
 #. module: repair_refurbish
 #: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__refurbish_tracking
 msgid "Refurbished Product Tracking"
-msgstr ""
+msgstr "Tracciamento prodotto ricondizionato"
 
 #. module: repair_refurbish
 #: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__refurbish_product_id
