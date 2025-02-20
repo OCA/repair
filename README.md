@@ -17,7 +17,11 @@ repair
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[repair_type](repair_type/) | 18.0.1.0.0 |  | Repair type
 
 [//]: # (end addons)
 
