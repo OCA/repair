@@ -2,29 +2,38 @@
 <!-- # Copyright 2024 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
+
     <record id="view_repair_order_form_inherit" model="ir.ui.view">
         <field name="name">repair.order.form.inherit</field>
         <field name="model">repair.order</field>
         <field name="inherit_id" ref="repair.view_repair_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_validate']" position="before">
+                <field name="show_button_create_qc_inspection" invisible="1" />
                 <button
                     name="action_create_qc_inspection"
-                    attrs="{'invisible': [('state', '!=', 'done')]}"
+                    attrs="{'invisible': [('show_button_create_qc_inspection', '=', False)]}"
                     string="Create Inspection"
                     type="object"
                     class="oe_highlight"
                     data-hotkey="q"
+                    groups="quality_control_oca.group_quality_control_user"
                 />
             </xpath>
             <xpath expr="//button[@name='action_created_invoice']" position="after">
-                <field name="inspection_ids" readonly="1" invisible="1" />
+                <field
+                    name="inspection_ids"
+                    readonly="1"
+                    invisible="1"
+                    groups="quality_control_oca.group_quality_control_user"
+                />
                 <button
                     class="oe_stat_button"
                     name="action_view_repair_inspections"
                     type="object"
                     icon="fa-list-ul"
                     attrs="{'invisible': [('inspection_ids', '=', [])]}"
+                    groups="quality_control_oca.group_quality_control_user"
                 >
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_text">Inspections</span>
@@ -33,4 +42,5 @@
             </xpath>
         </field>
     </record>
+
 </odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2024 ForgeFlow, S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record model="qc.trigger" id="qc_trigger_repair">
+        <field name="name">Repairs</field>
+        <field name="partner_selectable" eval="True" />
+        <field name="company_id" eval="False" />
+    </record>
+</odoo>

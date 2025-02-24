@@ -8,18 +8,27 @@
         <field name="inherit_id" ref="quality_control_oca.qc_inspection_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//button[hasclass('oe_stat_button')]" position="before">
-                <field name="repair_id" readonly="1" invisible="1" />
+                <field
+                    name="repair_id"
+                    readonly="1"
+                    invisible="1"
+                    groups="stock.group_stock_user"
+                />
                 <button
                     class="oe_stat_button"
                     name="action_view_qc_repair_order"
                     type="object"
                     icon="fa-wrench"
                     attrs="{'invisible': [('repair_id', '=', False)]}"
+                    groups="stock.group_stock_user"
                 >
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_text">Repair order</span>
                     </div>
                 </button>
+            </xpath>
+            <xpath expr="//field[@name='lot_id']" position="before">
+                <field name="repair_id" readonly="1" groups="stock.group_stock_user" />
             </xpath>
         </field>
     </record>

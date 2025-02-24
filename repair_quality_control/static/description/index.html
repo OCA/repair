@@ -371,8 +371,14 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/repair/tree/16.0/repair_quality_control"><img alt="OCA/repair" src="https://img.shields.io/badge/github-OCA%2Frepair-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/repair-16-0/repair-16-0-repair_quality_control"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/repair&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module allows to create quality control inspections from repair
-order when that one is done. One repair order is linked to many
-different inspections.</p>
+orders. One repair order can be linked to many different inspections.</p>
+<p>The related inspections can be created either on the confirmation of the
+repair order, or when it is done. The creation can be executed manually
+or automatically. Both of these aspects are configurable at a company
+level.</p>
+<p>Moreover, you can configure trigger lines at a Product, Product Template
+or Product Category level (using the ‘Repair’ trigger) to set the QC
+Test to use when creating the inspections.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -389,12 +395,32 @@ different inspections.</p>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
 <p>To use this module, you need to:</p>
+<p>Configure the QC repair behavior for the company:</p>
+<ol class="arabic simple">
+<li>Go to Settings &gt; Repair.</li>
+<li>Configure the two settings related to QC Inspections.</li>
+</ol>
+<p>Configure the triggers:</p>
+<ol class="arabic simple">
+<li>Go to Products &gt; Products.</li>
+<li>Select a product (this product must then be used in a repair order).</li>
+<li>Go to the ‘Inventory’ tab.</li>
+<li>In the ‘Quality Control’ section, select the QC Test to use when
+creating the inspections, for the ‘Repair’ trigger.</li>
+</ol>
 <p>Create a repair order:</p>
 <ol class="arabic simple">
 <li>Go to Repairs &gt; Repair Orders.</li>
-<li>Create new repair order and repair that.</li>
-<li>Create an inspection from the header button called “Create
-Inspection”.</li>
+<li>Create new repair order.</li>
+<li>Set the repair order to ‘Done’ or ‘Confirmed’ state.</li>
+<li>An inspection should be created automatically or a button should
+appear to allow creating it manually.<ul>
+<li>The states where this should happen can slightly vary depending on
+the Invoice Method of the repair order.</li>
+<li>For example, when the Invoice Method is ‘Before Repair’, the order
+never goes to ‘Confirmed’ state.</li>
+</ul>
+</li>
 </ol>
 <p>You can access from repair order to inspection directly with a smart
 button and the same backwards.</p>
@@ -420,6 +446,10 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <ul class="simple">
 <li><a class="reference external" href="https://www.apsl.tech">APSL-Nagarro</a>:<ul>
 <li>Antoni Marroig &lt;<a class="reference external" href="mailto:amarroig&#64;apsl.net">amarroig&#64;apsl.net</a>&gt;</li>
+</ul>
+</li>
+<li><a class="reference external" href="https://www.forgeflow.com">ForgeFlow</a>:<ul>
+<li>Laura Cazorla &lt;<a class="reference external" href="mailto:laura.cazorla&#64;forgeflow.com">laura.cazorla&#64;forgeflow.com</a>&gt;</li>
 </ul>
 </li>
 </ul>

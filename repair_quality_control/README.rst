@@ -29,8 +29,16 @@ Repair Quality Control
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to create quality control inspections from repair
-order when that one is done. One repair order is linked to many
-different inspections.
+orders. One repair order can be linked to many different inspections.
+
+The related inspections can be created either on the confirmation of the
+repair order, or when it is done. The creation can be executed manually
+or automatically. Both of these aspects are configurable at a company
+level.
+
+Moreover, you can configure trigger lines at a Product, Product Template
+or Product Category level (using the 'Repair' trigger) to set the QC
+Test to use when creating the inspections.
 
 **Table of contents**
 
@@ -42,12 +50,31 @@ Usage
 
 To use this module, you need to:
 
+Configure the QC repair behavior for the company:
+
+1. Go to Settings > Repair.
+2. Configure the two settings related to QC Inspections.
+
+Configure the triggers:
+
+1. Go to Products > Products.
+2. Select a product (this product must then be used in a repair order).
+3. Go to the 'Inventory' tab.
+4. In the 'Quality Control' section, select the QC Test to use when
+   creating the inspections, for the 'Repair' trigger.
+
 Create a repair order:
 
 1. Go to Repairs > Repair Orders.
-2. Create new repair order and repair that.
-3. Create an inspection from the header button called "Create
-   Inspection".
+2. Create new repair order.
+3. Set the repair order to 'Done' or 'Confirmed' state.
+4. An inspection should be created automatically or a button should
+   appear to allow creating it manually.
+
+   -  The states where this should happen can slightly vary depending on
+      the Invoice Method of the repair order.
+   -  For example, when the Invoice Method is 'Before Repair', the order
+      never goes to 'Confirmed' state.
 
 You can access from repair order to inspection directly with a smart
 button and the same backwards.
@@ -73,9 +100,13 @@ Authors
 Contributors
 ------------
 
-- `APSL-Nagarro <https://www.apsl.tech>`__:
+-  `APSL-Nagarro <https://www.apsl.tech>`__:
 
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
+
+-  `ForgeFlow <https://www.forgeflow.com>`__:
+
+   -  Laura Cazorla <laura.cazorla@forgeflow.com>
 
 Maintainers
 -----------
