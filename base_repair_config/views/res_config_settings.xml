@@ -8,11 +8,20 @@
         <field name="priority" eval="30" />
         <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//form" position="inside">
-                <app data-string="Repair" string="Repair" name="repair">
-                    <block title="Repair" name="repair_setting_container">
-                    </block>
-                </app>
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div
+                    class="app_settings_block"
+                    data-string="Repair"
+                    string="Repair"
+                    name="repair"
+                    data-key="repair"
+                >
+                    <h2>Repair</h2>
+                    <div
+                        class="row mt16 o_settings_container"
+                        name="repair_setting_container"
+                    />
+                </div>
             </xpath>
         </field>
     </record>

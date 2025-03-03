@@ -17,13 +17,13 @@ Base Repair Config
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Frepair-lightgray.png?logo=github
-    :target: https://github.com/OCA/repair/tree/17.0/base_repair_config
+    :target: https://github.com/OCA/repair/tree/16.0/base_repair_config
     :alt: OCA/repair
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/repair-17-0/repair-17-0-base_repair_config
+    :target: https://translation.odoo-community.org/projects/repair-16-0/repair-16-0-base_repair_config
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/repair&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/repair&target_branch=16.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -40,30 +40,37 @@ code would look like:
 .. code:: xml
 
    <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
-       <field name="name">res.config.settings.view.form.inherit.repair</field>
-       <field name="model">res.config.settings</field>
-       <field name="inherit_id" ref="base_repair_config.res_config_settings_view_form"/>
-       <field name="arch" type="xml">
-           <xpath expr="//block[@name='repair_setting_container']" position="inside">
-               <setting id="extra_repair_setting" help="Enable extra repair configuration options.">
-                   <field name="extra_repair_field"/>
-               </setting>
-               <setting id="another_repair_setting" help="Another repair-related setting.">
-                   <field name="another_repair_field"/>
-               </setting>
-           </xpath>
-       </field>
-   </record>
+          <field name="name">res.config.settings.view.form.inherit.repair</field>
+          <field name="model">res.config.settings</field>
+          <field name="inherit_id" ref="base_repair_config.res_config_settings_view_form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//div[@name='repair_setting_container']" position="inside">
+                   <div class="col-lg-6 o_setting_box" id="extra_repair_setting">
+                       <div class="o_setting_left_pane">
+                           <field name="extra_repair_setting" />
+                       </div>
+                       <div class="o_setting_right_pane">
+                           <label for="extra_repair_setting" />
+                           <div class="text-muted">Enable extra repair configuration options.</div>
+                       </div>
+                   </div>
+                   <div class="col-lg-6 o_setting_box" id="another_repair_setting">
+                       <div class="o_setting_left_pane">
+                           <field name="another_repair_setting" />
+                       </div>
+                       <div class="o_setting_right_pane">
+                           <label for="another_repair_setting" />
+                           <div class="text-muted">Another repair-related setting.</div>
+                       </div>
+                   </div>
+              </xpath>
+          </field>
+      </record>
 
 **Table of contents**
 
 .. contents::
    :local:
-
-Configuration
-=============
-
-
 
 Usage
 =====
@@ -78,7 +85,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/repair/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/repair/issues/new?body=module:%20base_repair_config%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/repair/issues/new?body=module:%20base_repair_config%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -93,10 +100,10 @@ Authors
 Contributors
 ------------
 
-- Marcel Savegnago <marcel.savegnago@escodoo.com.br>
-- `APSL-Nagarro <https://www.apsl.tech>`__:
+-  Marcel Savegnago <marcel.savegnago@escodoo.com.br>
+-  `APSL-Nagarro <https://www.apsl.tech>`__:
 
-  - Patryk Pyczko <ppyczko@apsl.net>
+   -  Patryk Pyczko <ppyczko@apsl.net>
 
 Maintainers
 -----------
@@ -119,6 +126,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-marcelsavegnago| 
 
-This module is part of the `OCA/repair <https://github.com/OCA/repair/tree/17.0/base_repair_config>`_ project on GitHub.
+This module is part of the `OCA/repair <https://github.com/OCA/repair/tree/16.0/base_repair_config>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
