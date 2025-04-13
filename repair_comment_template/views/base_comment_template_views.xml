@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="action_repair_order_comment_template">
+        <field name="name">Repair Orders Comments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">base.comment.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('model_ids', '=', 'repair.order')]</field>
+        <field name="context">{'default_models': 'repair.order'}</field>
+        <field
+            name="view_id"
+            ref="base_comment_template.view_base_comment_template_tree"
+        />
+    </record>
+    <menuitem
+        name="Document Comments"
+        id="menu_base_comment_template_repair"
+        action="repair_comment_template.action_repair_order_comment_template"
+        parent="repair.repair_menu_config"
+    />
+</odoo>
