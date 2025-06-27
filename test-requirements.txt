@@ -1,0 +1,1 @@
+odoo-addon-base_repair_config@git+https://github.com/ForgeFlow/repair.git@16.0-bck-base_repair_config#subdirectory=setup/base_repair_config
