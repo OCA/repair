@@ -21,6 +21,15 @@
                     </div>
                 </button>
             </xpath>
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_repair"
+                    string="Repair"
+                    type="object"
+                    class="oe_highlight"
+                    attrs="{'invisible': ['|', ('state', 'not in', ['waiting', 'failed']), ('picking_id', '=', False)]}"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>

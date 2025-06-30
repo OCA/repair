@@ -16,3 +16,17 @@ class QcInspection(models.Model):
             "res_model": "repair.order",
             "res_id": self.repair_id.id,
         }
+
+    def action_repair(self):
+        self.ensure_one()
+        if self.picking_id:
+            action = self.picking_id.action_repair_return()
+            action["context"].update(
+                {
+                    "default_product_id": self.product_id.id,
+                    "default_lot_id": self.lot_id.id,
+                    "default_move_id": self.object_id.id,
+                    "default_inspection_ids": [self.id],
+                }
+            )
+            return action

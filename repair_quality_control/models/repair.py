@@ -26,10 +26,10 @@ class RepairOrder(models.Model):
         action["context"] = {
             "default_qty": self.product_qty,
             "default_repair_id": self.id,
-            "default_object_id": f"product.product,{self.product_id.id}",
+            "default_object_id": f"product.product, {self.product_id.id}",
         }
         if self.lot_id:
-            action["context"]["default_object_id"] = f"stock.lot,{self.lot_id.id}"
+            action["context"]["default_object_id"] = f"stock.lot, {self.lot_id.id}"
         return action
 
     def action_view_repair_inspections(self):
