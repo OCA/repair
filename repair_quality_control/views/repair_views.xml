@@ -18,13 +18,19 @@
                 />
             </xpath>
             <xpath expr="//button[@name='action_created_invoice']" position="after">
-                <field name="inspection_ids" readonly="1" invisible="1" />
+                <field
+                    name="inspection_ids"
+                    readonly="1"
+                    invisible="1"
+                    groups="quality_control_oca.group_quality_control_user"
+                />
                 <button
                     class="oe_stat_button"
                     name="action_view_repair_inspections"
                     type="object"
                     icon="fa-list-ul"
                     attrs="{'invisible': [('inspection_ids', '=', [])]}"
+                    groups="quality_control_oca.group_quality_control_user"
                 >
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_text">Inspections</span>
