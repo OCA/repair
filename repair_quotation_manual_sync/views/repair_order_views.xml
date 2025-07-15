@@ -9,7 +9,7 @@
                 expr="//field[@name='move_ids']/tree/field[@name='lot_ids']"
                 position="after"
             >
-                <field name="is_repair_sale_confirmed" invisible="True" />
+                <field name="is_repair_sale_confirmed" column_invisible="True" />
                 <field name="repair_invoiceable" readonly="is_repair_sale_confirmed" />
             </xpath>
         </field>
