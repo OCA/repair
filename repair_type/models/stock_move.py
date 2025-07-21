@@ -1,7 +1,7 @@
 # Copyright (C) 2024 APSL-Nagarro Antoni Marroig
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
-from odoo import models
+from odoo import api, models
 
 
 class StockMove(models.Model):
@@ -35,3 +35,24 @@ class StockMove(models.Model):
                     res[1],
                 )
         return res
+
+    def _compute_location_id(self):
+        ids_to_super = set()
+        for move in self:
+            if move.repair_line_type and move.repair_id:
+                location_src, _ = move._get_repair_locations(move.repair_line_type)
+                move.location_id = location_src
+            else:
+                ids_to_super.add(move.id)
+        return super(StockMove, self.browse(ids_to_super))._compute_location_id()
+
+    @api.depends("repair_id.location_dest_id", "repair_line_type")
+    def _compute_location_dest_id(self):
+        ids_to_super = set()
+        for move in self:
+            if move.repair_id and move.repair_line_type:
+                _, location_dest = move._get_repair_locations(move.repair_line_type)
+                move.location_dest_id = location_dest
+            else:
+                ids_to_super.add(move.id)
+        return super(StockMove, self.browse(ids_to_super))._compute_location_dest_id()
