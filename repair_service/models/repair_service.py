@@ -45,6 +45,20 @@ class RepairService(models.Model):
         for service in self:
             service.product_uom = service.product_id.uom_id
 
+    def _prepare_sale_order_line_vals(self, product_qty):
+        self.ensure_one()
+        vals = {
+            "order_id": self.repair_id.sale_order_id.id,
+            "product_id": self.product_id.id,
+            "product_uom_qty": product_qty,
+            "product_uom": self.product_uom.id,
+        }
+        if self.repair_id.under_warranty:
+            vals["price_unit"] = 0.0
+        elif self.product_id.lst_price:
+            vals["price_unit"] = self.product_id.lst_price
+        return vals
+
     def _create_repair_sale_order_line(self):
         if not self:
             return
@@ -57,15 +71,6 @@ class RepairService(models.Model):
                 if service.repair_id.state != "done"
                 else service.product_uom_qty
             )
-            so_line_vals.append(
-                {
-                    "order_id": service.repair_id.sale_order_id.id,
-                    "product_id": service.product_id.id,
-                    "product_uom_qty": product_qty,
-                }
-            )
-            if service.repair_id.under_warranty:
-                so_line_vals[-1]["price_unit"] = 0.0
-            elif service.product_id.lst_price:
-                so_line_vals[-1]["price_unit"] = service.product_id.lst_price
+            vals = service._prepare_sale_order_line_vals(product_qty)
+            so_line_vals.append(vals)
         self.env["sale.order.line"].create(so_line_vals)
