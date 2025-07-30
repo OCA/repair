@@ -6,7 +6,7 @@
     "summary": """
         Manually Synchronize Repair Orders with their Quotations
     """,
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "category": "Repair",
     "website": "https://github.com/OCA/repair",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
