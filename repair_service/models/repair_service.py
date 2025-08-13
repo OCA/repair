@@ -34,6 +34,7 @@ class RepairService(models.Model):
     product_uom_qty = fields.Float(
         "Quantity", digits="Product Unit of Measure", required=True, default=1.0
     )
+    company_id = fields.Many2one(related="repair_id.company_id")
 
     @api.depends("product_id")
     def _compute_name(self):
