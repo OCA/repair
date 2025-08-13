@@ -13,5 +13,9 @@
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": ["repair"],
-    "data": ["security/ir.model.access.csv", "views/repair_views.xml"],
+    "data": [
+        "security/ir.model.access.csv",
+        "security/ir_rule.xml",
+        "views/repair_views.xml",
+    ],
 }
