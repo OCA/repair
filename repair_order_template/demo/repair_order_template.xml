@@ -4,7 +4,6 @@
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 -->
 <odoo>
-
     <record id="repair_order_template_demo" model="repair.order.template">
         <field name="name">General Repair</field>
     </record>
@@ -28,5 +27,4 @@
         <field name="product_id" ref="product.product_product_4" />
         <field name="product_uom" ref="uom.product_uom_unit" />
     </record>
-
 </odoo>

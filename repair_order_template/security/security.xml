@@ -4,7 +4,6 @@
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 -->
 <odoo>
-
     <record id="ir_rule_repair_order_template_multi_company" model="ir.rule">
         <field name="name">Repair Order Template: Multi-company</field>
         <field name="model_id" ref="model_repair_order_template" />
@@ -16,5 +15,4 @@
         <field name="model_id" ref="model_repair_order_template_line" />
         <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
     </record>
-
 </odoo>

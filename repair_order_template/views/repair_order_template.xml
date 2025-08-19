@@ -4,7 +4,6 @@
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 -->
 <odoo>
-
     <record id="view_repair_order_template_search" model="ir.ui.view">
         <field name="model">repair.order.template</field>
         <field name="arch" type="xml">
@@ -120,7 +119,8 @@
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your Repair Order template
-            </p><p>
+            </p>
+            <p>
                 Use templates to save time when creating repair orders.
             </p>
         </field>
@@ -132,5 +132,4 @@
         parent="repair.repair_menu_config"
         action="action_repair_order_template"
     />
-
 </odoo>
