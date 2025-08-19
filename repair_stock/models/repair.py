@@ -14,7 +14,7 @@ class RepairOrder(models.Model):
         string="Transfers",
     )
     picking_count = fields.Integer(
-        string="Transfers", copy=False, compute="_compute_picking_ids"
+        string="Transfers Count", copy=False, compute="_compute_picking_ids"
     )
 
     def action_view_pickings(self):
