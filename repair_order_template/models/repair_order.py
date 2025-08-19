@@ -1,7 +1,7 @@
 # Copyright 2024 Camptocamp SA (https://www.camptocamp.com).
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -18,7 +18,9 @@ class RepairOrder(models.Model):
     @api.constrains("repair_order_template_id")
     def _check_repair_order_template_id(self):
         if self.repair_order_template_id and self.state != "draft":
-            raise ValidationError(_("Order Template can only be set on draft orders"))
+            raise ValidationError(
+                self.env._("Order Template can only be set on draft orders")
+            )
 
     @api.onchange("repair_order_template_id")
     def _onchange_repair_order_template_id(self):
