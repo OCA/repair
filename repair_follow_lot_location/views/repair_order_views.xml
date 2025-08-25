@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="repair_order_form_view" model="ir.ui.view">
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_id']" position="after">
+                <field
+                    name="follow_lot_location"
+                    attrs="{'invisible': [('lot_id','=',False)]}"
+                    groups="stock.group_production_lot"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
