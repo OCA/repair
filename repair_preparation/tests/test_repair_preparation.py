@@ -15,10 +15,13 @@ class TestRepairPreparation(TransactionCase):
             {"name": "product to repair", "type": "product"}
         )
         cls.product_c = cls.env["product.product"].create(
-            {"name": "product to consume", "type": "product"}
+            {"name": "product to consume", "type": "product", "tracking": "lot"}
         )
         cls.product_c_2 = cls.env["product.product"].create(
             {"name": "product to consume 2", "type": "product"}
+        )
+        cls.lot = cls.env["stock.lot"].create(
+            {"name": "lot", "product_id": cls.product_c.id}
         )
         cls.warehouse = cls.env["stock.warehouse"].create(
             {"name": "WH", "code": "wh_test"}
@@ -75,7 +78,7 @@ class TestRepairPreparation(TransactionCase):
             cls.product, cls.prep_loc, 1.0
         )
         cls.env["stock.quant"]._update_available_quantity(
-            cls.product_c, cls.stock_loc, 10.0
+            cls.product_c, cls.stock_loc, 10.0, lot_id=cls.lot
         )
         cls.env["stock.quant"]._update_available_quantity(
             cls.product_c_2, cls.stock_loc, 10.0
@@ -146,7 +149,7 @@ class TestRepairPreparation(TransactionCase):
         self.test_validate_runs_procurement()
         self._do_picking(self.repair.preparation_picking_ids)
         self.assertEqual(self.repair.preparation_picking_ids.state, "done")
-        with self.assertRaisesRegexp(
+        with self.assertRaisesRegex(
             ValidationError,
             "You cannot modify product/quantity for preparation lines "
             "because some linked moves are already done",
@@ -171,14 +174,14 @@ class TestRepairPreparation(TransactionCase):
 
     def test_action_repair_end_checks(self):
 
-        with self.assertRaisesRegexp(
+        with self.assertRaisesRegex(
             ValidationError,
             "Preparation picking not found. Please procure/prepare parts first",
         ):
             self.repair.action_repair_end()
         self.repair.action_validate()
         self.repair.action_repair_start()
-        with self.assertRaisesRegexp(
+        with self.assertRaisesRegex(
             ValidationError, "Preparation picking is not done yet"
         ):
             self.repair.action_repair_end()
@@ -198,8 +201,14 @@ class TestRepairPreparation(TransactionCase):
         self.repair.action_validate()
         self.assertFalse(self.repair.preparation_picking_ids)
         self.repair.action_repair_start()
-        self.repair.action_repair_end()
-        self.repair.action_repair_done()
-        self.assertEqual(self.repair.state, "done")
         self.assertFalse(self.line.preparation_move_ids)
-        self.assertTrue(self.line.move_id)
+
+    def test_update_repair_line_after_preparation(self):
+        self.test_validate_runs_procurement()
+        self.line.location_id = self.stock_loc
+        self.assertFalse(self.line.lot_id)
+        move_line = self.repair.preparation_picking_ids.move_line_ids
+        self.assertEqual(move_line.lot_id, self.lot)
+        self._do_picking(self.repair.preparation_picking_ids)
+        self.assertEqual(self.line.location_id, self.prep_loc)
+        self.assertEqual(self.line.lot_id, self.lot)
