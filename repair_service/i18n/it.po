@@ -22,6 +22,11 @@ msgid "Category"
 msgstr "Categoria"
 
 #. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__company_id
+msgid "Company"
+msgstr ""
+
+#. module: repair_service
 #: model:ir.model.fields,help:repair_service.field_repair_service__product_uom_category_id
 msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
@@ -88,12 +93,15 @@ msgid "Repair Order Reference"
 msgstr "Riferimento ordine riparazione"
 
 #. module: repair_service
+#: model:ir.model,name:repair_service.model_repair_service
+msgid "Repair Service"
+msgstr ""
+
+#. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_order__repair_service_ids
 #: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
 msgid "Services"
 msgstr "Servizi"
 
-#. module: repair_service
-#: model:ir.model,name:repair_service.model_repair_service
-msgid "repair.service"
-msgstr "repair.service"
+#~ msgid "repair.service"
+#~ msgstr "repair.service"
