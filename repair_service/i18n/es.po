@@ -20,6 +20,11 @@ msgid "Category"
 msgstr ""
 
 #. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__company_id
+msgid "Company"
+msgstr ""
+
+#. module: repair_service
 #: model:ir.model.fields,help:repair_service.field_repair_service__product_uom_category_id
 msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
