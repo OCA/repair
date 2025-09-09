@@ -19,8 +19,7 @@
             <xpath expr="//field[@name='picking_id']" position="after">
                 <field
                     name="preparation_picking_type_id"
-                    required="True"
-                    attrs="{'invisible': [('repair_preparation_enabled', '=', False)]}"
+                    attrs="{'invisible': [('repair_preparation_enabled', '=', False)], 'required': [('repair_preparation_enabled', '=', True)]}"
                 />
             </xpath>
             <xpath expr="//div[@name='button_box']" position="inside">
