@@ -1,0 +1,2 @@
+# Temporary dependency on repair_sale_multi
+odoo-addon-repair_sale_multi@git+https://github.com/OCA/repair.git@refs/pull/110/head#subdirectory=repair_sale_multi
