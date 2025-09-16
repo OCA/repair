@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [repair_calendar_view](repair_calendar_view/) | 16.0.1.0.0 |  | Repair Calendar View
 [repair_comment_template](repair_comment_template/) | 16.0.1.0.0 | <a href='https://github.com/cubells'><img src='https://github.com/cubells.png' width='32' height='32' style='border-radius:50%;' alt='cubells'/></a> | Comments templates on Repair documents
 [repair_discount](repair_discount/) | 16.0.1.0.0 |  | Repair Discount
+[repair_follow_lot_location](repair_follow_lot_location/) | 16.0.1.0.0 | <a href='https://github.com/sbejaoui'><img src='https://github.com/sbejaoui.png' width='32' height='32' style='border-radius:50%;' alt='sbejaoui'/></a> | Auto-sync repair currentlocation from the lot’s location
 [repair_picking_after_done](repair_picking_after_done/) | 16.0.1.0.2 |  | Transfer repaired move to another location directly from repaire order
 [repair_purchase_return](repair_purchase_return/) | 16.0.1.0.1 | <a href='https://github.com/JordiBForgeFlow'><img src='https://github.com/JordiBForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JordiBForgeFlow'/></a> | Create a Purchase Return from a Repair
 [repair_quality_control](repair_quality_control/) | 16.0.1.0.0 | <a href='https://github.com/peluko00'><img src='https://github.com/peluko00.png' width='32' height='32' style='border-radius:50%;' alt='peluko00'/></a> | Create quality controls from repair order

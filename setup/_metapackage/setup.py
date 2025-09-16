@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo-addon-repair_calendar_view>=16.0dev,<16.1dev',
         'odoo-addon-repair_comment_template>=16.0dev,<16.1dev',
         'odoo-addon-repair_discount>=16.0dev,<16.1dev',
+        'odoo-addon-repair_follow_lot_location>=16.0dev,<16.1dev',
         'odoo-addon-repair_picking_after_done>=16.0dev,<16.1dev',
         'odoo-addon-repair_purchase_return>=16.0dev,<16.1dev',
         'odoo-addon-repair_quality_control>=16.0dev,<16.1dev',
