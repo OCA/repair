@@ -74,8 +74,8 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Mateu Griful <mateu.griful@forgeflow.com>
-* Lois Rilo <lois.rilo@forgeflow.com>
+* Binhex <https://binhex.cloud>
+    - Antonio Ruban <antoniodavid8@gmail.com>
 
 Maintainers
 ~~~~~~~~~~~
