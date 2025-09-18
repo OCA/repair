@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Kanban view for repair.order.line (Mobile Optimized) -->
+    <record id="repair_order_line_view_kanban_mobile" model="ir.ui.view">
+        <field name="name">repair.order.line.kanban</field>
+        <field name="model">repair.line</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" create="true">
+                <field name="company_id" />
+                <field name="currency_id" />
+                <field name="product_id" />
+                <field name="repair_id" />
+                <field name="type" />
+                <field name="state" />
+                <field name="invoiced" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                            class="oe_kanban_global_click"
+                            style="padding: 12px; border-bottom: 1px solid #e9ecef;"
+                        >
+                            <!-- Main Row: Product Icon and Details -->
+                            <div class="row">
+                                <div class="col-2" style="padding-right: 8px;">
+                                    <div
+                                        style="width: 40px; height: 40px; background-color: #f0f8ff; border-radius: 6px; display: flex; align-items: center; justify-content: center; border: 1px solid #4a90e2;"
+                                    >
+                                        <t t-if="record.type.raw_value == 'add'">
+                                            <i
+                                                class="fa fa-plus text-success"
+                                                style="font-size: 16px;"
+                                            />
+                                        </t>
+                                        <t t-else="">
+                                            <i
+                                                class="fa fa-minus text-warning"
+                                                style="font-size: 16px;"
+                                            />
+                                        </t>
+                                    </div>
+                                </div>
+
+                                <!-- Product Details Column -->
+                                <div class="col-6">
+                                    <!-- Product Name -->
+                                    <div
+                                        style="font-weight: 600; color: #212529; font-size: 14px; line-height: 1.3; margin-bottom: 2px;"
+                                    >
+                                        <field name="product_id" />
+                                    </div>
+
+                                    <!-- Quantity and Unit -->
+                                    <div
+                                        style="color: #6c757d; font-size: 13px; margin-bottom: 2px;"
+                                    >
+                                        Quantity: <field name="product_uom_qty" />
+                                    </div>
+
+                                    <!-- Unit Price -->
+                                    <div style="color: #6c757d; font-size: 13px;">
+                                        Unit Price: <field
+                                            name="price_unit"
+                                            widget="monetary"
+                                            options="{'currency_field': 'currency_id'}"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Price Column -->
+                                <div class="col-4 text-end" style="padding-left: 4px;">
+                                    <div
+                                        style="font-weight: 600; color: #212529; font-size: 16px; margin-bottom: 4px;"
+                                    >
+                                        <field
+                                            name="price_subtotal"
+                                            widget="monetary"
+                                            options="{'currency_field': 'currency_id'}"
+                                        />
+                                    </div>
+
+                                    <!-- Status indicators -->
+                                    <div>
+                                        <t t-if="record.invoiced">
+                                            <span
+                                                class="badge"
+                                                style="background-color: #e3f2fd; color: #1976d2; font-size: 10px; padding: 2px 6px;"
+                                            >
+                                                Invoiced
+                                            </span>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Description Row (if exists) -->
+                            <div class="row mt-2" t-if="record.name.value">
+                                <div class="col-10 offset-2">
+                                    <div
+                                        style="color: #6c757d; font-size: 12px; font-style: italic; line-height: 1.3;"
+                                    >
+                                        <field name="name" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Serial/Lot Row (if exists) -->
+                            <div class="row mt-1" t-if="record.lot_id.value">
+                                <div class="col-10 offset-2">
+                                    <div style="color: #6c757d; font-size: 11px;">
+                                        <i
+                                            class="fa fa-barcode"
+                                            style="margin-right: 4px;"
+                                        /> <field name="lot_id" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Kanban view for repair.fee (Operations/Fees Lines - Mobile Optimized) -->
+    <record id="repair_fee_view_kanban_mobile" model="ir.ui.view">
+        <field name="name">repair.fee.kanban</field>
+        <field name="model">repair.fee</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" create="true">
+                <field name="company_id" />
+                <field name="currency_id" />
+                <field name="product_id" />
+                <field name="repair_id" />
+                <field name="invoiced" />
+                <field name="name" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                            class="oe_kanban_global_click"
+                            style="padding: 12px; border-bottom: 1px solid #e9ecef;"
+                        >
+                            <!-- Main Row: Service Icon and Details -->
+                            <div class="row">
+                                <!-- Service Icon Column -->
+                                <div class="col-2" style="padding-right: 8px;">
+                                    <div
+                                        style="width: 40px; height: 40px; background-color: #f0f8ff; border-radius: 6px; display: flex; align-items: center; justify-content: center; border: 1px solid #4a90e2;"
+                                    >
+                                        <i
+                                            class="fa fa-cogs text-primary"
+                                            style="font-size: 16px;"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Service Details Column -->
+                                <div
+                                    class="col-6"
+                                    style="padding-left: 4px; padding-right: 4px;"
+                                >
+                                    <!-- Service/Product Name -->
+                                    <div
+                                        style="font-weight: 600; color: #212529; font-size: 14px; line-height: 1.3; margin-bottom: 2px;"
+                                    >
+                                        <field name="product_id" />
+                                    </div>
+
+                                    <!-- Quantity and Unit -->
+                                    <div
+                                        style="color: #6c757d; font-size: 13px; margin-bottom: 2px;"
+                                    >
+                                        Quantity: <field name="product_uom_qty" />
+                                    </div>
+
+                                    <!-- Unit Price -->
+                                    <div style="color: #6c757d; font-size: 13px;">
+                                        Unit Price: <field
+                                            name="price_unit"
+                                            widget="monetary"
+                                            options="{'currency_field': 'currency_id'}"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Price Column -->
+                                <div class="col-4 text-end" style="padding-left: 4px;">
+                                    <div
+                                        style="font-weight: 600; color: #212529; font-size: 16px; margin-bottom: 4px;"
+                                    >
+                                        <field
+                                            name="price_subtotal"
+                                            widget="monetary"
+                                            options="{'currency_field': 'currency_id'}"
+                                        />
+                                    </div>
+
+                                    <!-- Status indicators -->
+                                    <div>
+                                        <t t-if="record.invoiced.raw_value">
+                                            <span
+                                                class="badge"
+                                                style="background-color: #e3f2fd; color: #1976d2; font-size: 10px; padding: 2px 6px;"
+                                            >
+                                                Invoiced
+                                            </span>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Description Row (if exists) -->
+                            <div class="row mt-2" t-if="record.name.raw_value">
+                                <div class="col-10 offset-2">
+                                    <div
+                                        style="color: #6c757d; font-size: 12px; font-style: italic; line-height: 1.3;"
+                                    >
+                                        <field name="name" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_repair_order_form_inherit" model="ir.ui.view">
+        <field name="name">view.repair.order.form.inherit</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='operations']" position="attributes">
+                <attribute name="mode">tree,kanban</attribute>
+                <attribute
+                    name="kanban_view_ref"
+                >repair_order_line_view_kanban_mobile</attribute>
+            </xpath>
+            <xpath expr="//field[@name='fees_lines']" position="attributes">
+                <attribute name="mode">tree,kanban</attribute>
+                <attribute
+                    name="kanban_view_ref"
+                >repair_fee_view_kanban_mobile</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
