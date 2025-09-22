@@ -117,3 +117,24 @@ class TestRepairOrderFlow(TransactionCase):
 
         # Check that the description was copied into the sale order line name
         self.assertEqual(sale_order_line.name, "Custom service description")
+    def test_05_add_services_on_created_sale_order(self):
+        """Check that new services are added on created sale order"""
+        self.repair_order.action_create_sale_order()
+        sale_order = self.repair_order.sale_order_id
+        self.RepairService.create(
+            {
+                "repair_id": self.repair_order.id,
+                "product_id": self.service_product.id,
+                "product_uom_qty": 3.0,
+                "product_uom": self.service_product.uom_id.id,
+            }
+        )
+        # Check that both services exist as sale order lines for the same product
+        sale_order_lines = sale_order.order_line.filtered(
+            lambda line: line.product_id == self.service_product
+        )
+        self.assertEqual(len(sale_order_lines), 2)
+        self.assertIn(2.0, sale_order_lines.mapped("product_uom_qty"))
+        self.assertIn(3.0, sale_order_lines.mapped("product_uom_qty"))
+        # Check that both lines are linked to the same sale order
+        self.assertTrue(all(line.order_id == sale_order for line in sale_order_lines))

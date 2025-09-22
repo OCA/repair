@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
+from odoo.tools.misc import groupby
 
 
 class RepairService(models.Model):
@@ -36,6 +37,9 @@ class RepairService(models.Model):
         "Quantity", digits="Product Unit of Measure", required=True, default=1.0
     )
     company_id = fields.Many2one(related="repair_id.company_id")
+    sale_line_id = fields.Many2one(
+        comodel_name="sale.order.line", string="Sale Line", copy=False
+    )
 
     @api.depends("product_id")
     def _compute_display_name(self):
@@ -70,7 +74,6 @@ class RepairService(models.Model):
     def _create_repair_sale_order_line(self):
         if not self:
             return
-        so_line_vals = []
         for service in self:
             if not service.repair_id.sale_order_id:
                 continue
@@ -80,5 +83,51 @@ class RepairService(models.Model):
                 else service.product_uom_qty
             )
             vals = service._prepare_sale_order_line_vals(product_qty)
-            so_line_vals.append(vals)
-        self.env["sale.order.line"].create(so_line_vals)
+            sale_order_line = self.env["sale.order.line"].sudo().create(vals)
+            service.sale_line_id = sale_order_line.id
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("repair_id") or "repair_line_type" not in vals:
+                continue
+        services = super().create(vals_list)
+        services_to_create_so_line = self.env["repair.service"]
+        for service in services:
+            if not service.repair_id:
+                continue
+            if not service.sale_line_id:
+                services_to_create_so_line |= service
+        services_to_create_so_line._create_repair_sale_order_line()
+        return services
+
+    def write(self, vals):
+        res = super().write(vals)
+        repair_services = self.env["repair.service"]
+        services_to_create_so_line = self.env["repair.service"]
+        for service in self:
+            if not service.repair_id:
+                continue
+            # checks vals update
+            if not service.sale_line_id and "sale_line_id" not in vals:
+                services_to_create_so_line |= service
+            if service.sale_line_id and "product_uom_qty" in vals:
+                repair_services |= service
+
+        repair_services._update_repair_sale_order_line()
+        services_to_create_so_line._create_repair_sale_order_line()
+        return res
+
+    def _update_repair_sale_order_line(self):
+        if not self:
+            return
+        services_to_update = self.env["repair.service"]
+        for service in self:
+            if not service.repair_id:
+                continue
+            if service.sale_line_id:
+                services_to_update |= service
+        for sale_line, _ in groupby(services_to_update, lambda m: m.sale_line_id):
+            sale_line.product_uom_qty = sum(
+                sale_line.repair_service_ids.mapped("product_uom_qty")
+            )
