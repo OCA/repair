@@ -14,7 +14,8 @@ class RepairService(models.Model):
     display_name = fields.Text(
         "Description",
         required=True,
-        compute="_compute_name",
+        compute="_compute_display_name",
+        inverse="_inverse_display_name",
         store=True,
         precompute=True,
     )
@@ -37,9 +38,13 @@ class RepairService(models.Model):
     company_id = fields.Many2one(related="repair_id.company_id")
 
     @api.depends("product_id")
-    def _compute_name(self):
+    def _compute_display_name(self):
         for service in self:
             service.display_name = service.product_id.name
+
+    def _inverse_display_name(self):
+        # Do nothing, just avoid the compute to overwrite user values
+        return
 
     @api.depends("product_id")
     def _compute_product_uom(self):
