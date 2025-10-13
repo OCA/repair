@@ -58,7 +58,9 @@ class RepairService(models.Model):
             "product_id": self.product_id.id,
             "product_uom_qty": product_qty,
             "product_uom": self.product_uom.id,
+            "name": self.display_name,
         }
+
         if self.repair_id.under_warranty:
             vals["price_unit"] = 0.0
         elif self.product_id.lst_price:
