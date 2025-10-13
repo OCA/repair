@@ -101,3 +101,19 @@ class TestRepairOrderFlow(TransactionCase):
 
         # Check that the sale order line has the correct price unit
         self.assertEqual(sale_order_line.price_unit, self.service_product.lst_price)
+
+    def test_04_copy_display_name_to_sale_order_line(self):
+        # Set a custom description on the repair service
+        self.repair_service.display_name = "Custom service description"
+
+        # Create a sale order from the repair order
+        self.repair_order.action_create_sale_order()
+
+        # Check that the sale order line exists for the service product
+        sale_order_line = self.repair_order.sale_order_id.order_line.filtered(
+            lambda line: line.product_id == self.service_product
+        )
+        self.assertTrue(sale_order_line)
+
+        # Check that the description was copied into the sale order line name
+        self.assertEqual(sale_order_line.name, "Custom service description")
