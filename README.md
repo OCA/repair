@@ -30,7 +30,7 @@ addon | version | maintainers | summary
 [repair_quotation_manual_sync](repair_quotation_manual_sync/) | 17.0.1.0.1 |  | Manually Synchronize Repair Orders with their Quotations
 [repair_refurbish](repair_refurbish/) | 17.0.2.0.0 |  | Create refurbished products during repair
 [repair_restrict_lot](repair_restrict_lot/) | 17.0.1.0.0 |  | Repair Restrict Lot
-[repair_service](repair_service/) | 17.0.1.0.0 |  | Adds services to repair orders, so that they can be added as sale order lines.
+[repair_service](repair_service/) | 17.0.1.0.1 |  | Adds services to repair orders, so that they can be added as sale order lines.
 [repair_stock](repair_stock/) | 17.0.1.1.0 |  | Repair Stock
 [repair_substate](repair_substate/) | 17.0.1.0.0 |  | Repair Sub State
 [repair_timesheet](repair_timesheet/) | 17.0.1.0.0 | <a href='https://github.com/ppyczko'><img src='https://github.com/ppyczko.png' width='32' height='32' style='border-radius:50%;' alt='ppyczko'/></a> | Repair Timesheet
