@@ -87,12 +87,15 @@ msgid "Repair Order Reference"
 msgstr "Referencia orden de reparación"
 
 #. module: repair_service
+#: model:ir.model,name:repair_service.model_repair_service
+msgid "Repair Service"
+msgstr ""
+
+#. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_order__repair_service_ids
 #: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
 msgid "Services"
 msgstr "Servicios"
 
-#. module: repair_service
-#: model:ir.model,name:repair_service.model_repair_service
-msgid "repair.service"
-msgstr "repair.service"
+#~ msgid "repair.service"
+#~ msgstr "repair.service"
