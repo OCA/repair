@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Add group field + notebook page + header button -->
+    <record id="view_repair_order_form_inherit_group" model="ir.ui.view">
+        <field name="name">repair.order.form.inherit.group</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <!-- Header button -->
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_add_another_repair"
+                    type="object"
+                    class="btn-primary"
+                    string="Add Another Repair"
+                    help="Create a new repair linked to the same group and partner."
+                />
+            </xpath>
+
+            <!-- Group field -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="group_id" options="{'no_create_edit': True}" />
+            </xpath>
+
+            <!-- Tab with grouped repairs -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Grouped Repairs">
+                    <field name="grouped_repair_ids">
+                        <list>
+                            <field name="name" />
+                            <field name="state" />
+                            <field name="partner_id" />
+                        </list>
+                        <form>
+                            <sheet>
+                                <group>
+                                    <field name="name" />
+                                    <field name="state" readonly="1" />
+                                    <field name="partner_id" />
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

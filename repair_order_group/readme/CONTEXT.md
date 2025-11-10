@@ -1,0 +1,3 @@
+Sometimes you need to create several repair orders in a row while linking them to the same quotation. For example a service facility receptionist needs to receive several items from the same client and then prepare a sales order for all of them at once.
+
+Currently this can be done from the sales order by adding products that create repair orders on confirmation. However this approach has limitations, because it makes it difficult to enter some repair details, e.g. picking a serial number or filling in custom fields in the repair order form.
