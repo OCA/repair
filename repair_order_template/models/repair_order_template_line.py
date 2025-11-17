@@ -30,10 +30,7 @@ class RepairOrderTemplateLine(models.Model):
     product_id = fields.Many2one(
         "product.product",
         string="Product",
-        domain=[
-            ("type", "in", ["product", "consu"]),
-            ("company_id", "in", [False, company_id]),
-        ],
+        domain=[("type", "=", "consu")],
         check_company=True,
         required=True,
     )
@@ -43,7 +40,7 @@ class RepairOrderTemplateLine(models.Model):
     product_uom = fields.Many2one(
         "uom.uom",
         string="Unit of Measure",
-        domain=[("category_id", "=", product_uom_category_id)],
+        domain="[('category_id', '=', product_uom_category_id)]",
         compute="_compute_product_uom",
         readonly=False,
         required=True,
