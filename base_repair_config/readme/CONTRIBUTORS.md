@@ -1,0 +1,3 @@
+- Marcel Savegnago \<<marcel.savegnago@escodoo.com.br>\>
+- [APSL-Nagarro](https://www.apsl.tech):
+  - Patryk Pyczko \<<ppyczko@apsl.net>\>
