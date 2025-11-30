@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[base_repair_config](base_repair_config/) | 16.0.1.0.0 | <a href='https://github.com/marcelsavegnago'><img src='https://github.com/marcelsavegnago.png' width='32' height='32' style='border-radius:50%;' alt='marcelsavegnago'/></a> | Provides general settings for the Repair App
 [repair_calendar_view](repair_calendar_view/) | 16.0.1.0.0 |  | Repair Calendar View
 [repair_comment_template](repair_comment_template/) | 16.0.1.0.0 | <a href='https://github.com/cubells'><img src='https://github.com/cubells.png' width='32' height='32' style='border-radius:50%;' alt='cubells'/></a> | Comments templates on Repair documents
 [repair_discount](repair_discount/) | 16.0.1.0.0 |  | Repair Discount
