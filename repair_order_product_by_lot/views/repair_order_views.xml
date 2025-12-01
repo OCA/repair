@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_repair_order_form_product_by_lot" model="ir.ui.view">
+        <field name="name">repair.order.form.product.by.lot</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <!-- Always show lot/serial field and allow searching by lot -->
+            <xpath expr="//field[@name='lot_id']" position="attributes">
+                <!-- Make the field always visible -->
+                <attribute name="invisible">0</attribute>
+
+                <!-- Keep lots restricted to the current company (or global) -->
+                <attribute name="domain">
+                    [('company_id', 'in', [False, company_id])]
+                </attribute>
+
+                <!-- Avoid creating or editing lots from the repair form -->
+                <attribute name="options">
+                    {'no_create': True, 'no_create_edit': True}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,1 @@
+This module enables searching for a repair product by its Lot/Serial number. The "Lot/Serial Number" field is always visible, allowing users to find products quickly by entering a value directly in this field.
