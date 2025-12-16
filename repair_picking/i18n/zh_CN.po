@@ -1,0 +1,92 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_picking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: Chinese (Simplified)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__add_c_type_id
+msgid "Add Component to Repair"
+msgstr "添加组件到维修"
+
+#. module: repair_picking
+#: model:ir.model.fields.selection,name:repair_picking.selection__stock_warehouse__repair_steps__2_steps
+msgid "Pick component, repair"
+msgstr "拣选组件，维修"
+
+#. module: repair_picking
+#: model:ir.model.fields.selection,name:repair_picking.selection__stock_warehouse__repair_steps__3_steps
+msgid "Pick component, repair, store removed component"
+msgstr "拣选组件，维修，存储移除的组件"
+
+#. module: repair_picking
+#: model:ir.model,name:repair_picking.model_procurement_group
+#: model:ir.model.fields,field_description:repair_picking.field_repair_order__procurement_group_id
+msgid "Procurement Group"
+msgstr "采购组"
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__recycle_c_type_id
+msgid "Recycle component from Repair"
+msgstr "从维修中回收组件"
+
+#. module: repair_picking
+#: model:ir.model.fields.selection,name:repair_picking.selection__stock_warehouse__repair_steps__1_step
+msgid "Repair"
+msgstr "维修"
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__repair_location_id
+msgid "Repair Location"
+msgstr "维修位置"
+
+#. module: repair_picking
+#: model:ir.model,name:repair_picking.model_repair_order
+msgid "Repair Order"
+msgstr "维修订单"
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__repair_route_id
+msgid "Repair Route"
+msgstr "维修路线"
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__repair_steps
+msgid "Repair Steps"
+msgstr "维修步骤"
+
+#. module: repair_picking
+#: model:ir.model,name:repair_picking.model_stock_move
+msgid "Stock Move"
+msgstr "库存移动"
+
+#. module: repair_picking
+#: model:ir.model.fields,help:repair_picking.field_stock_warehouse__recycle_c_type_id
+msgid ""
+"This operation will be used to move components out of the repair location "
+"when needed by repair lines of type 'Recycle'."
+msgstr ""
+"此操作将用于在维修行类型为'回收'时，将组件移出维修位置。"
+
+#. module: repair_picking
+#: model:ir.model.fields,help:repair_picking.field_stock_warehouse__add_c_type_id
+msgid ""
+"This operation will be used to move components to repair location when "
+"needed by repair lines of type 'Add'."
+msgstr ""
+"此操作将用于在维修行类型为'添加'时，将组件移动到维修位置。"
+
+#. module: repair_picking
+#: model:ir.model,name:repair_picking.model_stock_warehouse
+msgid "Warehouse"
+msgstr "仓库"

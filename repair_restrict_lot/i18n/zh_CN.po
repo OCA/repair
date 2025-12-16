@@ -1,0 +1,22 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_restrict_lot
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-02-09 23:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (Simplified) <info@odoo.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: repair_restrict_lot
+#: model_terms:ir.ui.view,arch_db:repair_restrict_lot.view_repair_order_form
+msgid "Lot/Serial Number"
+msgstr "批次/序列号"

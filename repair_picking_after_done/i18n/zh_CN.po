@@ -1,0 +1,155 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_picking_after_done
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-11 13:38+0000\n"
+"PO-Revision-Date: 2024-12-11 13:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: 中文 (简体) \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_res_config_settings__auto_transfer_repair
+msgid "Automatic Transfer on Repair Completion"
+msgstr "维修完成后自动转移"
+
+#. module: repair_picking_after_done
+#. odoo-python
+#: code:addons/repair_picking_after_done/models/repair.py:0
+#, python-format
+msgid ""
+"Automatic transfer cannot be completed because no product is specified for "
+"this repair order. Please ensure that a product is assigned to the repair "
+"order before proceeding with the transfer."
+msgstr ""
+"自动转移无法完成，因为此维修订单未指定产品。请确保在继续转移之前为维修订单分配产品。"
+
+#. module: repair_picking_after_done
+#: model_terms:ir.ui.view,arch_db:repair_picking_after_done.res_config_settings_view_form_inherit
+msgid ""
+"Automatically create and validate stock transfers for completed repair "
+"orders."
+msgstr "自动创建并验证已完成维修订单的库存转移。"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,help:repair_picking_after_done.field_res_config_settings__auto_transfer_repair
+msgid ""
+"Automatically create and validate transfers for repair orders upon "
+"completion."
+msgstr "维修订单完成后自动创建并验证转移。"
+
+#. module: repair_picking_after_done
+#: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
+msgid "Cancel"
+msgstr "取消"
+
+#. module: repair_picking_after_done
+#: model:ir.model,name:repair_picking_after_done.model_res_config_settings
+msgid "Config Settings"
+msgstr "配置设置"
+
+#. module: repair_picking_after_done
+#: model_terms:ir.ui.view,arch_db:repair_picking_after_done.repair_type_form_inherit
+msgid "Create Transfer"
+msgstr "创建转移"
+
+#. module: repair_picking_after_done
+#: model:ir.model,name:repair_picking_after_done.model_repair_move_transfer
+msgid "Create an internal transfer from repaired moves"
+msgstr "从已修复的移动创建内部转移"
+
+#. module: repair_picking_after_done
+#: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
+msgid "Create transfer"
+msgstr "创建转移"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__create_uid
+msgid "Created by"
+msgstr "创建人"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__create_date
+msgid "Created on"
+msgstr "创建日期"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__location_dest_id
+msgid "Destination location"
+msgstr "目的地位置"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__id
+msgid "ID"
+msgstr "ID"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__write_uid
+msgid "Last Updated by"
+msgstr "最后更新人"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__write_date
+msgid "Last Updated on"
+msgstr "最后更新日期"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__quantity
+msgid "Quantity to transfer"
+msgstr "转移数量"
+
+#. module: repair_picking_after_done
+#. odoo-python
+#: code:addons/repair_picking_after_done/wizards/repair_move_transfer.py:0
+#, python-format
+msgid ""
+"Quantity to transfer cannot exceed the remaining quantity in the repair "
+"order."
+msgstr "转移数量不能超过维修订单中的剩余数量。"
+
+#. module: repair_picking_after_done
+#. odoo-python
+#: code:addons/repair_picking_after_done/wizards/repair_move_transfer.py:0
+#, python-format
+msgid "Quantity to transfer must be greater than 0."
+msgstr "转移数量必须大于0。"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__remaining_quantity
+msgid "Remaining Quantity to Transfer"
+msgstr "待转移剩余数量"
+
+#. module: repair_picking_after_done
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_order__remaining_quantity
+msgid "Remaining quantity to be transferred"
+msgstr "待转移的剩余数量"
+
+#. module: repair_picking_after_done
+#: model:ir.model,name:repair_picking_after_done.model_repair_order
+#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__repair_order_id
+msgid "Repair Order"
+msgstr "维修订单"
+
+#. module: repair_picking_after_done
+#: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
+msgid "Transfer Repaired Moves"
+msgstr "转移已修复的移动"
+
+#. module: repair_picking_after_done
+#: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
+msgid "or"
+msgstr "或"

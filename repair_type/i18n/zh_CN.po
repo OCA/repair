@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-27 15:14+0000\n"
+"PO-Revision-Date: 2024-11-27 15:14+0000\n"
+"Last-Translator: \n"
+"Language-Team: 中文 (简体) \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_stock_picking_type__default_add_location_src_id
+msgid "Default Add Source Location"
+msgstr "默认添加源位置"
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_stock_picking_type__default_recycle_location_src_id
+msgid "Default Recycle Source Location"
+msgstr "默认回收源位置"
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_stock_picking_type__default_remove_location_src_id
+msgid "Default Remove Source Location"
+msgstr "默认移除源位置"
+
+#. module: repair_type
+#: model:ir.model,name:repair_type.model_stock_picking_type
+msgid "Picking Type"
+msgstr "拣货类型"
+
+#. module: repair_type
+#: model:ir.model,name:repair_type.model_stock_move
+msgid "Stock Move"
+msgstr "库存移动"
+
+#. module: repair_type
+#: model:ir.model.fields,help:repair_type.field_stock_picking_type__default_add_location_src_id
+msgid ""
+"This is the default add source location when you create a repair order with "
+"this operation type."
+msgstr ""
+"当您使用此操作类型创建维修订单时，这是默认的添加源位置。"
+
+#. module: repair_type
+#: model:ir.model.fields,help:repair_type.field_stock_picking_type__default_recycle_location_src_id
+msgid ""
+"This is the default recycle source location when you create a repair order "
+"with this operation type."
+msgstr ""
+"当您使用此操作类型创建维修订单时，这是默认的回收源位置。"
+
+#. module: repair_type
+#: model:ir.model.fields,help:repair_type.field_stock_picking_type__default_remove_location_src_id
+msgid ""
+"This is the default remove source location when you create a repair order "
+"with this operation type."
+msgstr ""
+"当您使用此操作类型创建维修订单时，这是默认的移除源位置。"
+
+#~ msgid "Repair Order"
+#~ msgstr "维修订单"

@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-02-09 23:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (Simplified) <info@odoo.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: repair_stock
+#: model:ir.model.fields,field_description:repair_stock.field_stock_move__related_repair_id
+msgid "Related Repair"
+msgstr "关联维修"
+
+#. module: repair_stock
+#: model:ir.model,name:repair_stock.model_repair_order
+msgid "Repair Order"
+msgstr "维修订单"
+
+#. module: repair_stock
+#: model:ir.model,name:repair_stock.model_stock_move
+msgid "Stock Move"
+msgstr "库存移动"
+
+#. module: repair_stock
+#: model:ir.model,name:repair_stock.model_stock_rule
+msgid "Stock Rule"
+msgstr "库存规则"
+
+#. module: repair_stock
+#: model:ir.model.fields,field_description:repair_stock.field_repair_order__picking_count
+#: model:ir.model.fields,field_description:repair_stock.field_repair_order__picking_ids
+#: model_terms:ir.ui.view,arch_db:repair_stock.view_repair_order_form_repair_stock_move_inherited
+msgid "Transfers"
+msgstr "调拨"
+
+#. module: repair_stock
+#: model_terms:ir.ui.view,arch_db:repair_stock.view_repair_order_form_repair_stock_move_inherited
+msgid "Transfers associated with this repair order"
+msgstr "与此维修订单关联的调拨"

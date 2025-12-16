@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_substate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: repair_substate
+#: model:ir.model.fields,field_description:repair_substate.field_base_substate_type__model
+msgid "Apply on"
+msgstr "应用于"
+
+#. module: repair_substate
+#: model:ir.model,name:repair_substate.model_base_substate_type
+msgid "Base Substate Type"
+msgstr "基础子状态类型"
+
+#. module: repair_substate
+#: model:target.state.value,name:repair_substate.target_state_value_repair
+msgid "Confirmed"
+msgstr "已确认"
+
+#. module: repair_substate
+#: model:target.state.value,name:repair_substate.target_state_value_draft
+msgid "New"
+msgstr "新建"
+
+#. module: repair_substate
+#: model:ir.model,name:repair_substate.model_repair_order
+msgid "Repair Order"
+msgstr "维修订单"
+
+#. module: repair_substate
+#: model:ir.model.fields.selection,name:repair_substate.selection__base_substate_type__model__repair_order
+msgid "Repair order"
+msgstr "维修订单"
+
+#. module: repair_substate
+#: model:base.substate.type,name:repair_substate.base_substate_type_repair
+msgid "Repair order Substate"
+msgstr "维修订单子状态"
+
+#. module: repair_substate
+#: model:ir.model.fields,field_description:repair_substate.field_repair_order__substate_id
+msgid "Sub State"
+msgstr "子状态"
+
+#. module: repair_substate
+#: model_terms:ir.ui.view,arch_db:repair_substate.view_repair_order_form_filter
+msgid "Substate"
+msgstr "子状态"
+
+#. module: repair_substate
+#. odoo-python
+#: code:addons/repair_substate/models/repair_order.py:0
+#, python-format
+msgid ""
+"The substate %(name)s is not defined for the state %(state)s but for "
+"%(target_state)s "
+msgstr ""
+"子状态 %(name)s 未为状态 %(state)s 定义，而是为 %(target_state)s 定义"

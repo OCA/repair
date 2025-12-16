@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_quotation_manual_sync
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-12-19 10:00+0000\n"
+"Last-Translator: Odoo Community Association <support@odoo-community.org>\n"
+"Language-Team: Chinese (Simplified) <https://translation.odoo-community.org/projects/repair-17-0/repair-17-0-repair_quotation_manual_sync/zh_CN/>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: repair_quotation_manual_sync
+#: model_terms:ir.ui.view,arch_db:repair_quotation_manual_sync.view_order_form_repair_sync_banner
+msgid ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"                        <span class=\"oe_inline\">\n"
+"                            Repair Order and Quotation are not synchronized.\n"
+"                            Would you like to synchronize this Sale Order with the repair lines?\n"
+"                        </span>"
+msgstr ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"                        <span class=\"oe_inline\">\n"
+"                            维修订单和报价单未同步。\n"
+"                            您是否要将此销售订单与维修行同步？\n"
+"                        </span>"
+
+#. module: repair_quotation_manual_sync
+#: model:ir.model.fields,help:repair_quotation_manual_sync.field_stock_move__repair_invoiceable
+msgid ""
+"Check this box if the product is billable. Only invoiceable products will be"
+" included in the quotation."
+msgstr ""
+"如果产品是可计费的，请勾选此框。只有可计费的产品才会包含在报价单中。"
+
+#. module: repair_quotation_manual_sync
+#: model:ir.model.fields,field_description:repair_quotation_manual_sync.field_stock_move__repair_invoiceable
+msgid "Invoiceable"
+msgstr "可计费"
+
+#. module: repair_quotation_manual_sync
+#: model:ir.model.fields,field_description:repair_quotation_manual_sync.field_stock_move__is_repair_sale_confirmed
+msgid "Is Repair Sale Confirmed"
+msgstr "维修销售是否已确认"
+
+#. module: repair_quotation_manual_sync
+#: model:ir.model.fields,field_description:repair_quotation_manual_sync.field_sale_order__needs_repair_sync
+msgid "Needs Repair Sync"
+msgstr "需要维修同步"
+
+#. module: repair_quotation_manual_sync
+#: model:ir.model.fields,field_description:repair_quotation_manual_sync.field_stock_move__repair_create_sync
+msgid "Repair Create Sync"
+msgstr "维修创建同步"
+
+#. module: repair_quotation_manual_sync
+#: model:ir.model,name:repair_quotation_manual_sync.model_repair_order
+msgid "Repair Order"
+msgstr "维修订单"
+
+#. module: repair_quotation_manual_sync
+#: model:ir.model.fields,field_description:repair_quotation_manual_sync.field_stock_move__repair_update_sync
+msgid "Repair Update Sync"
+msgstr "维修更新同步"
+
+#. module: repair_quotation_manual_sync
+#: model:ir.model,name:repair_quotation_manual_sync.model_sale_order
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: repair_quotation_manual_sync
+#: model:ir.model,name:repair_quotation_manual_sync.model_stock_move
+msgid "Stock Move"
+msgstr "库存移动"
+
+#. module: repair_quotation_manual_sync
+#: model_terms:ir.ui.view,arch_db:repair_quotation_manual_sync.view_order_form_repair_sync_banner
+msgid "Synchronize Lines"
+msgstr "同步行项"
