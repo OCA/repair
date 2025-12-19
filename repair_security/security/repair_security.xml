@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
-
     <function model="ir.model.access" name="write">
         <value
             eval="[ref('repair.access_repair_fee_user'), ref('repair.access_repair_user'), ref('repair.access_repair_tag_user'), ref('repair.access_repair_line_user'), ref('repair.access_account_tax_user'), ref('repair.access_repair_order_make_invoice'), ref('repair.access_stock_warn_insufficient_qty_repair')]"
@@ -27,5 +26,4 @@
             eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
         />
     </record>
-
 </odoo>
