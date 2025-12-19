@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_repair_user,Repair user,repair.model_repair_order,repair_security.group_repair_user,1,1,0,0
+access_repair_manager,Repair manager,repair.model_repair_order,repair_security.group_repair_manager,1,1,1,1
+access_repair_tag_user,Repair Tags user,repair.model_repair_tags,repair_security.group_repair_user,1,0,0,0
+access_repair_tag_manager,Repair Tags user,repair.model_repair_tags,repair_security.group_repair_manager,1,1,1,1
+access_account_tax_user,account.tax,account.model_account_tax,repair_security.group_repair_user,1,0,0,0
+access_account_tax_manager,account.tax,account.model_account_tax,repair_security.group_repair_manager,1,0,0,0
+access_stock_warn_insufficient_qty_repair_manager,access.stock.warn.insufficient.qty.repair,repair.model_stock_warn_insufficient_qty_repair,repair_security.group_repair_manager,1,1,1,1
