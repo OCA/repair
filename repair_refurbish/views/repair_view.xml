@@ -16,16 +16,15 @@
         <field name="model">repair.order</field>
         <field name="inherit_id" ref="repair.view_repair_order_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//group[@name='locations']/field[@name='location_id']"
-                position="after"
-            >
-                <field
-                    name="location_dest_id"
-                    invisible="not to_refurbish"
-                    required="to_refurbish"
-                />
-            </xpath>
+            <div class="clearfix" position="inside">
+                <group>
+                    <field
+                        name="location_dest_id"
+                        invisible="not to_refurbish"
+                        required="to_refurbish"
+                    />
+                </group>
+            </div>
             <xpath expr="//group[1]" position="inside">
                 <group>
                     <field name="to_refurbish" />

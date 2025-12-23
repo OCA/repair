@@ -1,7 +1,7 @@
 # Copyright 2020 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class RepairOrder(models.Model):
@@ -42,7 +42,6 @@ class RepairOrder(models.Model):
     def _get_refurbish_stock_move_dict(self):
         refurbish_loc = self._get_virtual_refurbish_location()
         return {
-            "name": self.name,
             "product_id": self.refurbish_product_id.id,
             "product_uom": self.product_uom.id or self.refurbish_product_id.uom_id.id,
             "product_uom_qty": self.product_qty,
@@ -51,9 +50,7 @@ class RepairOrder(models.Model):
             "repair_id": self.id,
             "location_dest_id": self.refurbish_location_dest_id.id,
             "move_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.refurbish_product_id.id,
                         "lot_id": self.refurbish_lot_id.id,

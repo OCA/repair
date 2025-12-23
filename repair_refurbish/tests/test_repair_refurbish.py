@@ -1,6 +1,7 @@
 # Copyright 2020 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo import Command
 from odoo.tests.common import TransactionCase
 
 
@@ -18,17 +19,21 @@ class TestMrpMtoWithStock(TransactionCase):
         cls.refurbish_loc = cls.env.ref("repair_refurbish.stock_location_refurbish")
 
         cls.refurbish_product = cls.product_obj.create(
-            {"name": "Refurbished Awesome Screen", "type": "product"}
+            {"name": "Refurbished Awesome Screen", "is_storable": True}
         )
         cls.product = cls.product_obj.create(
             {
                 "name": "Awesome Screen",
-                "type": "product",
+                "is_storable": True,
                 "refurbish_product_id": cls.refurbish_product.id,
             }
         )
-        cls.material = cls.product_obj.create({"name": "Materials", "type": "consu"})
-        cls.material2 = cls.product_obj.create({"name": "Materials", "type": "product"})
+        cls.material = cls.product_obj.create(
+            {"name": "Materials", "is_storable": False}
+        )
+        cls.material2 = cls.product_obj.create(
+            {"name": "Materials", "is_storable": True}
+        )
         cls._update_product_qty(cls, cls.product, cls.stock_location_stock, 10.0)
         cls._update_product_qty(cls, cls.material2, cls.stock_location_stock, 10.0)
 
@@ -100,16 +105,12 @@ class TestMrpMtoWithStock(TransactionCase):
                 "picking_type_id": self.warehouse.repair_type_id.id,
                 "to_refurbish": False,
                 "move_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.material2.id,
                             "product_uom_qty": 1.0,
                             "state": "draft",
                             "repair_line_type": "add",
-                            "location_id": self.stock_location_stock.id,
-                            "location_dest_id": self.customer_location.id,
                         },
                     )
                 ],
