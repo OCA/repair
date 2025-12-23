@@ -1,6 +1,7 @@
 # Copyright (C) 2021 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
+from odoo import Command
 from odoo.tests.common import TransactionCase
 
 
@@ -9,9 +10,21 @@ class TestRepairType(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.picking_type = cls.env.ref("repair.picking_type_warehouse0_repair")
-        cls.product_4 = cls.env.ref("product.product_product_4")
-        cls.product_3 = cls.env.ref("product.product_product_3")
-        cls.product_11 = cls.env.ref("product.product_product_11")
+        cls.product_1 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 1",
+            }
+        )
+        cls.product_2 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 2",
+            }
+        )
+        cls.product_3 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 3",
+            }
+        )
         cls.uom_unit = cls.env.ref("uom.product_uom_unit")
         cls.customer_location = cls.env.ref("stock.stock_location_customers")
 
@@ -30,16 +43,13 @@ class TestRepairType(TransactionCase):
                 "product_id": product_ref.id,
                 "product_uom": self.uom_unit.id,
                 "move_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
-                            "name": f"{repair_line_type.capitalize()} Component",
                             "repair_line_type": repair_line_type,
                             "product_id": component_ref.id,
                             "product_uom_qty": product_qty,
-                        },
-                    )
+                        }
+                    ),
                 ],
             }
         )
@@ -55,7 +65,7 @@ class TestRepairType(TransactionCase):
         self._set_default_location(location_field, location_ref)
         repair = self._create_repair_order(
             self.picking_type,
-            self.product_4,
+            self.product_1,
             repair_line_type,
             product_qty,
             component_ref,
@@ -71,7 +81,7 @@ class TestRepairType(TransactionCase):
             repair_line_type="remove",
             location_field="default_remove_location_src_id",
             location_ref=self.customer_location,
-            component_ref=self.product_3,
+            component_ref=self.product_2,
             product_qty=3,
         )
 
@@ -80,7 +90,7 @@ class TestRepairType(TransactionCase):
             repair_line_type="recycle",
             location_field="default_recycle_location_src_id",
             location_ref=self.customer_location,
-            component_ref=self.product_11,
+            component_ref=self.product_3,
             product_qty=3,
         )
 
@@ -89,6 +99,6 @@ class TestRepairType(TransactionCase):
             repair_line_type="add",
             location_field="default_add_location_src_id",
             location_ref=self.customer_location,
-            component_ref=self.product_3,
+            component_ref=self.product_2,
             product_qty=5,
         )
