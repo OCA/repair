@@ -1,0 +1,3 @@
+- Go to Repair > Configuration > Settings
+- Activate Repair Start Confirmation Email > Select the Email Template > save
+- Activate Repair End Confirmation Email > Select the Email Template > save

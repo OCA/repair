@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="res_config_settings_form_view" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="base_repair_config.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='repair_setting_container']" position="inside">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    title="Send automatic repair start notification"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="send_repair_start_confirmation" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="send_repair_start_confirmation"
+                            string="Repair Start Confirmation Email"
+                        />
+                        <span
+                            class="fa fa-lg fa-building-o"
+                            title="Values set here are company-specific."
+                            groups="base.group_multi_company"
+                        />
+                        <div class="text-muted">
+                            When the product repairing starts, send an automatic information email to the client.
+                        </div>
+                        <div
+                            class="row mt16"
+                            attrs="{'invisible': [('send_repair_start_confirmation', '=', False)]}"
+                        >
+                            <label
+                                for="repair_start_template_id"
+                                string="Email Template"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field
+                                name="repair_start_template_id"
+                                class="oe_inline"
+                                attrs="{'required': [('send_repair_start_confirmation', '=', True)]}"
+                                context="{'default_model': 'repair.order'}"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    title="Send automatic repair start notification"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="send_repair_end_confirmation" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="send_repair_end_confirmation"
+                            string="Repair End Confirmation Email"
+                        />
+                        <span
+                            class="fa fa-lg fa-building-o"
+                            title="Values set here are company-specific."
+                            groups="base.group_multi_company"
+                        />
+                        <div class="text-muted">
+                            When the product repairing ends, send an automatic information email to the client.
+                        </div>
+                        <div
+                            class="row mt16"
+                            attrs="{'invisible': [('send_repair_end_confirmation', '=', False)]}"
+                        >
+                            <label
+                                for="repair_end_template_id"
+                                string="Email Template"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field
+                                name="repair_end_template_id"
+                                class="oe_inline"
+                                attrs="{'required': [('send_repair_end_confirmation', '=', True)]}"
+                                context="{'default_model': 'repair.order'}"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

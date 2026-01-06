@@ -1,0 +1,2 @@
+- Nihel GABSI <nihel.gabsi@acsone.eu>
+- Souheil BEJAOUI <souheil.bejaoui@acsone.eu>

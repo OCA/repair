@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <record id="mail_template_repair_start_notification" model="mail.template">
+            <field name="name">Repair Start Notification</field>
+            <field name="model_id" ref="repair.model_repair_order" />
+            <field name="email_from">{{object.user_id.email_formatted }}</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field
+            name="subject"
+        >Repair order (Ref {{object.name or 'n/a' }}) started</field>
+            <field name="lang">{{object.partner_id.lang}}</field>
+            <field name="auto_delete" eval="True" />
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear
+                        <t t-out="object.partner_id.name" />
+                        <t t-if="object.partner_id.parent_id">
+                            <t t-out="object.partner_id.parent_id.name" />
+                        </t>
+                        <br />
+                        <br />
+                        We would like to inform you that the reparation of your product
+                        <strong>
+                            <t t-out="object.product_id.name" />
+                        </strong>
+                        is just started.
+                        <br />
+                        <br />
+                        <t t-out="object.company_id.name" /> team.
+                        <br />
+                        <br />
+                    </p>
+                </div>
+            </field>
+        </record>
+
+    <record id="mail_template_repair_end_notification" model="mail.template">
+            <field name="name">Repair End Notification</field>
+            <field name="model_id" ref="repair.model_repair_order" />
+            <field name="email_from">{{object.user_id.email_formatted }}</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field
+            name="subject"
+        >Repair order (Ref {{object.name or 'n/a' }}) ended</field>
+            <field name="lang">{{object.partner_id.lang}}</field>
+            <field name="auto_delete" eval="True" />
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear
+                        <t t-out="object.partner_id.name" />
+                        <t t-if="object.partner_id.parent_id">
+                            <t t-out="object.partner_id.parent_id.name" />
+                        </t>
+                        <br />
+                        <br />
+                        We would like to inform you that the reparation of your product
+                        <strong>
+                            <t t-out="object.product_id.name" />
+                        </strong>
+                        is just ended.
+                        <br />
+                        <br />
+                        <t t-out="object.company_id.name" /> team.
+                        <br />
+                        <br />
+                    </p>
+                </div>
+            </field>
+        </record>
+</odoo>
