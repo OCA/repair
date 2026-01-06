@@ -9,7 +9,7 @@
                 <group
                     name="refurbish"
                     string="Refurbish"
-                    invisible="product_variant_count &gt; 1"
+                    invisible="product_variant_count > 1"
                 >
                     <field name="refurbish_product_id" />
                 </group>

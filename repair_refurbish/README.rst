@@ -84,14 +84,6 @@ Contributors
 - Akim Juillerat <akim.juillerat@camptocamp.com>
 - Bhavesh Odedra <bodedra@opensourceintegrators.com>
 
-Other credits
--------------
-
-The initial development of this module has been financially supported
-by:
-
-- Aleph Objects, Inc.
-
 Maintainers
 -----------
 

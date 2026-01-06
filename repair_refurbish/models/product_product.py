@@ -10,5 +10,5 @@ class ProductProduct(models.Model):
     refurbish_product_id = fields.Many2one(
         comodel_name="product.product",
         string="Refurbished Product",
-        domain="[('type', '=', 'product')]",
+        domain="[('type', '=', 'consu')]",
     )

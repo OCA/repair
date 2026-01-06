@@ -13,7 +13,7 @@ class ProductTemplate(models.Model):
         compute="_compute_refurbish_product",
         inverse="_inverse_refurbish_product",
         search="_search_refurbish_product",
-        domain="[('type', '=', 'product')]",
+        domain="[('type', '=', 'consu')]",
     )
 
     property_stock_refurbish = fields.Many2one(

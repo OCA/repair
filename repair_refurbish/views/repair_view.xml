@@ -58,14 +58,23 @@
         </field>
     </record>
     <record id="view_repair_order_form_filter" model="ir.ui.view">
-        <field name="name">repair.order.select</field>
+        <field name="name">repair.order.select.inherit.refurbish</field>
         <field name="model">repair.order</field>
         <field name="inherit_id" ref="repair.view_repair_order_form_filter" />
         <field name="arch" type="xml">
-            <field name="product_id" position="after">
-                <field name="to_refurbish" />
+            <xpath expr="//search/field[@name='product_id']" position="after">
+                <filter
+                    string="To Refurbish"
+                    name="to_refurbish"
+                    domain="[('to_refurbish', '=', True)]"
+                />
+                <filter
+                    string="Not To Refurbish"
+                    name="not_to_refurbish"
+                    domain="[('to_refurbish', '=', False)]"
+                />
                 <field name="refurbish_product_id" />
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>

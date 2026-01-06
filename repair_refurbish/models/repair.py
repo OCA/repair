@@ -1,7 +1,7 @@
 # Copyright 2020 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class RepairOrder(models.Model):
@@ -12,7 +12,7 @@ class RepairOrder(models.Model):
         string="Refurbished Delivery Location", comodel_name="stock.location"
     )
     refurbish_product_id = fields.Many2one(
-        string="Refurbished product", comodel_name="product.product"
+        string="Refurbished Product", comodel_name="product.product"
     )
     refurbish_tracking = fields.Selection(
         string="Refurbished Product Tracking",
@@ -37,7 +37,9 @@ class RepairOrder(models.Model):
 
     def _get_virtual_refurbish_location(self):
         self.ensure_one()
-        return self.product_id.property_stock_refurbish or self.location_dest_id
+        if self.product_id.property_stock_refurbish:
+            return self.product_id.property_stock_refurbish
+        return self.env.ref("repair_refurbish.stock_location_refurbish")
 
     def _get_refurbish_stock_move_dict(self):
         refurbish_loc = self._get_virtual_refurbish_location()
@@ -51,9 +53,7 @@ class RepairOrder(models.Model):
             "repair_id": self.id,
             "location_dest_id": self.refurbish_location_dest_id.id,
             "move_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.refurbish_product_id.id,
                         "lot_id": self.refurbish_lot_id.id,

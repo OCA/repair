@@ -1,6 +1,7 @@
 # Copyright 2020 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo import Command
 from odoo.tests.common import TransactionCase
 
 
@@ -18,17 +19,22 @@ class TestMrpMtoWithStock(TransactionCase):
         cls.refurbish_loc = cls.env.ref("repair_refurbish.stock_location_refurbish")
 
         cls.refurbish_product = cls.product_obj.create(
-            {"name": "Refurbished Awesome Screen", "type": "product"}
+            {"name": "Refurbished Awesome Screen", "type": "consu", "is_storable": True}
         )
         cls.product = cls.product_obj.create(
             {
                 "name": "Awesome Screen",
-                "type": "product",
+                "type": "consu",
                 "refurbish_product_id": cls.refurbish_product.id,
+                "is_storable": True,
             }
         )
-        cls.material = cls.product_obj.create({"name": "Materials", "type": "consu"})
-        cls.material2 = cls.product_obj.create({"name": "Materials", "type": "product"})
+        cls.material = cls.product_obj.create(
+            {"name": "Materials", "type": "consu", "is_storable": True}
+        )
+        cls.material2 = cls.product_obj.create(
+            {"name": "Materials", "type": "consu", "is_storable": True}
+        )
         cls._update_product_qty(cls, cls.product, cls.stock_location_stock, 10.0)
         cls._update_product_qty(cls, cls.material2, cls.stock_location_stock, 10.0)
 
@@ -100,16 +106,13 @@ class TestMrpMtoWithStock(TransactionCase):
                 "picking_type_id": self.warehouse.repair_type_id.id,
                 "to_refurbish": False,
                 "move_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.material2.id,
                             "product_uom_qty": 1.0,
                             "state": "draft",
                             "repair_line_type": "add",
                             "location_id": self.stock_location_stock.id,
-                            "location_dest_id": self.customer_location.id,
                         },
                     )
                 ],
@@ -124,7 +127,7 @@ class TestMrpMtoWithStock(TransactionCase):
             [("product_id", "=", self.material2.id), ("repair_id", "=", repair.id)],
         )
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.location_dest_id, repair.location_dest_id)
+        self.assertEqual(move.location_dest_id.name, repair.location_dest_id.name)
         move.move_line_ids.picked = True
         # Repaired product:
         res = repair.action_repair_end()
