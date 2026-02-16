@@ -971,3 +971,60 @@ class TestRepairOrderGroup(TransactionCase):
         self.assertIn("Several open sale orders", str(error.exception))
         self.assertIn(repair_1.name, str(error.exception))
         self.assertIn(repair_2.name, str(error.exception))
+
+    def test_37_duplicate_grouped_repair_keeps_group_in_draft(self):
+        """Draft repair duplication keeps the same group."""
+        group = self.env["repair.order.group"].create({"partner_id": self.partner.id})
+        repair = self.env["repair.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "picking_type_id": self.picking_type.id,
+                "product_id": self.product.id,
+                "group_id": group.id,
+            }
+        )
+
+        self.env["repair.service"].create(
+            {
+                "repair_id": repair.id,
+                "product_id": self.product.id,
+            }
+        )
+
+        duplicated = repair.copy()
+
+        self.assertEqual(
+            duplicated.group_id,
+            repair.group_id,
+            "Draft grouped repair should remain in the same group when duplicated.",
+        )
+
+    def test_38_duplicate_grouped_repair_drops_group_outside_draft(self):
+        """Non-draft repair duplication must not keep the group."""
+        group = self.env["repair.order.group"].create({"partner_id": self.partner.id})
+        repair = self.env["repair.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "picking_type_id": self.picking_type.id,
+                "product_id": self.product.id,
+                "group_id": group.id,
+            }
+        )
+
+        self.env["repair.service"].create(
+            {
+                "repair_id": repair.id,
+                "product_id": self.product.id,
+            }
+        )
+
+        repair.action_validate()
+        repair._action_repair_confirm()
+
+        duplicated = repair.copy()
+
+        self.assertFalse(
+            duplicated.group_id,
+            "Non-draft grouped repair should not be assigned "
+            "to a group when duplicated.",
+        )
