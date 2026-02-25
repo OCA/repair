@@ -35,19 +35,19 @@ begins, improving planning and reducing delays at the workbench.
 
 This addon introduces a **Preparation** flow:
 
--  On **Confirm** (validate) of the repair, a procurement is run
-   procurement for all eligible **Add** lines
--  When a repair line is **created/edited** while the repair is *Under
-   Repair*:
+- On **Confirm** (validate) of the repair, a procurement is run
+  procurement for all eligible **Add** lines
+- When a repair line is **created/edited** while the repair is *Under
+  Repair*:
 
-   -  If any linked move is **Done** → editing raises a validation error
-   -  Otherwise, linked moves are **canceled** and procurement is
-      **re-run** for the updated lines
+  - If any linked move is **Done** → editing raises a validation error
+  - Otherwise, linked moves are **canceled** and procurement is
+    **re-run** for the updated lines
 
--  **Finishing** a repair is blocked if:
+- **Finishing** a repair is blocked if:
 
-   -  There are consumed lines but **no preparation pickings**, or
-   -  Preparation pickings exist but are **not done**.
+  - There are consumed lines but **no preparation pickings**, or
+  - Preparation pickings exist but are **not done**.
 
 **Table of contents**
 
@@ -70,8 +70,8 @@ Configuration
 2. Create a picking type named **Repair Preparation**
 3. Set:
 
-   -  **Default Source Location** = *Your Warehouse/Stock*
-   -  **Default Destination Location** = *Your Warehouse/Preparation*
+   - **Default Source Location** = *Your Warehouse/Stock*
+   - **Default Destination Location** = *Your Warehouse/Preparation*
 
 3) Route & Rule (Stock → Preparation)
 -------------------------------------
@@ -81,11 +81,11 @@ Configuration
 2. Enable **Selectable on warehouse**
 3. Add a **Pull Rule**:
 
-   -  **Action**: *Pull From*
-   -  **Operation Type**: *Preparation* (from step 2)
-   -  **Source Location**: *Your Warehouse/Stock*
-   -  **Destination Location**: *Your Warehouse/Preparation*
-   -  **Warehouse**: your warehouse
+   - **Action**: *Pull From*
+   - **Operation Type**: *Preparation* (from step 2)
+   - **Source Location**: *Your Warehouse/Stock*
+   - **Destination Location**: *Your Warehouse/Preparation*
+   - **Warehouse**: your warehouse
 
 4) Warehouse settings (enable & default)
 ----------------------------------------
@@ -93,9 +93,9 @@ Configuration
 1. Go to **Inventory / Configuration / Warehouses**, open your warehouse
 2. In **Technical info** tab, under **Repairs — Preparation**:
 
-   -  Tick **Enable Repair Preparation**
-   -  Set **Default Preparation Operation Type** to the *Repair
-      Preparation* picking type created earlier
+   - Tick **Enable Repair Preparation**
+   - Set **Default Preparation Operation Type** to the *Repair
+     Preparation* picking type created earlier
 
 ..
 
@@ -124,7 +124,7 @@ Authors
 Contributors
 ------------
 
--  Souheil Bejaoui souheil.bejaoui@acsone.eu
+- Souheil Bejaoui souheil.bejaoui@acsone.eu
 
 Maintainers
 -----------

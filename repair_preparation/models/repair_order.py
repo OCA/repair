@@ -28,9 +28,6 @@ class RepairOrder(models.Model):
     preparation_picking_ids = fields.Many2many(
         "stock.picking", compute="_compute_preparation_picking_ids"
     )
-    warehouse_id = fields.Many2one(
-        "stock.warehouse", related="location_id.warehouse_id"
-    )
     repair_preparation_enabled = fields.Boolean(
         related="warehouse_id.repair_preparation_enabled"
     )
