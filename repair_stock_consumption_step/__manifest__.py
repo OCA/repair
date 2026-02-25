@@ -10,7 +10,7 @@
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/repair",
     "maintainers": ["sbejaoui"],
-    "depends": ["repair"],
+    "depends": ["repair", "repair_warehouse"],
     "data": ["views/repair_order.xml", "views/stock_warehouse.xml"],
     "demo": [],
 }

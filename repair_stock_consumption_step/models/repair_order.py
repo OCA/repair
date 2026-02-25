@@ -11,9 +11,6 @@ class RepairOrder(models.Model):
     consumption_picking_id = fields.Many2one(
         "stock.picking", string="Consumption Picking", readonly=True, copy=False
     )
-    warehouse_id = fields.Many2one(
-        "stock.warehouse", related="location_id.warehouse_id"
-    )
     repair_consumption_step = fields.Boolean(
         related="warehouse_id.repair_consumption_step"
     )

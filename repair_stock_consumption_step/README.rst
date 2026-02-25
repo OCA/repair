@@ -30,12 +30,12 @@ Repair Stock Consumption Step
 
 This module introduces an optional intermediate step:
 
--  When enabled at warehouse level, repair consumption moves are grouped
-   into a stock picking.
--  The repair order is set to a new **Consumption** state until the
-   picking is validated.
--  Users can process the picking manually, assign lots/serials, and only
-   then complete the repair.
+- When enabled at warehouse level, repair consumption moves are grouped
+  into a stock picking.
+- The repair order is set to a new **Consumption** state until the
+  picking is validated.
+- Users can process the picking manually, assign lots/serials, and only
+  then complete the repair.
 
 **Table of contents**
 
@@ -60,10 +60,10 @@ Configuration
 
    2. In **Technical info** :
 
-   -  Enable **Repair Consumption Step**.
-   -  Select the **Repair Consumption Picking Type** (an internal
-      transfer type from the repair location to a production/virtual
-      location).
+   - Enable **Repair Consumption Step**.
+   - Select the **Repair Consumption Picking Type** (an internal
+     transfer type from the repair location to a production/virtual
+     location).
 
 Usage
 =====
@@ -72,21 +72,21 @@ Usage
 2. Confirm the repair order.
 3. Click **End Repair**:
 
-   -  If the warehouse setting is disabled:
+   - If the warehouse setting is disabled:
 
-      -  Consumption moves are validated immediately, repair goes
-         directly to **Done**.
+     - Consumption moves are validated immediately, repair goes directly
+       to **Done**.
 
-   -  If the setting is enabled:
+   - If the setting is enabled:
 
-      -  The repair order moves to the **Consumption** state.
-      -  A stock picking is created for the spare part moves.
+     - The repair order moves to the **Consumption** state.
+     - A stock picking is created for the spare part moves.
 
 4. Open the **Consumption Picking** from the repair order.
 5. Process the picking:
 
-   -  Assign quantities and lots/serials.
-   -  Validate the picking.
+   - Assign quantities and lots/serials.
+   - Validate the picking.
 
 6. Once the picking is validated, the repair order automatically moves
    to **Done**.
@@ -112,7 +112,7 @@ Authors
 Contributors
 ------------
 
--  Souheil Bejaoui souheil.bejaoui@acsone.eu
+- Souheil Bejaoui souheil.bejaoui@acsone.eu
 
 Maintainers
 -----------
