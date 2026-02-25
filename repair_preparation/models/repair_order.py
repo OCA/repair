@@ -29,8 +29,16 @@ class RepairOrder(models.Model):
         "stock.picking", compute="_compute_preparation_picking_ids"
     )
     repair_preparation_enabled = fields.Boolean(
-        related="warehouse_id.repair_preparation_enabled"
+        compute="_compute_repair_preparation_enabled"
     )
+
+    @api.depends("warehouse_id.repair_preparation_enabled", "location_id.usage")
+    def _compute_repair_preparation_enabled(self):
+        for rec in self:
+            rec.repair_preparation_enabled = bool(
+                rec.warehouse_id.repair_preparation_enabled
+                and rec.location_id.usage != "customer"
+            )
 
     @api.depends("warehouse_id", "repair_preparation_enabled")
     def _compute_preparation_picking_type_id(self):
@@ -106,11 +114,23 @@ class RepairOrder(models.Model):
         )
 
     def action_validate(self):
-        res = super().action_validate()
-        for rec in self:
-            if not rec.repair_preparation_enabled:
+        """repairs performed at a customer location don't require a preparation flow
+        and do not need to check available quantities (handled in super)"""
+        customer_repairs = self.filtered(
+            lambda repair: repair.location_id.usage == "customer"
+        )
+        non_customer_repairs = self.filtered(
+            lambda repair: repair.location_id.usage != "customer"
+        )
+        res = customer_repairs.action_repair_confirm()
+        if not non_customer_repairs:
+            return res
+        res = super(RepairOrder, non_customer_repairs).action_validate()
+        for repair in non_customer_repairs:
+            if not repair.repair_preparation_enabled:
                 continue
-            rec._run_preparation_procurements(rec.operations)
+            repair._run_preparation_procurements(repair.operations)
+
         return res
 
     def action_repair_end(self):

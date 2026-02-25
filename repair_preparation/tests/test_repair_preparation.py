@@ -212,3 +212,16 @@ class TestRepairPreparation(TransactionCase):
         self._do_picking(self.repair.preparation_picking_ids)
         self.assertEqual(self.line.location_id, self.prep_loc)
         self.assertEqual(self.line.lot_id, self.lot)
+
+    def test_preparation_disabled_when_reparation_location_is_customer(self):
+        """If the repair location is a customer location,
+        products are consumed without a preparation picking"""
+        self.warehouse.repair_preparation_enabled = True
+        self.assertTrue(self.repair.repair_preparation_enabled)
+        customer_location = self.env.ref("stock.stock_location_customers")
+        self.repair.location_id = customer_location
+        self.assertFalse(self.repair.repair_preparation_enabled)
+        self.repair.action_validate()
+        self.assertFalse(self.repair.preparation_picking_ids)
+        self.repair.action_repair_start()
+        self.assertFalse(self.line.preparation_move_ids)
