@@ -32,6 +32,7 @@ addon | version | maintainers | summary
 [repair_restrict_lot](repair_restrict_lot/) | 17.0.1.0.0 |  | Repair Restrict Lot
 [repair_service](repair_service/) | 17.0.1.0.1 |  | Adds services to repair orders, so that they can be added as sale order lines.
 [repair_stock](repair_stock/) | 17.0.1.1.0 |  | Repair Stock
+[repair_stock_move_menu](repair_stock_move_menu/) | 17.0.1.0.0 |  | Adds a menu to obtain a list with repair moves
 [repair_substate](repair_substate/) | 17.0.1.0.0 |  | Repair Sub State
 [repair_timesheet](repair_timesheet/) | 17.0.1.0.0 | <a href='https://github.com/ppyczko'><img src='https://github.com/ppyczko.png' width='32' height='32' style='border-radius:50%;' alt='ppyczko'/></a> | Repair Timesheet
 [repair_type](repair_type/) | 17.0.1.1.1 |  | Repair type
