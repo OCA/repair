@@ -20,15 +20,15 @@
                     Please use the Complete Sale Order of the group to manage it.
                     <br />
                     Group: <field
-                        name="repair_group_id"
-                        readonly="1"
-                        options="{'no_open': False}"
-                    />
+                    name="repair_group_id"
+                    readonly="1"
+                    options="{'no_open': False}"
+                />
                     <br />
                     <strong>Main Sale Order:</strong> <field
-                        name="main_repair_sale_id"
-                        readonly="1"
-                    />
+                    name="main_repair_sale_id"
+                    readonly="1"
+                />
                 </div>
             </xpath>
 
