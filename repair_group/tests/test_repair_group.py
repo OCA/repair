@@ -47,7 +47,7 @@ class TestRepairGroup(TransactionCase):
         picking.action_confirm()
         picking.action_assign()
         for ml in picking.move_line_ids:
-            ml.qty_done = ml.reserved_qty
+            ml.quantity = ml.reserved_uom_qty
         picking.button_validate()
         return picking
 
