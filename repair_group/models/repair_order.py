@@ -10,7 +10,7 @@ class RepairOrder(models.Model):
 
     repair_group_id = fields.Many2one(
         "repair.group",
-        string="Repair Group",
+        string="Repair Group (Picking)",
         ondelete="set null",
         copy=False,
     )

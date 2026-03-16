@@ -23,8 +23,7 @@
                     icon="fa-wrench"
                     invisible="not repair_group_id"
                     string="Repair Group"
-                >
-                </button>
+                />
             </xpath>
         </field>
     </record>

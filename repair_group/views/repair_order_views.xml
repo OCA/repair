@@ -7,8 +7,8 @@
         <field name="model">repair.order</field>
         <field name="inherit_id" ref="repair.view_repair_order_form" />
         <field name="arch" type="xml">
-             <xpath expr="//header" position="inside">
-                 <button
+            <xpath expr="//header" position="inside">
+                <button
                     name="action_request_approval"
                     type="object"
                     string="Request Approval"
@@ -16,7 +16,7 @@
                     invisible="state != 'draft' or not repair_group_id"
                 />
 
-                 <button
+                <button
                     name="action_supervisor_approve"
                     type="object"
                     string="Validate"
@@ -24,21 +24,21 @@
                     invisible="state != 'to_approve'"
                 />
 
-                 <button
+                <button
                     name="action_supervisor_reject"
                     type="object"
                     string="Reject"
                     invisible="state != 'to_approve'"
                 />
-             </xpath>
-             <xpath
+            </xpath>
+            <xpath
                 expr="//header/button[@name='action_validate']"
                 position="attributes"
             >
-                 <attribute
+                <attribute
                     name="invisible"
                 >state != 'draft' or repair_group_id</attribute>
-             </xpath>
+            </xpath>
         </field>
     </record>
 </odoo>

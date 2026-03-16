@@ -3,166 +3,164 @@
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
 <odoo>
     <record id="view_repair_group_tree" model="ir.ui.view">
-            <field name="name">repair.group.tree</field>
-            <field name="model">repair.group</field>
-            <field name="arch" type="xml">
-                <list>
-                    <field name="name" />
-                    <field name="partner_id" />
-                    <field name="carrier_id" />
-                    <field name="scheduled_datetime" />
-                </list>
-            </field>
-        </record>
+        <field name="name">repair.group.tree</field>
+        <field name="model">repair.group</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="carrier_id" />
+                <field name="scheduled_datetime" />
+            </list>
+        </field>
+    </record>
 
-        <record id="view_repair_group_form_filter" model="ir.ui.view">
-            <field name="name">repair.group.search</field>
-            <field name="model">repair.group</field>
-            <field name="arch" type="xml">
-                <search string="Repair groups">
-                    <field name="name" />
-                    <field name="partner_id" />
-                </search>
-            </field>
-        </record>
+    <record id="view_repair_group_form_filter" model="ir.ui.view">
+        <field name="name">repair.group.search</field>
+        <field name="model">repair.group</field>
+        <field name="arch" type="xml">
+            <search string="Repair groups">
+                <field name="name" />
+                <field name="partner_id" />
+            </search>
+        </field>
+    </record>
 
-        <record id="view_repair_group_form" model="ir.ui.view">
-            <field name="name">repair.group.form</field>
-            <field name="model">repair.group</field>
-            <field name="arch" type="xml">
-                <form string="Repair group">
-                    <header>
-                        <button
+    <record id="view_repair_group_form" model="ir.ui.view">
+        <field name="name">repair.group.form</field>
+        <field name="model">repair.group</field>
+        <field name="arch" type="xml">
+            <form string="Repair group">
+                <header>
+                    <button
                         name="action_create_all_repairs"
                         invisible="state != 'draft'"
                         type="object"
                         string="Create repairs"
                         class="oe_highlight"
                     />
-                        <button
+                    <button
                         name="action_end_repair_group"
                         invisible="state != 'under_repair'"
                         type="object"
                         string="End Repair Group"
                         class="oe_highlight"
                     />
-                        <button
+                    <button
                         name="action_create_complete_sale_order"
                         invisible="state != 'quotation_requested' or complete_sale_order_id"
                         type="object"
                         string="Create Complete Sale Order"
                         class="oe_highlight"
                     />
-                        <button
+                    <button
                         name="action_request_quotations"
                         invisible="state != 'repairs_created'"
                         type="object"
                         string="Request Quotations"
                         class="oe_highlight"
                     />
-                        <button
+                    <button
                         name="action_return_to_draft"
                         invisible="state != 'repairs_created'"
                         type="object"
                         string="Return to draft"
                     />
-                        <button
+                    <button
                         name="action_confirm_complete_sale_order"
                         invisible="state != 'quotation_requested' or not complete_sale_order_id"
                         type="object"
                         string="Confirm Complete Sale Order"
                     />
-                        <button
+                    <button
                         name="action_cancel_complete_sale_order"
                         invisible="state != 'quotation_requested' or not complete_sale_order_id"
                         type="object"
                         string="Cancel Complete Sale Order"
                     />
-                        <field
+                    <field
                         name="state"
                         widget="statusbar"
                         statusbar_visible="draft,repairs_created,quotation_requested,under_repair,done,cancel"
                     />
-                    </header>
-                    <sheet>
-                        <div class="oe_title">
-                            <label class="o_form_label" for="name" />
-                            <h1 class="d-flex">
-                                <field name="name" />
-                            </h1>
-
-                        </div>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label class="o_form_label" for="name" />
+                        <h1 class="d-flex">
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
                         <group>
-                            <group>
-                                <field name="partner_id" />
-                            </group>
-                            <group>
-                                <field name="scheduled_datetime" />
-                                <field name="carrier_id" />
-                                <field name="supervisor_id" />
-                                <field
+                            <field name="partner_id" />
+                        </group>
+                        <group>
+                            <field name="scheduled_datetime" />
+                            <field name="carrier_id" />
+                            <field name="supervisor_id" />
+                            <field
                                 readonly="1"
                                 name="complete_sale_order_id"
                                 invisible="not complete_sale_order_id"
                                 widget="many2one"
                             />
-                            </group>
                         </group>
-                        <notebook>
-                            <page string="Delivery notes">
-                                <field
+                    </group>
+                    <notebook>
+                        <page string="Delivery notes">
+                            <field
                                 name="picking_ids"
                                 widget="many2many"
                                 domain="[('state','=','done'),('repair_group_id','=',False),('owner_id','=',partner_id)]"
                                 options="{'no_create': True, 'no_quick_create': True}"
                                 readonly="state != 'draft'"
                             >
-                                    <list string="Delivery notes">
-                                        <field name="name" />
-                                        <field name="owner_id" />
-                                    </list>
-                                </field>
-                            </page>
-                            <page string="Repair Orders" name="repair_orders">
-                                <field
+                                <list string="Delivery notes">
+                                    <field name="name" />
+                                    <field name="owner_id" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Repair Orders" name="repair_orders">
+                            <field
                                 name="repair_order_ids"
                                 nolabel="1"
                                 widget="many2many"
                             >
-                                    <list string="Repair Orders">
-                                        <field name="name" />
-                                        <field name="product_id" />
-                                        <field name="user_id" editable="bottom" />
-                                        <field name="state" />
-                                        <field name="sale_order_id" />
-                                        <button
+                                <list string="Repair Orders">
+                                    <field name="name" />
+                                    <field name="product_id" />
+                                    <field name="user_id" editable="bottom" />
+                                    <field name="state" />
+                                    <field name="sale_order_id" />
+                                    <button
                                         name="action_print_repair_order"
                                         type="object"
                                         string="Print"
                                         icon="fa-print"
                                     />
-                                    </list>
-                                </field>
-                            </page>
-                            <page string="Internal notes" name="repair_notes">
-                                <field
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Internal notes" name="repair_notes">
+                            <field
                                 name="internal_notes"
                                 placeholder="Add internal notes."
                             />
-                            </page>
-                        </notebook>
-                    </sheet>
-                    <chatter />
-                </form>
-            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
 
-        </record>
-
-        <record id="action_repair_group_tree" model="ir.actions.act_window">
-            <field name="name">Repair groups</field>
-            <field name="res_model">repair.group</field>
-            <field name="view_mode">list,form</field>
-            <field name="view_id" ref="view_repair_group_tree" />
-            <field name="search_view_id" ref="view_repair_group_form_filter" />
-        </record>
+    <record id="action_repair_group_tree" model="ir.actions.act_window">
+        <field name="name">Repair groups</field>
+        <field name="res_model">repair.group</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_repair_group_tree" />
+        <field name="search_view_id" ref="view_repair_group_form_filter" />
+    </record>
 </odoo>

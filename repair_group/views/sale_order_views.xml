@@ -7,7 +7,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-             <xpath expr="//sheet" position="before">
+            <xpath expr="//sheet" position="before">
                 <!-- Helper field for visibility logic -->
                 <field name="is_repair_main_order" invisible="1" />
 
@@ -41,7 +41,7 @@
                     name="invisible"
                 >state != 'sent' or (repair_group_id and not is_repair_main_order)</attribute>
             </xpath>
-             <xpath
+            <xpath
                 expr="//header/button[@name='action_confirm'][2]"
                 position="attributes"
             >
@@ -54,7 +54,7 @@
                 expr="//header/button[@name='action_quotation_send'][1]"
                 position="attributes"
             >
-                 <attribute
+                <attribute
                     name="invisible"
                 >state != 'draft' or (repair_group_id and not is_repair_main_order)</attribute>
             </xpath>
@@ -62,15 +62,15 @@
                 expr="//header/button[@name='action_quotation_send'][2]"
                 position="attributes"
             >
-                 <attribute
+                <attribute
                     name="invisible"
                 >state != 'sent' or (repair_group_id and not is_repair_main_order)</attribute>
             </xpath>
-             <xpath
+            <xpath
                 expr="//header/button[@name='action_quotation_send'][3]"
                 position="attributes"
             >
-                 <attribute
+                <attribute
                     name="invisible"
                 >state != 'sale' or (repair_group_id and not is_repair_main_order)</attribute>
             </xpath>
@@ -93,7 +93,6 @@
                     </field>
                 </page>
             </xpath>
-
         </field>
     </record>
 </odoo>

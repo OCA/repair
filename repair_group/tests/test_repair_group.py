@@ -2,8 +2,8 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
 from odoo.tests import tagged
+from odoo.tests.common import TransactionCase
 
 
 @tagged("post_install", "-at_install")
@@ -13,7 +13,7 @@ class TestRepairGroup(TransactionCase):
         super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Test Customer"})
         cls.product = cls.env["product.product"].create(
-            {"name": "Test Product", "type": "product"}
+            {"name": "Test Product", "type": "consu"}
         )
         cls.location = cls.env.ref("stock.stock_location_stock")
         cls.location_dest = cls.env.ref("stock.stock_location_customers")
@@ -68,7 +68,9 @@ class TestRepairGroup(TransactionCase):
         )
         group.action_create_all_repairs()
         self.assertEqual(group.state, "repairs_created")
-        self.assertTrue(group.repair_order_ids, "Repair orders should have been created")
+        self.assertTrue(
+            group.repair_order_ids, "Repair orders should have been created"
+        )
         self.assertEqual(len(group.repair_order_ids), len(picking.move_line_ids))
 
     def test_action_return_to_draft(self):

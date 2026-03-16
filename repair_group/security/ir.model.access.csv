@@ -2,3 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_repair_group_user,repair.group,model_repair_group,base.group_user,1,1,1,1
 access_repair_group_quotation_wizard,repair.group.quotation.wizard,model_repair_group_quotation_wizard,base.group_user,1,1,1,1
 access_repair_group_quotation_wizard_line,repair.group.quotation.wizard.line,model_repair_group_quotation_wizard_line,base.group_user,1,1,1,1
+access_repair_group_init,repair.group.init,model_repair_group_init,base.group_user,1,0,0,0
