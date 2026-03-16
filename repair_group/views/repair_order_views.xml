@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Grupo Isonor - Abel Suárez
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
+<odoo>
+    <record id="view_repair_order_form_inherit_group_supervisor" model="ir.ui.view">
+        <field name="name">repair.order.form.inherit.group.supervisor</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+             <xpath expr="//header" position="inside">
+                 <button
+                    name="action_request_approval"
+                    type="object"
+                    string="Request Approval"
+                    class="oe_highlight"
+                    invisible="state != 'draft' or not repair_group_id"
+                />
+
+                 <button
+                    name="action_supervisor_approve"
+                    type="object"
+                    string="Validate"
+                    class="oe_highlight"
+                    invisible="state != 'to_approve'"
+                />
+
+                 <button
+                    name="action_supervisor_reject"
+                    type="object"
+                    string="Reject"
+                    invisible="state != 'to_approve'"
+                />
+             </xpath>
+             <xpath
+                expr="//header/button[@name='action_validate']"
+                position="attributes"
+            >
+                 <attribute
+                    name="invisible"
+                >state != 'draft' or repair_group_id</attribute>
+             </xpath>
+        </field>
+    </record>
+</odoo>

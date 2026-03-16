@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Grupo Isonor - Abel Suárez
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
+<odoo>
+    <record id="view_repair_group_quotation_wizard_form" model="ir.ui.view">
+        <field name="name">repair.group.quotation.wizard.form</field>
+        <field name="model">repair.group.quotation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Quotations to Merge">
+                <sheet>
+                    <group>
+                        <field name="repair_group_id" invisible="1" />
+                    </group>
+                    <field name="line_ids">
+                        <list editable="bottom">
+                            <field name="selected" />
+                            <field name="repair_order_id" />
+                            <field name="product_id" />
+                            <field name="sale_order_id" />
+                            <field name="currency_id" column_invisible="True" />
+                            <field name="amount_total" />
+                        </list>
+                    </field>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_create_complete_sale_order"
+                        string="Create Complete Sale Order"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_repair_group_quotation_wizard" model="ir.actions.act_window">
+        <field name="name">Select Quotations to Merge</field>
+        <field name="res_model">repair.group.quotation.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

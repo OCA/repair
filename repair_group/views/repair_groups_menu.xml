@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Grupo Isonor - Abel Suárez
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
+<odoo>
+    <menuitem
+        id="repair_group_menu"
+        name="Repair groups"
+        parent="repair.menu_repair_order"
+        action="action_repair_group_tree"
+        sequence="2"
+    />
+    </odoo>

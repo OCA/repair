@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Grupo Isonor - Abel Suárez
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
+<odoo>
+    <record id="view_order_form_inherit_repair_group" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.repair.group</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+             <xpath expr="//sheet" position="before">
+                <!-- Helper field for visibility logic -->
+                <field name="is_repair_main_order" invisible="1" />
+
+                <div
+                    class="alert alert-warning mb-0"
+                    role="alert"
+                    invisible="not repair_group_id or is_repair_main_order"
+                >
+                    This quotation is part of a <strong>Repair Group</strong>.
+                    Please use the Complete Sale Order of the group to manage it.
+                    <br />
+                    Group: <field
+                        name="repair_group_id"
+                        readonly="1"
+                        options="{'no_open': False}"
+                    />
+                    <br />
+                    <strong>Main Sale Order:</strong> <field
+                        name="main_repair_sale_id"
+                        readonly="1"
+                    />
+                </div>
+            </xpath>
+
+            <!-- Hide buttons ONLY if it is a SUB-ORDER (part of group but not the main one) -->
+            <xpath
+                expr="//header/button[@name='action_confirm'][1]"
+                position="attributes"
+            >
+                <attribute
+                    name="invisible"
+                >state != 'sent' or (repair_group_id and not is_repair_main_order)</attribute>
+            </xpath>
+             <xpath
+                expr="//header/button[@name='action_confirm'][2]"
+                position="attributes"
+            >
+                <attribute
+                    name="invisible"
+                >state != 'draft' or (repair_group_id and not is_repair_main_order)</attribute>
+            </xpath>
+
+            <xpath
+                expr="//header/button[@name='action_quotation_send'][1]"
+                position="attributes"
+            >
+                 <attribute
+                    name="invisible"
+                >state != 'draft' or (repair_group_id and not is_repair_main_order)</attribute>
+            </xpath>
+            <xpath
+                expr="//header/button[@name='action_quotation_send'][2]"
+                position="attributes"
+            >
+                 <attribute
+                    name="invisible"
+                >state != 'sent' or (repair_group_id and not is_repair_main_order)</attribute>
+            </xpath>
+             <xpath
+                expr="//header/button[@name='action_quotation_send'][3]"
+                position="attributes"
+            >
+                 <attribute
+                    name="invisible"
+                >state != 'sale' or (repair_group_id and not is_repair_main_order)</attribute>
+            </xpath>
+
+            <xpath expr="//header/button[@name='action_cancel']" position="attributes">
+                <attribute
+                    name="invisible"
+                >state not in ['draft', 'sent', 'sale'] or not id or (repair_group_id and not is_repair_main_order)</attribute>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Repair Orders" invisible="not source_sale_order_ids">
+                    <field name="source_sale_order_ids" readonly="1">
+                        <list>
+                            <field name="name" />
+                            <field name="date_order" />
+                            <field name="amount_total" />
+                            <field name="state" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

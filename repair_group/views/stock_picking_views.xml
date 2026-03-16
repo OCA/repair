@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Grupo Isonor - Abel Suárez
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
+<odoo>
+    <record id="view_picking_form_extended" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="create_repair_group"
+                    invisible="state != 'done' or repair_group_id"
+                    type="object"
+                    class="oe_highlight"
+                    string="Create repair group"
+                />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_repair_group"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-wrench"
+                    invisible="not repair_group_id"
+                    string="Repair Group"
+                >
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
