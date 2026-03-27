@@ -17,5 +17,6 @@
         "security/ir.model.access.csv",
         "security/ir_rule.xml",
         "views/repair_views.xml",
+        "report/report_repair_service.xml",
     ],
 }

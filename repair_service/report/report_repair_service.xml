@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_repairorder_inherit_services"
+        inherit_id="repair.report_repairorder"
+    >
+        <xpath expr="//table[hasclass('o_main_table')]" position="after">
+            <t t-if="o.repair_service_ids">
+                <h2 class="mb-3 border-bottom border-2 border-dark">Services</h2>
+                <table class="table table-borderless o_main_table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Description</th>
+                            <th class="text-end">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="o.repair_service_ids" t-as="service">
+                            <td>
+                                <span t-field="service.product_id" />
+                            </td>
+                            <td>
+                                <span t-field="service.display_name" />
+                            </td>
+                            <td class="text-end">
+                                <span t-field="service.product_uom_qty" />
+                                <span
+                                    groups="uom.group_uom"
+                                    t-field="service.product_uom.name"
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+        </xpath>
+    </template>
+</odoo>
