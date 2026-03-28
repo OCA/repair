@@ -4,6 +4,7 @@
 [![Build Status](https://github.com/OCA/repair/actions/workflows/test.yml/badge.svg?branch=18.0)](https://github.com/OCA/repair/actions/workflows/test.yml?query=branch%3A18.0)
 [![codecov](https://codecov.io/gh/OCA/repair/branch/18.0/graph/badge.svg)](https://codecov.io/gh/OCA/repair)
 [![Translation Status](https://translation.odoo-community.org/widgets/repair-18-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/repair-18-0/?utm_source=widget)
+[![gitcgr](https://gitcgr.com/badge/OCA/repair.svg)](https://gitcgr.com/OCA/repair)
 
 <!-- /!\ do not modify above this line -->
 
