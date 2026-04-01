@@ -6,7 +6,6 @@ from odoo.exceptions import ValidationError
 
 
 class RepairOrder(models.Model):
-
     _inherit = "repair.order"
 
     preparation_picking_type_id = fields.Many2one(
@@ -65,7 +64,7 @@ class RepairOrder(models.Model):
         if not self.preparation_group_id:
             self.preparation_group_id = self.env["procurement.group"].create(
                 {
-                    "name": _("Preparation for") + self.name,
+                    "name": _("Preparation for") + " " + self.name,
                     "partner_id": self.partner_id.id,
                 }
             )
@@ -131,6 +130,14 @@ class RepairOrder(models.Model):
                 continue
             repair._run_preparation_procurements(repair.operations)
 
+        return res
+
+    def action_repair_cancel(self):
+        res = super().action_repair_cancel()
+        if pickings_to_cancel := self.preparation_picking_ids.filtered(
+            lambda p: p.state not in ("done", "cancel")
+        ):
+            pickings_to_cancel.action_cancel()
         return res
 
     def action_repair_end(self):

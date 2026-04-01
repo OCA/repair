@@ -225,3 +225,8 @@ class TestRepairPreparation(TransactionCase):
         self.assertFalse(self.repair.preparation_picking_ids)
         self.repair.action_repair_start()
         self.assertFalse(self.line.preparation_move_ids)
+
+    def test_cancel_should_cancel_preparation_picking(self):
+        self.repair.action_validate()
+        self.repair.action_repair_cancel()
+        self.assertEqual(self.repair.preparation_picking_ids.state, "cancel")
