@@ -24,8 +24,12 @@ class RepairOrder(models.Model):
         help="Procurement group used to gather all preparation moves/pickings.",
     )
     stock_move_ids = fields.Many2many("stock.move", compute="_compute_stock_move_ids")
+    stock_moves_count = fields.Integer(compute="_compute_stock_move_ids")
     preparation_picking_ids = fields.Many2many(
         "stock.picking", compute="_compute_preparation_picking_ids"
+    )
+    preparation_pickings_count = fields.Integer(
+        compute="_compute_preparation_picking_ids"
     )
     repair_preparation_enabled = fields.Boolean(
         compute="_compute_repair_preparation_enabled"
@@ -53,11 +57,13 @@ class RepairOrder(models.Model):
             rec.stock_move_ids = (
                 rec.operations.preparation_move_ids + rec.operations.move_id
             )
+            rec.stock_moves_count = len(rec.stock_move_ids)
 
     @api.depends("operations.preparation_move_ids")
     def _compute_preparation_picking_ids(self):
         for rec in self:
             rec.preparation_picking_ids = rec.operations.preparation_move_ids.picking_id
+            rec.preparation_pickings_count = len(rec.preparation_picking_ids)
 
     def _ensure_preparation_group(self):
         self.ensure_one()

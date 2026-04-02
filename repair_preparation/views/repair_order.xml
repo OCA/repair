@@ -29,17 +29,26 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-gears"
-                    attrs="{'invisible': [('repair_preparation_enabled', '=', False)]}"
+                    attrs="{'invisible': ['|', ('repair_preparation_enabled', '=', False), ('preparation_pickings_count', '=', 0)]}"
                 >
-                    Preparation
+                    <field
+                        name="preparation_pickings_count"
+                        string="Preparations"
+                        widget="statinfo"
+                    />
                 </button>
                 <button
                     name="action_view_move"
                     type="object"
                     class="oe_stat_button"
                     icon="fa-list"
+                    attrs="{'invisible': [('stock_moves_count', '=', 0)]}"
                 >
-                    Stock Moves
+                    <field
+                        name="stock_moves_count"
+                        string="Stock Moves"
+                        widget="statinfo"
+                    />
                 </button>
             </xpath>
         </field>
