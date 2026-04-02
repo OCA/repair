@@ -127,7 +127,7 @@ class RepairOrder(models.Model):
         non_customer_repairs = self.filtered(
             lambda repair: repair.location_id.usage != "customer"
         )
-        res = customer_repairs.action_repair_confirm()
+        res = customer_repairs.action_repair_confirm() if customer_repairs else True
         if not non_customer_repairs:
             return res
         res = super(RepairOrder, non_customer_repairs).action_validate()

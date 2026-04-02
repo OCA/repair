@@ -6,7 +6,6 @@ from odoo.exceptions import ValidationError
 
 
 class RepairLine(models.Model):
-
     _inherit = "repair.line"
 
     preparation_move_ids = fields.One2many(
@@ -39,7 +38,6 @@ class RepairLine(models.Model):
         if all(_field not in vals for _field in fields_affecting):
             return res
         for repair in self.repair_id:
-
             updated_lines = self.filtered(lambda line, ro=repair: line.repair_id == ro)
             if not updated_lines:
                 continue
@@ -49,12 +47,10 @@ class RepairLine(models.Model):
                     _(
                         "You cannot modify product/quantity for preparation lines "
                         "because some linked moves are already done.\n"
-                        "Repair: %(repair)s\nLines: %(lines)s"
+                        "Repair: %(repair)s\nLines: %(lines)s",
+                        repair=repair.display_name,
+                        lines=", ".join(updated_lines.mapped("display_name")),
                     )
-                    % {
-                        "repair": repair.display_name,
-                        "lines": ", ".join(updated_lines.mapped("display_name")),
-                    }
                 )
             if repair.state != "under_repair":
                 # we manage procurement auto-run when repair is started
