@@ -87,6 +87,14 @@ class TestRepairStockConsumptionStep(TransactionCase):
         self.assertEqual(self.repair.operations.lot_id, pick.move_line_ids.lot_id)
         self.assertTrue(moves)
         self.assertEqual(pick.move_ids, moves)
+        self.assertEqual(
+            pick.location_id,
+            self.warehouse.repair_consumption_picking_type_id.default_location_src_id,
+        )
+        self.assertEqual(
+            pick.location_dest_id,
+            self.warehouse.repair_consumption_picking_type_id.default_location_dest_id,
+        )
         self.assertSetEqual(set(moves.mapped("state")), {"assigned"})
         self.assertIn(pick.state, "assigned")
         self.assertEqual(pick.move_line_ids, moves.move_line_ids)

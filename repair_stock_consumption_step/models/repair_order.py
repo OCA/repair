@@ -1,7 +1,7 @@
 # Copyright 2025 ACSONE SA/NV
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import Command, fields, models
 
 
 class RepairOrder(models.Model):
@@ -44,8 +44,7 @@ class RepairOrder(models.Model):
                 {
                     "picking_type_id": rec.warehouse_id.repair_consumption_picking_type_id.id,
                     "origin": rec.name,
-                    "location_id": moves[0].location_id.id,
-                    "location_dest_id": moves[0].location_dest_id.id,
+                    "move_ids": [Command.set(moves.ids)],
                 }
             )
 
@@ -54,7 +53,6 @@ class RepairOrder(models.Model):
             for move in moves:
                 move_id_lots_ids_map[move.id] = move.move_line_ids.mapped("lot_id").ids
 
-            moves.picking_id = picking.id
             moves.move_line_ids.unlink()
             moves._action_confirm()
             moves._action_assign()
