@@ -9,12 +9,13 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
                 <field name="repair_consumption_step" invisible="1" />
+                <field name="consumption_picking_id" invisible="1" />
                 <button
                     name="action_view_consumption_picking"
                     type="object"
                     class="oe_stat_button"
                     icon="fa-gears"
-                    attrs="{'invisible': [('repair_consumption_step', '=', False)]}"
+                    attrs="{'invisible': ['|', ('repair_consumption_step', '=', False), ('consumption_picking_id', '=', False)]}"
                 >
                     Consumption
                 </button>
