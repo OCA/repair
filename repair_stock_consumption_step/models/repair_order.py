@@ -48,12 +48,26 @@ class RepairOrder(models.Model):
                     "location_dest_id": moves[0].location_dest_id.id,
                 }
             )
+
+            # Preserve lot info before unlink the move lines
+            move_id_lots_ids_map = {}
+            for move in moves:
+                move_id_lots_ids_map[move.id] = move.move_line_ids.mapped("lot_id").ids
+
             moves.picking_id = picking.id
             moves.move_line_ids.unlink()
-            moves._do_unreserve()
             moves._action_confirm()
             moves._action_assign()
-            moves.move_line_ids.picking_id = picking.id
+
+            # Reset lot_id on the new move lines
+            for move in moves:
+                lot_ids = move_id_lots_ids_map.get(move.id)
+                if not lot_ids:
+                    continue
+                for line in move.move_line_ids:
+                    if not line.lot_id:
+                        line.lot_id = lot_ids.pop(0)
+
             rec.consumption_picking_id = picking
             rec.state = "consumption"
         return res
