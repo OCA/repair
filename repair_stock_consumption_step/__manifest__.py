@@ -11,6 +11,7 @@
     "website": "https://github.com/OCA/repair",
     "maintainers": ["sbejaoui"],
     "depends": ["repair", "repair_warehouse"],
+    "excludes": ["repair_stock_move"],
     "data": ["views/repair_order.xml", "views/stock_warehouse.xml"],
     "demo": [],
 }
