@@ -1,0 +1,1 @@
+Allows configuring a custom sender email for repair orders
