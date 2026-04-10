@@ -15,7 +15,8 @@ class RepairOrder(models.Model):
         related="warehouse_id.repair_consumption_step"
     )
     state = fields.Selection(
-        selection_add=[("consumption", "Waiting Consumption")],
+        # Put "consumption" step before "done" step (for UI)
+        selection_add=[("consumption", "Waiting Consumption"), ("done",)],
         ondelete={"consumption": "set done"},
     )
 
