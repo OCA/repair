@@ -56,7 +56,8 @@ class RepairOrder(models.Model):
 
             moves.move_line_ids.unlink()
             moves._action_confirm()
-            moves._action_assign()
+            # need exists because confirm() may merge moves
+            moves.exists()._action_assign()
 
             # Reset lot_id on the new move lines
             for move in moves:
