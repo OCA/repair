@@ -12,6 +12,11 @@
     "maintainers": ["sbejaoui"],
     "depends": ["repair", "repair_warehouse"],
     "excludes": ["repair_stock_move"],
-    "data": ["views/repair_order.xml", "views/stock_warehouse.xml"],
+    "data": [
+        "security/ir.model.access.csv",
+        "wizards/repair_consumption_partial_wizard.xml",
+        "views/repair_order.xml",
+        "views/stock_warehouse.xml",
+    ],
     "demo": [],
 }

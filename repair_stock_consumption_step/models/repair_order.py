@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import Command, fields, models
+from odoo.tools import float_is_zero
 
 
 class RepairOrder(models.Model):
-
     _inherit = "repair.order"
 
     consumption_picking_id = fields.Many2one(
@@ -84,3 +84,48 @@ class RepairOrder(models.Model):
             if not rec.invoice_id and rec.invoice_method == "after_repair":
                 state = "2binvoiced"
             rec.state = state
+
+    def _update_parts(self, return_consumption_moves):
+        """Update Repair Order operations based on unconsumed quantities.
+
+        This method reduces the demand (product_uom_qty) on the repair order
+        lines by matching them against moves that were cancelled/returned
+        during the partial consumption process. It uses a 'pop' logic across
+        multiple lines of the same product until the returned quantity
+        is fully accounted for.
+
+        Complexity Note:
+        The pop logic here is needed because there might be more than one repair.line
+        per product.
+        """
+        self.ensure_one()
+        operations_to_delete = self.env["repair.line"]
+        for return_move in return_consumption_moves:
+            remaining_qty = return_move.product_uom_qty
+            operations = self.operations.filtered(
+                lambda o: o.product_id == return_move.product_id
+            )
+            while (
+                not float_is_zero(
+                    remaining_qty, precision_rounding=return_move.product_uom.rounding
+                )
+                and operations
+            ):
+                # TODO: find a better solution to extract the "best matching" operation
+                # instead of simply taking the first
+                operation = operations[0]
+                qty_before_update = operation.product_uom_qty
+                operation.product_uom_qty -= min(
+                    operation.product_uom_qty, remaining_qty
+                )
+                if float_is_zero(
+                    operation.product_uom_qty,
+                    precision_rounding=operation.product_uom.rounding,
+                ):
+                    operations_to_delete |= operation
+
+                remaining_qty -= qty_before_update - operation.product_uom_qty
+                operations -= operation
+
+        if operations_to_delete:
+            operations_to_delete.unlink()
