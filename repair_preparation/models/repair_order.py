@@ -101,7 +101,7 @@ class RepairOrder(models.Model):
             line.product_id,
             line.product_uom_qty,
             line.product_uom,
-            self.preparation_picking_type_id.default_location_dest_id,
+            self.location_id,
             f"{self.name} {line.product_id.display_name}",
             self.name,
             self.company_id,

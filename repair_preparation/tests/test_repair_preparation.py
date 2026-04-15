@@ -1,6 +1,7 @@
 # Copyright 2025 ACSONE SA/NV
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
@@ -28,14 +29,22 @@ class TestRepairPreparation(TransactionCase):
         )
         cls.stock_loc = cls.warehouse.lot_stock_id
 
-        cls.prep_loc = cls.env["stock.location"].create(
+        cls.repair_view_loc = cls.env["stock.location"].create(
             {
-                "name": "Preparation",
+                "name": "Repair",
+                "usage": "view",
+                "location_id": cls.warehouse.view_location_id.id,
+            }
+        )
+        cls.repair_station_1_loc = cls.env["stock.location"].create(
+            {
+                "name": "Station 1",
                 "usage": "internal",
-                "location_id": cls.stock_loc.id,
+                "location_id": cls.repair_view_loc.id,
                 "company_id": cls.warehouse.company_id.id,
             }
         )
+
         cls.prep_type = cls.env["stock.picking.type"].create(
             {
                 "name": "Preparation",
@@ -43,7 +52,8 @@ class TestRepairPreparation(TransactionCase):
                 "warehouse_id": cls.warehouse.id,
                 "sequence_code": "PREP",
                 "default_location_src_id": cls.stock_loc.id,
-                "default_location_dest_id": cls.prep_loc.id,
+                # ↓ Default is the generic "Repair" view location
+                "default_location_dest_id": cls.repair_view_loc.id,
             }
         )
         cls.warehouse.write(
@@ -62,20 +72,20 @@ class TestRepairPreparation(TransactionCase):
         )
         cls.prep_rule = cls.env["stock.rule"].create(
             {
-                "name": "Pull to Preparation",
+                "name": "Pull: Stock -> Repair",
                 "route_id": cls.prep_route.id,
                 "action": "pull",
                 "picking_type_id": cls.prep_type.id,
                 "location_src_id": cls.stock_loc.id,
-                "location_dest_id": cls.prep_loc.id,
+                "location_dest_id": cls.repair_view_loc.id,
                 "warehouse_id": cls.warehouse.id,
             }
         )
-        cls.product_c.write({"route_ids": [(4, cls.prep_route.id)]})
-        cls.product_c_2.write({"route_ids": [(4, cls.prep_route.id)]})
+        cls.product_c.write({"route_ids": [Command.link(cls.prep_route.id)]})
+        cls.product_c_2.write({"route_ids": [Command.link(cls.prep_route.id)]})
 
         cls.env["stock.quant"]._update_available_quantity(
-            cls.product, cls.prep_loc, 1.0
+            cls.product, cls.repair_station_1_loc, 1.0
         )
         cls.env["stock.quant"]._update_available_quantity(
             cls.product_c, cls.stock_loc, 10.0, lot_id=cls.lot
@@ -83,11 +93,12 @@ class TestRepairPreparation(TransactionCase):
         cls.env["stock.quant"]._update_available_quantity(
             cls.product_c_2, cls.stock_loc, 10.0
         )
+
         cls.repair = cls.env["repair.order"].create(
             {
                 "partner_id": cls.partner.id,
                 "product_id": cls.product.id,
-                "location_id": cls.prep_loc.id,
+                "location_id": cls.repair_station_1_loc.id,  # Specific location
                 "priority": "1",
                 "company_id": cls.warehouse.company_id.id,
             }
@@ -97,7 +108,7 @@ class TestRepairPreparation(TransactionCase):
     @classmethod
     def _do_picking(cls, picking):
         for move in picking.move_ids:
-            move.quantity_done = move.product_qty
+            move.quantity_done = move.product_uom_qty
         picking._action_done()
 
     @classmethod
@@ -128,7 +139,7 @@ class TestRepairPreparation(TransactionCase):
         move = self.line.preparation_move_ids
         self.assertEqual(move.product_id, self.product_c)
         self.assertEqual(move.location_id, self.stock_loc)
-        self.assertEqual(move.location_dest_id, self.prep_loc)
+        self.assertEqual(move.location_dest_id, self.repair.location_id)
 
     def test_create_new_line_under_repair_triggers_procurement(self):
         self.test_validate_runs_procurement()
@@ -142,8 +153,7 @@ class TestRepairPreparation(TransactionCase):
         self.assertEqual(len(self.repair.operations.preparation_move_ids), 2)
         move = new_line.preparation_move_ids
         self.assertEqual(move.product_id, self.product_c_2)
-        self.assertEqual(move.location_id, self.stock_loc)
-        self.assertEqual(move.location_dest_id, self.prep_loc)
+        self.assertEqual(move.location_dest_id, self.repair.location_id)
 
     def test_write_done_move_not_allowed(self):
         self.test_validate_runs_procurement()
@@ -185,15 +195,21 @@ class TestRepairPreparation(TransactionCase):
             ValidationError, "Preparation picking is not done yet"
         ):
             self.repair.action_repair_end()
-        self.assertEqual(self._get_available_qty(self.product_c, self.prep_loc), 0)
+        self.assertEqual(
+            self._get_available_qty(self.product_c, self.repair_station_1_loc), 0
+        )
         self._do_picking(self.repair.preparation_picking_ids)
-        self.assertEqual(self._get_available_qty(self.product_c, self.prep_loc), 2)
+        self.assertEqual(
+            self._get_available_qty(self.product_c, self.repair_station_1_loc), 2
+        )
         self.repair.action_repair_end()
         self.repair.action_repair_done()
         self.assertEqual(self.repair.state, "done")
         self.repair.action_repair_done()
         self.assertEqual(self.line.move_id.state, "done")
-        self.assertEqual(self._get_available_qty(self.product_c, self.prep_loc), 0)
+        self.assertEqual(
+            self._get_available_qty(self.product_c, self.repair_station_1_loc), 0
+        )
 
     def test_preparation_disabled(self):
         """default behavior, the products are consumed without a preparation picking"""
@@ -210,7 +226,7 @@ class TestRepairPreparation(TransactionCase):
         move_line = self.repair.preparation_picking_ids.move_line_ids
         self.assertEqual(move_line.lot_id, self.lot)
         self._do_picking(self.repair.preparation_picking_ids)
-        self.assertEqual(self.line.location_id, self.prep_loc)
+        self.assertEqual(self.line.location_id, self.repair_station_1_loc)
         self.assertEqual(self.line.lot_id, self.lot)
 
     def test_preparation_disabled_when_reparation_location_is_customer(self):
