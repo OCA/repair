@@ -3,6 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools import float_compare
 
 
 class RepairOrder(models.Model):
@@ -80,7 +81,10 @@ class RepairOrder(models.Model):
         return operations.filtered(
             lambda line: line.type == "add"
             and line.product_id
-            and line.product_uom_qty > 0
+            and float_compare(
+                line.product_uom_qty, 0.0, precision_rounding=line.product_uom.rounding
+            )
+            > 0
         )
 
     def _get_repair_line_procurement_values(self, line):
