@@ -1,0 +1,1 @@
+This module extends the functionality of Repair Orders to allow the configuration of a custom email address for all repair messages. It enables users to override the default 'From' and 'Reply-To' headers with a company-specific email address, ensuring better control over communication channels.
