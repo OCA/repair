@@ -51,6 +51,32 @@
                     />
                 </button>
             </xpath>
+
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="repair_preparation_enabled" invisible="1" />
+            </xpath>
+
+            <xpath expr="//notebook" position="before">
+                <div
+                    class="alert alert-info text-center"
+                    role="status"
+                    attrs="{'invisible': ['|', ('repair_preparation_enabled', '=', False), ('state', '!=', 'confirmed')]}"
+                >
+                    <strong>Note:</strong> Parts are locked while in <strong
+                    >Confirmed</strong>
+                    state to ensure preparation sync. Start the repair to enable modifications. </div>
+            </xpath>
+
+            <xpath expr="//field[@name='operations']" position="attributes">
+                <attribute
+                    name="attrs"
+                    operation="attrs_domain_add"
+                    key="readonly"
+                    join_operator="OR"
+                >
+                    [('state', '=', 'confirmed'), ('repair_preparation_enabled', '=', True)]
+                </attribute>
+            </xpath>
         </field>
     </record>
 

@@ -8,7 +8,7 @@
     "license": "AGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/repair",
-    "depends": ["repair_warehouse"],
+    "depends": ["repair_warehouse", "base_view_inheritance_extension"],
     "excludes": ["repair_stock_move"],
     "maintainers": ["sbejaoui"],
     "data": [
