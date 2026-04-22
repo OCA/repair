@@ -183,7 +183,6 @@ class TestRepairPreparation(TransactionCase):
         )
 
     def test_action_repair_end_checks(self):
-
         with self.assertRaisesRegex(
             ValidationError,
             "Preparation picking not found. Please procure/prepare parts first",
@@ -242,7 +241,17 @@ class TestRepairPreparation(TransactionCase):
         self.repair.action_repair_start()
         self.assertFalse(self.line.preparation_move_ids)
 
-    def test_cancel_should_cancel_preparation_picking(self):
+    def test_cancel_repair(self):
         self.repair.action_validate()
         self.repair.action_repair_cancel()
         self.assertEqual(self.repair.preparation_picking_ids.state, "cancel")
+        self.repair.action_repair_cancel_draft()
+        self.repair.action_validate()
+        self.repair.action_repair_start()
+        self._do_picking(
+            self.repair.preparation_picking_ids.filtered(lambda p: p.state != "cancel")
+        )
+        res = self.repair.action_repair_end()
+        self.assertEqual(res, True)
+        self.repair.action_repair_done()
+        self.assertEqual(res, True)

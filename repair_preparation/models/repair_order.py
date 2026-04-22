@@ -163,7 +163,7 @@ class RepairOrder(models.Model):
                     )
                 )
             if consumed_lines and rec.preparation_picking_ids.filtered(
-                lambda p: p.state != "done"
+                lambda p: p.state not in ("done", "cancel")
             ):
                 raise ValidationError(
                     _(
