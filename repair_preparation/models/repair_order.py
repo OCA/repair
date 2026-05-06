@@ -175,9 +175,31 @@ class RepairOrder(models.Model):
 
     def action_view_preparation_picking(self):
         self.ensure_one()
-        action_xmlid = "stock.action_picking_tree_all"
-        action = self.env["ir.actions.act_window"]._for_xml_id(action_xmlid)
-        action["domain"] = [("id", "in", self.preparation_picking_ids.ids)]
+        pickings = self.preparation_picking_ids
+        action = {
+            "name": _("Preparation Pickings"),
+            "type": "ir.actions.act_window",
+            "res_model": "stock.picking",
+            "domain": [("id", "in", pickings.ids)],
+            "context": {
+                "create": False,
+            },
+        }
+
+        if len(pickings) == 1:
+            action.update(
+                {
+                    "view_mode": "form",
+                    "res_id": pickings.id,
+                }
+            )
+        else:
+            action.update(
+                {
+                    "view_mode": "tree,form",
+                }
+            )
+
         return action
 
     def action_view_move(self):
