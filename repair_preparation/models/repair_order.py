@@ -98,14 +98,14 @@ class RepairOrder(models.Model):
 
     def _get_repair_line_procurement(self, line):
         return self.env["procurement.group"].Procurement(
-            line.product_id,
-            line.product_uom_qty,
-            line.product_uom,
-            self.location_id,
-            f"{self.name} {line.product_id.display_name}",
-            self.name,
-            self.company_id,
-            self._get_repair_line_procurement_values(line),
+            product_id=line.product_id,
+            product_qty=line.product_uom_qty,
+            product_uom=line.product_uom,
+            location_id=self.location_id,
+            name=f"{self.name} {line.product_id.display_name}",
+            origin=self.name,
+            company_id=self.company_id,
+            values=self._get_repair_line_procurement_values(line),
         )
 
     def _run_preparation_procurements(self, operations):
