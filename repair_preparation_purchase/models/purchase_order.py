@@ -20,11 +20,28 @@ class PurchaseOrder(models.Model):
             rec.count_repair = len(rec.repair_ids)
 
     def action_view_repair_order(self):
-        return {
+        self.ensure_one()
+        action = {
             "type": "ir.actions.act_window",
-            "name": _("Repair Order(s)"),
-            "res_model": self.repair_ids._name,
-            "domain": [("id", "in", self.repair_ids.ids)],
-            "view_mode": "tree,form",
+            "name": _("Repair Orders"),
+            "res_model": "repair.order",
             "context": self.env.context,
         }
+
+        repair_ids = self.repair_ids.ids
+        if len(repair_ids) == 1:
+            action.update(
+                {
+                    "view_mode": "form",
+                    "res_id": repair_ids[0],
+                }
+            )
+        else:
+            action.update(
+                {
+                    "view_mode": "tree,form",
+                    "domain": [("id", "in", repair_ids)],
+                }
+            )
+
+        return action

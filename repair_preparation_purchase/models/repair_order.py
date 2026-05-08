@@ -25,11 +25,28 @@ class RepairOrder(models.Model):
             rec.preparation_purchase_count = len(rec.preparation_purchase_ids)
 
     def action_view_preparation_purchase_order(self):
-        return {
+        self.ensure_one()
+        action = {
             "type": "ir.actions.act_window",
-            "name": _("Preparation Purchase Order(s)"),
-            "res_model": self.preparation_purchase_ids._name,
-            "domain": [("id", "in", self.preparation_purchase_ids.ids)],
-            "view_mode": "tree,form",
+            "name": _("Preparation Purchase Orders"),
+            "res_model": "purchase.order",
             "context": self.env.context,
         }
+
+        po_ids = self.preparation_purchase_ids.ids
+        if len(po_ids) == 1:
+            action.update(
+                {
+                    "view_mode": "form",
+                    "res_id": po_ids[0],
+                }
+            )
+        else:
+            action.update(
+                {
+                    "view_mode": "tree,form",
+                    "domain": [("id", "in", po_ids)],
+                }
+            )
+
+        return action
