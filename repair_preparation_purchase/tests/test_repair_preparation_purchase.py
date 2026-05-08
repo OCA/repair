@@ -168,3 +168,34 @@ class TestRepairPreparationPurchase(TransactionCase):
         new_po_line = po.order_line - po_line
         self.assertEqual(new_po_line.product_id, new_line.product_id)
         self.assertEqual(new_po_line.product_uom_qty, new_line.product_uom_qty)
+
+    def test_modify_ro_line_under_repair_updates_po(self):
+        self.test_validate_runs_procurement_creates_purchase()
+        self.repair.action_repair_start()
+        self.assertEqual(self.repair.state, "under_repair")
+        self.assertEqual(len(self.repair.preparation_purchase_ids), 1)
+        self.assertEqual(self.repair.preparation_purchase_ids.state, "draft")
+
+        self.repair.operations.product_uom_qty += 1
+        self.repair.invalidate_recordset(["preparation_purchase_ids"])
+        self.assertEqual(len(self.repair.preparation_purchase_ids), 2)
+        self.assertRecordValues(
+            self.repair.preparation_purchase_ids.sorted(key="state"),
+            [{"state": "cancel"}, {"state": "draft"}],
+        )
+        po = self.repair.preparation_purchase_ids.filtered(
+            lambda po: po.state == "draft"
+        )
+        self.assertEqual(po.order_line.product_uom_qty, 3)
+
+        self.repair.operations.product_uom_qty -= 1
+        self.repair.invalidate_recordset(["preparation_purchase_ids"])
+        self.assertEqual(len(self.repair.preparation_purchase_ids), 3)
+        self.assertRecordValues(
+            self.repair.preparation_purchase_ids.sorted(key="state"),
+            [{"state": "cancel"}, {"state": "cancel"}, {"state": "draft"}],
+        )
+        po = self.repair.preparation_purchase_ids.filtered(
+            lambda po: po.state == "draft"
+        )
+        self.assertEqual(po.order_line.product_uom_qty, 2)
