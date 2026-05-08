@@ -6,8 +6,8 @@
         <field name="model">repair.order</field>
         <field name="inherit_id" ref="repair.view_repair_order_form" />
         <field name="arch" type="xml">
-            <!-- Header button -->
             <xpath expr="//header" position="inside">
+                <field name="show_add_grouped_repair" invisible="1" />
                 <button
                     name="action_add_another_repair"
                     type="object"
@@ -17,7 +17,7 @@
                     invisible="state != 'draft'"
                 />
             </xpath>
-            <!-- Tab with grouped repairs -->
+
             <xpath expr="//notebook" position="inside">
                 <page string="Grouped Repairs">
                     <field

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="res_config_settings_view_form_inherit_repair_order_group"
+        model="ir.ui.view"
+    >
+        <field name="name">res.config.settings.repair.order.group</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="base_repair_config.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='repair_setting_container']" position="inside">
+                <setting
+                    string="Add Grouped Repair"
+                    help="Select repair states where the Add Grouped Repair button is available.
+                    The button is always hidden when the related sale order is confirmed or cancelled."
+                >
+                    <field
+                        name="add_grouped_repair_state_ids"
+                        widget="many2many_tags"
+                        options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"
+                    />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
