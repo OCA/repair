@@ -16,15 +16,19 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-credit-card"
-                    attrs="{'invisible': [('repair_preparation_enabled', '=', False)]}"
+                    attrs="{'invisible': ['|', ('repair_preparation_enabled', '=', False), ('preparation_pickings_count', '=', 0)]}"
                     groups="purchase.group_purchase_user"
                 >
-                    Preparation Purchase(s)
+                    <field
+                        name="preparation_purchase_count"
+                        string="Preparation Purchase(s)"
+                        widget="statinfo"
+                    />
+
                 </button>
             </xpath>
         </field>
     </record>
-
 
 
 </odoo>

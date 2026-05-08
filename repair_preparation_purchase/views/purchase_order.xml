@@ -17,9 +17,11 @@
                     attrs="{'invisible': [('count_repair', '=', 0)]}"
                     groups="stock.group_stock_user"
                 >
-                    <div class="o_field_widget o_stat_info">
-                        <span class="o_stat_text">Repair order(s)</span>
-                    </div>
+                    <field
+                        name="count_repair"
+                        string="Repair order(s)"
+                        widget="statinfo"
+                    />
                 </button>
             </xpath>
         </field>

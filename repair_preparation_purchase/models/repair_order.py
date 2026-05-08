@@ -12,12 +12,17 @@ class RepairOrder(models.Model):
         comodel_name="purchase.order", compute="_compute_preparation_purchase_ids"
     )
 
+    preparation_purchase_count = fields.Integer(
+        compute="_compute_preparation_purchase_ids"
+    )
+
     @api.depends("operations")
     def _compute_preparation_purchase_ids(self):
         for rec in self:
             rec.preparation_purchase_ids = self.env["purchase.order"].search(
                 [("order_line.repair_line_id", "in", rec.operations.ids)]
             )
+            rec.preparation_purchase_count = len(rec.preparation_purchase_ids)
 
     def action_view_preparation_purchase_order(self):
         return {
