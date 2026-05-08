@@ -38,7 +38,9 @@ class RepairOrder(models.Model):
                 RepairOrder, rec.with_context(dont_validate_repair_move=True)
             ).action_repair_done()
             res.update(rec_res)
-            moves = self.env["stock.move"].search([("repair_id", "=", rec.id)])
+            moves = self.env["stock.move"].search(
+                [("repair_id", "=", rec.id), ("state", "!=", "cancel")]
+            )
             if not moves:
                 continue
             picking = self.env["stock.picking"].create(
@@ -70,6 +72,15 @@ class RepairOrder(models.Model):
 
             rec.consumption_picking_id = picking
             rec.state = "consumption"
+        return res
+
+    def action_repair_cancel(self):
+        res = super().action_repair_cancel()
+        if self.consumption_picking_id and self.consumption_picking_id.state not in (
+            "done",
+            "cancel",
+        ):
+            self.consumption_picking_id.action_cancel()
         return res
 
     def action_repair_end(self):

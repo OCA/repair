@@ -49,3 +49,30 @@ class TestRepairStockConsumptionStep(Common):
         self.assertEqual(self.repair.state, "consumption")
         self._do_picking(self.repair.consumption_picking_id)
         self.assertEqual(self.repair.state, "2binvoiced")
+
+    def test_repair_cancelled(self):
+        self.repair.action_repair_end()
+        self.assertTrue(self.repair.consumption_picking_id)
+        self.repair.action_repair_cancel()
+        self.assertEqual(self.repair.consumption_picking_id.state, "cancel")
+        self.assertTrue(
+            all(
+                state == "cancel"
+                for state in self.repair.consumption_picking_id.move_ids.mapped("state")
+            ),
+        )
+
+        # Case: Cancel -> draft -> New consumption
+        # Ensure the old moves do not get transfered to the new consu pick
+        previous_consumption_picking = self.repair.consumption_picking_id
+        previous_consumption_picking_moves = self.repair.consumption_picking_id.move_ids
+        self.repair.action_repair_cancel_draft()
+        self.repair.action_validate()
+        self.repair.action_repair_start()
+        self.repair.action_repair_end()
+        new_consumption_picking = self.repair.consumption_picking_id
+
+        self.assertNotEqual(previous_consumption_picking, new_consumption_picking)
+        self.assertNotIn(
+            previous_consumption_picking_moves, new_consumption_picking.move_ids
+        )
