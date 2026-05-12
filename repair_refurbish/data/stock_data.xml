@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo>
-    <data>
-        <record id="stock_location_refurbish" model="stock.location">
-            <field name="name">Refurbish</field>
-            <field name="location_id" ref="stock.stock_location_locations_virtual" />
-            <field name="usage">production</field>
-            <field name="company_id" />
-        </record>
-    </data>
-    <data noupdate="1">
-        <record forcecreate="True" id="property_stock_refurbish" model="ir.property">
-            <field name="name">property_stock_refurbish</field>
-            <field
-                name="fields_id"
-                search="[('model','=','product.template'),('name','=','property_stock_refurbish')]"
-            />
-            <field
-                eval="'stock.location,'+str(stock_location_refurbish)"
-                name="value"
-            />
-        </record>
-    </data>
+<odoo noupdate="1">
+    <record id="stock_location_refurbish" model="stock.location">
+        <field name="name">Refurbish</field>
+        <field name="location_id" ref="stock.stock_location_locations_virtual" />
+        <field name="usage">production</field>
+        <field
+            name="comment"
+        >This virtual production location is used as the transformation
+            point for the refurbish workflow. The original product is consumed here, and the
+            refurbished product is produced from here to be returned to stock.</field>
+    </record>
+
+    <record id="stock_location_refurbish_scrap" model="stock.location">
+        <field name="name">Refurbish Scrap</field>
+        <field name="location_id" ref="stock.stock_location_locations_virtual" />
+        <field name="usage">inventory</field>
+        <field name="scrap_location" eval="True" />
+        <field
+            name="comment"
+        >Dedicated scrap location for components during refurbish worklow.
+            This allows for clear reporting on refurbish-specific waste
+            vs. standard manufacturing scrap.</field>
+    </record>
 </odoo>
