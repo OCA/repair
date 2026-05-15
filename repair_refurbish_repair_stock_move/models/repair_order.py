@@ -21,6 +21,10 @@ class RepairOrder(models.Model):
             moves.filtered(lambda l: l.state == "confirmed")._action_assign()
         return res
 
+    def _get_stock_moves_to_cancel_on_refurbish(self):
+        self.ensure_one()
+        return self.stock_move_ids
+
     def write(self, values):
         res = super().write(values)
         for repair in self:
@@ -34,7 +38,7 @@ class RepairOrder(models.Model):
                     "cancel",
                 ):
                     # recreate stock moves
-                    repair.mapped("stock_move_ids")._action_cancel()
+                    repair._get_stock_moves_to_cancel_on_refurbish()._action_cancel()
                     repair._create_and_confirm_stock_moves()
             if "refurbish_lot_id" in values.keys():
                 if repair.mapped("stock_move_ids") and repair.state not in (
