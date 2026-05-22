@@ -4,38 +4,44 @@ from odoo.tests.common import TransactionCase
 
 @tagged("post_install", "-at_install")
 class TestRepairOrderFlow(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.RepairOrder = self.env["repair.order"]
-        self.RepairService = self.env["repair.service"]
-        self.SaleOrder = self.env["sale.order"]
-        self.Product = self.env["product.product"]
-        self.Uom = self.env["uom.uom"]
-
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.ResPartner = cls.env["res.partner"]
+        cls.RepairOrder = cls.env["repair.order"]
+        cls.RepairService = cls.env["repair.service"]
+        cls.SaleOrder = cls.env["sale.order"]
+        cls.Product = cls.env["product.product"]
+        cls.Uom = cls.env["uom.uom"]
+        cls.partner_1 = cls.ResPartner.create(
+            {
+                "name": "MY-PARTNER-1",
+            }
+        )
         # Create a test service product
-        self.service_product = self.Product.create(
+        cls.service_product = cls.Product.create(
             {
                 "name": "Repair Service Product",
                 "type": "service",
-                "uom_id": self.env.ref("uom.product_uom_unit").id,
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
             }
         )
 
         # Create a test repair order
-        self.repair_order = self.RepairOrder.create(
+        cls.repair_order = cls.RepairOrder.create(
             {
                 "name": "Test Repair Order",
-                "partner_id": self.env.ref("base.res_partner_1").id,
+                "partner_id": cls.partner_1.id,
             }
         )
 
         # Create a repair service associated with the repair order
-        self.repair_service = self.RepairService.create(
+        cls.repair_service = cls.RepairService.create(
             {
-                "repair_id": self.repair_order.id,
-                "product_id": self.service_product.id,
+                "repair_id": cls.repair_order.id,
+                "product_id": cls.service_product.id,
                 "product_uom_qty": 2.0,
-                "product_uom": self.service_product.uom_id.id,
+                "product_uom": cls.service_product.uom_id.id,
             }
         )
 
