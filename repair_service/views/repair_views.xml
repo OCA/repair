@@ -17,10 +17,7 @@
                                 name="display_name"
                                 readonly="repair_id.state in ('cancel', 'done')"
                             />
-                            <field
-                                name="product_uom_category_id"
-                                column_invisible="True"
-                            />
+                            <field name="relative_uom_id" column_invisible="True" />
                             <field name="product_uom" />
                             <field name="product_uom_qty" string="Quantity" />
                         </list>

@@ -22,11 +22,11 @@ class RepairService(models.Model):
     product_id = fields.Many2one(
         "product.product", "Product", domain=[("type", "=", "service")], required=True
     )
-    product_uom_category_id = fields.Many2one(related="product_id.uom_id.category_id")
+    relative_uom_id = fields.Many2one(related="product_id.uom_id.relative_uom_id")
     product_uom = fields.Many2one(
         "uom.uom",
         required=True,
-        domain="[('category_id', '=', product_uom_category_id)]",
+        domain="[('relative_uom_id', '=', relative_uom_id)]",
         readonly=False,
         precompute=True,
         compute="_compute_product_uom",
@@ -57,7 +57,7 @@ class RepairService(models.Model):
             "order_id": self.repair_id.sale_order_id.id,
             "product_id": self.product_id.id,
             "product_uom_qty": product_qty,
-            "product_uom": self.product_uom.id,
+            "product_uom_id": self.product_uom.id,
             "name": self.display_name,
         }
 
