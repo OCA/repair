@@ -92,7 +92,6 @@ class TestStockRepairOrder(common.TransactionCase):
         )
         self.env["stock.move"].create(
             {
-                "name": repair_order.product_id.name,
                 "product_id": repair_order.product_id.id,
                 "location_id": repair_order.location_id.id,
                 "location_dest_id": self.production_location.id,
