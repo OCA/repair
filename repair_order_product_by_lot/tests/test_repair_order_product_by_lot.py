@@ -18,7 +18,6 @@ class TestRepairOrderProductByLot(TransactionCase):
             {
                 "name": "Test Product",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "tracking": "serial",
             }
         )

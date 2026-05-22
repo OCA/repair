@@ -4,7 +4,7 @@
 {
     "name": "Repair Order Product by Lot",
     "summary": "Select product in repair order by the lot number",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Repair",
     "license": "AGPL-3",
     "author": "Cetmix OÜ, Odoo Community Association (OCA)",

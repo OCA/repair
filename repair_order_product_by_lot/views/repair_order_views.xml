@@ -6,6 +6,12 @@
         <field name="inherit_id" ref="repair.view_repair_order_form" />
         <field name="arch" type="xml">
             <!-- Always show lot/serial field and allow searching by lot -->
+            <xpath expr="//label[@for='lot_id']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='lot_id']/parent::div" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
             <xpath expr="//field[@name='lot_id']" position="attributes">
                 <!-- Make the field always visible -->
                 <attribute name="invisible">0</attribute>
