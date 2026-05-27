@@ -40,6 +40,7 @@ addon | version | maintainers | summary
 [repair_type](repair_type/) | 16.0.1.0.2 |  | Repair type
 [repair_type_refurbish](repair_type_refurbish/) | 16.0.1.0.0 |  | Repair type
 [repair_type_sequence](repair_type_sequence/) | 16.0.1.0.0 | <a href='https://github.com/AaronHForgeFlow'><img src='https://github.com/AaronHForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='AaronHForgeFlow'/></a> | Adds sequence to repair orders defined in the repairs's type
+[repair_warehouse](repair_warehouse/) | 16.0.1.0.0 | <a href='https://github.com/sbejaoui'><img src='https://github.com/sbejaoui.png' width='32' height='32' style='border-radius:50%;' alt='sbejaoui'/></a> | This addon
 
 [//]: # (end addons)
 

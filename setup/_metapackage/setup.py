@@ -26,6 +26,7 @@ setuptools.setup(
         'odoo-addon-repair_type>=16.0dev,<16.1dev',
         'odoo-addon-repair_type_refurbish>=16.0dev,<16.1dev',
         'odoo-addon-repair_type_sequence>=16.0dev,<16.1dev',
+        'odoo-addon-repair_warehouse>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
