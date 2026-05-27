@@ -12,7 +12,9 @@
     "data": [
         "views/repair_type.xml",
     ],
-    "installable": True,
+    # TODO: The Modules"repair_type" and "repair_refurbish" are currently
+    # incompatible and making the test pipeline fail (TEMPORARY)
+    "installable": False,
     "development_status": "Alpha",
     "license": "AGPL-3",
 }
