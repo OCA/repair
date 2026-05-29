@@ -1,0 +1,2 @@
+odoo-addon-repair-preparation @ git+https://github.com/OCA/repair.git@refs/pull/119/head#subdirectory=setup/repair_preparation
+odoo-addon-repair-warehouse @ git+https://github.com/OCA/repair.git@refs/pull/148/head#subdirectory=setup/repair_warehouse

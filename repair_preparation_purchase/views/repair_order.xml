@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="repair_preparation" model="ir.ui.view">
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair_preparation.repair_order_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='action_view_preparation_picking']"
+                position="after"
+            >
+                <button
+                    name="action_view_preparation_purchase_order"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-credit-card"
+                    attrs="{'invisible': ['|', ('repair_preparation_enabled', '=', False), ('preparation_pickings_count', '=', 0)]}"
+                    groups="purchase.group_purchase_user"
+                >
+                    <field
+                        name="preparation_purchase_count"
+                        string="Preparation Purchase(s)"
+                        widget="statinfo"
+                    />
+
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
