@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="repair_consumption_backorder_wizard_form_view">
+        <field name="model">repair.consumption.partial.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Return Unused Spare Parts">
+                <p class="alert alert-info" role="alert"><strong
+                    >Unused spare parts detected.</strong> By
+                    confirming, the consumptions will be finalized with the actual quantities
+                    used.</p>
+                <p><strong
+                    >Reverse Storage Transfers</strong> will be automatically created to move
+                    the remaining spare parts back into your stock locations.</p>
+                <p>The <strong
+                    >repair orders quantities will be updated</strong> to reflect the
+                    unconsumed spare parts.</p>
+                <footer>
+                    <button
+                        name="action_store_back_spare_parts"
+                        string="Return Unused &amp; Finish"
+                        class="btn-primary"
+                        type="object"
+                        data-hotkey="q"
+                    />
+                    <button
+                        string="Discard"
+                        class="btn-secondary"
+                        special="cancel"
+                        data-hotkey="z"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

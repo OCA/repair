@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="stock_warehouse_form_view" model="ir.ui.view">
+        <field name="model">stock.warehouse</field>
+    <field name="inherit_id" ref="stock.view_warehouse" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='technical_info']" position="inside">
+            <group string="Repairs — Consumption">
+                <group>
+              <field name="repair_consumption_step" />
+
+                </group>
+                <group>
+                    <field
+                            name="repair_consumption_picking_type_id"
+                            attrs="{'invisible': [('repair_consumption_step','=', False)], 'required': [('repair_consumption_step','=', True)]}"
+                        />
+                </group>
+            </group>
+      </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

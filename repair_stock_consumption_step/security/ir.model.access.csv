@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_repair_consumption_partial_wizard_user,repair.consumption.partial.wizard,model_repair_consumption_partial_wizard,stock.group_stock_user,1,1,1,1
