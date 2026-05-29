@@ -9,6 +9,7 @@
     "author": "ForgeFlow S.L., Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
+    "excludes": ["repair_type"],
     "depends": ["repair"],
     "data": [
         "views/repair_view.xml",
