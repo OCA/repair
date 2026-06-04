@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 from odoo.tests import Form, TransactionCase
 from odoo.tools import html2plaintext
 
@@ -12,8 +13,33 @@ class TestRepairOrderTemplate(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.RepairOrderTemplate = cls.env["repair.order.template"]
+        cls.ProductProduct = cls.env["product.product"]
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
-        cls.template = cls.env.ref("repair_order_template.repair_order_template_demo")
+        cls.product_1, cls.product_2 = cls.ProductProduct.create(
+            [{"name": "MY-PRODUCT-1"}, {"name": "MY-PRODUCT-2"}]
+        )
+        cls.template = cls.RepairOrderTemplate.create(
+            {
+                "name": "General Repair",
+                "line_ids": [
+                    Command.create(
+                        {
+                            "type": "add",
+                            "product_id": cls.product_1.id,
+                            "product_uom": cls.product_1.uom_id.id,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "type": "add",
+                            "product_id": cls.product_2.id,
+                            "product_uom": cls.product_2.uom_id.id,
+                        }
+                    ),
+                ],
+            }
+        )
         cls.order = cls.env["repair.order"].create({})
 
     def test_repair_order_template_fill_lines(self):

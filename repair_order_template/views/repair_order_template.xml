@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!--
-    Copyright 2024 Camptocamp SA (https://www.camptocamp.com).
-    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
--->
 <odoo>
     <record id="view_repair_order_template_search" model="ir.ui.view">
         <field name="model">repair.order.template</field>
@@ -14,7 +10,7 @@
                     name="inactive"
                     domain="[('active','=', False)]"
                 />
-                <group expand="1" string="Group By">
+                <group>
                     <filter
                         string="Company"
                         name="company_id"
@@ -74,7 +70,7 @@
                                     <field name="type" />
                                     <field name="product_id" />
                                     <field
-                                        name="product_uom_category_id"
+                                        name="relative_uom_id"
                                         column_invisible="1"
                                     />
                                     <field name="product_uom" groups="uom.group_uom" />

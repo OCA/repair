@@ -34,13 +34,11 @@ class RepairOrderTemplateLine(models.Model):
         check_company=True,
         required=True,
     )
-    product_uom_category_id = fields.Many2one(
-        related="product_id.uom_id.category_id",
-    )
+    relative_uom_id = fields.Many2one(related="product_id.uom_id.relative_uom_id")
     product_uom = fields.Many2one(
         "uom.uom",
         string="Unit of Measure",
-        domain="[('category_id', '=', product_uom_category_id)]",
+        domain="[('relative_uom_id', '=', relative_uom_id)]",
         compute="_compute_product_uom",
         readonly=False,
         required=True,
