@@ -48,6 +48,7 @@ msgstr "Creato il"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__display_name
+#: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 msgid "Description"
 msgstr "Descrizione"
 
@@ -68,6 +69,7 @@ msgstr "Ultimo aggiornamento il"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__product_id
+#: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 msgid "Product"
 msgstr "Prodotto"
 
@@ -78,6 +80,7 @@ msgstr "UdM prodotto"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__product_uom_qty
+#: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 #: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
 msgid "Quantity"
 msgstr "Quantità"
@@ -99,6 +102,7 @@ msgstr "Servizio riparazione"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_order__repair_service_ids
+#: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 #: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
 msgid "Services"
 msgstr "Servizi"

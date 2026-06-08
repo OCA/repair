@@ -20,6 +20,11 @@ msgid "Category"
 msgstr "Categoría"
 
 #. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__company_id
+msgid "Company"
+msgstr ""
+
+#. module: repair_service
 #: model:ir.model.fields,help:repair_service.field_repair_service__product_uom_category_id
 msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
@@ -40,6 +45,7 @@ msgstr "Creado el"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__display_name
+#: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 msgid "Description"
 msgstr "Descripción"
 
@@ -60,6 +66,7 @@ msgstr "Última Actualización el"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__product_id
+#: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 msgid "Product"
 msgstr "Producto"
 
@@ -70,6 +77,7 @@ msgstr "UdM del Producto"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__product_uom_qty
+#: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 #: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
 msgid "Quantity"
 msgstr "Cantidad"
@@ -91,6 +99,7 @@ msgstr "Servicio de Reparación"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_order__repair_service_ids
+#: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 #: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
 msgid "Services"
 msgstr "Servicios"
