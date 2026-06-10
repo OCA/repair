@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ====================
 MRP Repair Refurbish
 ====================
@@ -13,7 +17,7 @@ MRP Repair Refurbish
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Frepair-lightgray.png?logo=github
@@ -41,24 +45,20 @@ Configuration
 
 #. For each product that can potentially be refurbished, define the
    refurbished version in the product form.
-#. A default 'Refurbished' virtual location is created during module install,
-   and proposed by default on each product.
+#. Default 'Refurbished' and 'Refurbish Scrap' virtual locations are created during module install
 
 Usage
 =====
 
-#. Create an MRP repair.
+#. Create a repair order.
 #. Indicate a product to repair, If the product has a proposed refurbished
-   version, it will be proposed to be used. The destination location
+   version, it will be proposed to be used.
 #. Add operations if needed.
 #. Complete the repair.
 
-The initial product will be moved to the 'Scrap' location, and the
+The initial product will be moved to the 'Refurbish Scrap' location, and the
 refurbished product will be moved from a 'Refurbish' location to the desired
 destination location.
-
-The components that were added to the repair order will be moved to the
-'Refurbish' location.
 
 Bug Tracker
 ===========
@@ -85,6 +85,7 @@ Contributors
 * Lois Rilo <lois.rilo@forgeflow.com>
 * Akim Juillerat <akim.juillerat@camptocamp.com>
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
+* Nicolas Delbovier <nicolas.delbovier@acsone.eu>
 
 Other credits
 ~~~~~~~~~~~~~
