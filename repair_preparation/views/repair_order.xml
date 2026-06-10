@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="repair_order_form_view" model="ir.ui.view">
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='extra_info']//field[@name='move_id']"
+                position="before"
+            >
+                <field
+                    name="preparation_group_id"
+                    attrs="{'invisible': [('repair_preparation_enabled', '=', False)]}"
+                />
+            </xpath>
+            <xpath expr="//field[@name='picking_id']" position="after">
+                <field
+                    name="preparation_picking_type_id"
+                    attrs="{'invisible': [('repair_preparation_enabled', '=', False)], 'required': [('repair_preparation_enabled', '=', True)]}"
+                />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="repair_preparation_enabled" invisible="1" />
+                <button
+                    name="action_view_preparation_picking"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-gears"
+                    attrs="{'invisible': ['|', ('repair_preparation_enabled', '=', False), ('preparation_pickings_count', '=', 0)]}"
+                >
+                    <field
+                        name="preparation_pickings_count"
+                        string="Preparations"
+                        widget="statinfo"
+                    />
+                </button>
+                <button
+                    name="action_view_move"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-list"
+                    attrs="{'invisible': [('stock_moves_count', '=', 0)]}"
+                >
+                    <field
+                        name="stock_moves_count"
+                        string="Stock Moves"
+                        widget="statinfo"
+                    />
+                </button>
+            </xpath>
+
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="repair_preparation_enabled" invisible="1" />
+            </xpath>
+
+            <xpath expr="//notebook" position="before">
+                <div
+                    class="alert alert-info text-center"
+                    role="status"
+                    attrs="{'invisible': ['|', ('repair_preparation_enabled', '=', False), ('state', '!=', 'confirmed')]}"
+                >
+                    <strong>Note:</strong> Parts are locked while in <strong
+                    >Confirmed</strong>
+                    state to ensure preparation sync. Start the repair to enable modifications. </div>
+            </xpath>
+
+            <xpath expr="//field[@name='operations']" position="attributes">
+                <attribute
+                    name="attrs"
+                    operation="attrs_domain_add"
+                    key="readonly"
+                    join_operator="OR"
+                >
+                    [('state', '=', 'confirmed'), ('repair_preparation_enabled', '=', True)]
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
