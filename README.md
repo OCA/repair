@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [repair_security](repair_security/) | 19.0.1.0.0 |  | Create security groups for Repair
+[repair_service](repair_service/) | 19.0.1.0.0 |  | Adds a new "Services" tab in the repair orders
 
 [//]: # (end addons)
 

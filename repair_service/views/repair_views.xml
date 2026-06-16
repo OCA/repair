@@ -18,7 +18,7 @@
                                 readonly="repair_id.state in ('cancel', 'done')"
                             />
                             <field
-                                name="product_uom_category_id"
+                                name="allowed_uom_ids"
                                 column_invisible="True"
                             />
                             <field name="product_uom" />

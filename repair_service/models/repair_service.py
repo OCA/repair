@@ -22,11 +22,11 @@ class RepairService(models.Model):
     product_id = fields.Many2one(
         "product.product", "Product", domain=[("type", "=", "service")], required=True
     )
-    product_uom_category_id = fields.Many2one(related="product_id.uom_id.category_id")
+    allowed_uom_ids = fields.Many2many("uom.uom", compute="_compute_allowed_uom_ids")
     product_uom = fields.Many2one(
         "uom.uom",
         required=True,
-        domain="[('category_id', '=', product_uom_category_id)]",
+        domain="[('id', 'in', allowed_uom_ids)]",
         readonly=False,
         precompute=True,
         compute="_compute_product_uom",
@@ -36,6 +36,13 @@ class RepairService(models.Model):
         "Quantity", digits="Product Unit of Measure", required=True, default=1.0
     )
     company_id = fields.Many2one(related="repair_id.company_id")
+
+    @api.depends("product_id", "product_id.uom_id", "product_id.uom_ids")
+    def _compute_allowed_uom_ids(self):
+        for service in self:
+            service.allowed_uom_ids = (
+                service.product_id.uom_id | service.product_id.uom_ids
+            )
 
     @api.depends("product_id")
     def _compute_display_name(self):
@@ -57,7 +64,7 @@ class RepairService(models.Model):
             "order_id": self.repair_id.sale_order_id.id,
             "product_id": self.product_id.id,
             "product_uom_qty": product_qty,
-            "product_uom": self.product_uom.id,
+            "product_uom_id": self.product_uom.id,
             "name": self.display_name,
         }
 
