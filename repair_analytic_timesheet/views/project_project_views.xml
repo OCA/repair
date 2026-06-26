@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_project_form_inherit_repair_analytic" model="ir.ui.view">
+        <field name="name">project.project.form.inherit.repair.analytic</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='settings']//group[1]" position="after">
+                <group string="Repair" groups="analytic.group_analytic_accounting">
+                    <field name="spread_timesheet_cost_on_repair" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
