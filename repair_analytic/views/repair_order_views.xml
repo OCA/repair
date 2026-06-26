@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_repair_order_form_analytic" model="ir.ui.view">
+        <field name="name">repair.order.form.inherit.analytic</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <!-- Smart button -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_analytic_lines"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-bar-chart"
+                    groups="analytic.group_analytic_accounting"
+                    invisible="analytic_line_count == 0"
+                >
+                    <field
+                        name="analytic_line_count"
+                        widget="statinfo"
+                        string="Analytic Lines"
+                    />
+                </button>
+            </xpath>
+
+            <!-- analytic_distribution after tag_ids in the second group -->
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field
+                    name="analytic_distribution"
+                    widget="analytic_distribution"
+                    groups="analytic.group_analytic_accounting"
+                    options="{'business_domain': 'repair'}"
+                    readonly="state in ('done', 'cancel')"
+                />
+            </xpath>
+
+            <!-- Price / Cost columns on the Parts (move_ids) list -->
+            <xpath
+                expr="//field[@name='move_ids']/list/field[@name='product_uom_qty']"
+                position="after"
+            >
+                <field name="company_currency_id" column_invisible="True" />
+                <field
+                    name="price_unit"
+                    string="Price"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                    readonly="1"
+                    optional="hide"
+                />
+                <field
+                    name="cost"
+                    string="Cost"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                    readonly="1"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

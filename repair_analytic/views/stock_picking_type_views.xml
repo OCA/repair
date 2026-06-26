@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="repair_view_picking_type_form_analytic" model="ir.ui.view">
+        <field name="name">stock.picking.type.inherit.repair.analytic</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="repair.repair_view_picking_type_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[field[@name='is_repairable']]" position="after">
+                <group string="Analytic" invisible="code != 'repair_operation'">
+                    <field name="analytic_price_type" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

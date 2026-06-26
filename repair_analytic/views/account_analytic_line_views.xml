@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_account_analytic_line_form_inherit_repair" model="ir.ui.view">
+        <field name="name">account.analytic.line.form.inherit.repair</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_form" />
+        <field name="arch" type="xml">
+            <group name="amount" position="after">
+                <group name="repair" string="Repair">
+                    <field name="repair_order_id" readonly="1" />
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_line_list_inherit_repair" model="ir.ui.view">
+        <field name="name">account.analytic.line.list.inherit.repair</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_tree" />
+        <field name="arch" type="xml">
+            <field name="amount" position="before">
+                <field name="repair_order_id" optional="hide" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_line_search_repair" model="ir.ui.view">
+        <field name="name">account.analytic.line.search.repair</field>
+        <field name="model">account.analytic.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Analytic Lines">
+                <field name="name" />
+                <field name="date" />
+                <field name="repair_order_id" />
+                <separator />
+                <filter name="month" string="Date" date="date" />
+                <filter
+                    name="repair_orders"
+                    string="Repair Orders"
+                    domain="[('repair_order_id', '!=', False)]"
+                />
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter
+                        name="group_date"
+                        string="Date"
+                        context="{'group_by': 'date'}"
+                    />
+                    <filter
+                        name="group_repair_order"
+                        string="Repair Order"
+                        context="{'group_by': 'repair_order_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

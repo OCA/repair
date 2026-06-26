@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="analytic_plan_repair_demo" model="account.analytic.plan">
+        <field name="name">Repair Analytic Demo Plan</field>
+    </record>
+
+    <record id="analytic_account_repair_demo" model="account.analytic.account">
+        <field name="name">Repair Analytic Demo Account</field>
+        <field name="plan_id" ref="analytic_plan_repair_demo" />
+    </record>
+
+    <record id="analytic_account_repair_demo_2" model="account.analytic.account">
+        <field name="name">Repair Analytic Demo Account 2</field>
+        <field name="plan_id" ref="analytic_plan_repair_demo" />
+    </record>
+
+    <record
+        id="analytic_applicability_repair_demo"
+        model="account.analytic.applicability"
+    >
+        <field name="business_domain">repair</field>
+        <field name="applicability">optional</field>
+        <field name="analytic_plan_id" ref="analytic_plan_repair_demo" />
+    </record>
+
+    <record id="product_repair_demo_add" model="product.product">
+        <field name="name">Repair Analytic Demo Part - Add</field>
+        <field name="type">consu</field>
+        <field name="list_price">50.0</field>
+        <field name="standard_price">20.0</field>
+    </record>
+
+    <record id="product_repair_demo_remove" model="product.product">
+        <field name="name">Repair Analytic Demo Part - Remove</field>
+        <field name="type">consu</field>
+        <field name="list_price">30.0</field>
+        <field name="standard_price">10.0</field>
+    </record>
+
+    <record id="product_repair_demo_recycle" model="product.product">
+        <field name="name">Repair Analytic Demo Part - Recycle</field>
+        <field name="type">consu</field>
+        <field name="list_price">15.0</field>
+        <field name="standard_price">5.0</field>
+    </record>
+
+    <!-- Showcase the Price/Cost selection on the core repair demo operation type -->
+    <record id="repair.picking_type_warehouse0_repair" model="stock.picking.type">
+        <field name="analytic_price_type">cost</field>
+    </record>
+</odoo>
