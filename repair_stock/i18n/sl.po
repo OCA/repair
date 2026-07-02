@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-07-02 06:52+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,39 +15,40 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: repair_stock
 #: model:ir.model.fields,field_description:repair_stock.field_stock_move__related_repair_id
 msgid "Related Repair"
-msgstr ""
+msgstr "Povezano popravilo"
 
 #. module: repair_stock
 #: model:ir.model,name:repair_stock.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Nalog za popravilo"
 
 #. module: repair_stock
 #: model:ir.model,name:repair_stock.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Premik zaloge"
 
 #. module: repair_stock
 #: model:ir.model,name:repair_stock.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Pravilo zaloge"
 
 #. module: repair_stock
 #: model:ir.model.fields,field_description:repair_stock.field_repair_order__picking_ids
 #: model_terms:ir.ui.view,arch_db:repair_stock.view_repair_order_form_repair_stock_move_inherited
 msgid "Transfers"
-msgstr ""
+msgstr "Premestitve"
 
 #. module: repair_stock
 #: model:ir.model.fields,field_description:repair_stock.field_repair_order__picking_count
 msgid "Transfers Count"
-msgstr ""
+msgstr "Št. premestitev"
 
 #. module: repair_stock
 #: model_terms:ir.ui.view,arch_db:repair_stock.view_repair_order_form_repair_stock_move_inherited
 msgid "Transfers associated with this repair order"
-msgstr ""
+msgstr "Premestitve povezane s tem nalogom za popravilo"
