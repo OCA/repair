@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-07-02 06:41+0000\n"
+"PO-Revision-Date: 2026-07-02 06:52+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -20,12 +20,12 @@ msgstr ""
 #. module: repair_order_group
 #: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_form_inherit_group
 msgid "Add Grouped Repair"
-msgstr ""
+msgstr "Dodaj združeno popravilo"
 
 #. module: repair_order_group
 #: model:ir.model.fields,help:repair_order_group.field_repair_order__grouped_repair_ids
 msgid "All other repairs that belong to the same group."
-msgstr ""
+msgstr "Vsa druga popravila, ki pripadajo isti skupini."
 
 #. module: repair_order_group
 #: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_search_inherit_group
@@ -60,13 +60,13 @@ msgstr "Prikazani naziv"
 #. module: repair_order_group
 #: model:ir.actions.act_window,name:repair_order_group.action_repair_orders_by_group
 msgid "Group Repairs"
-msgstr ""
+msgstr "Združi popravila"
 
 #. module: repair_order_group
 #: model:ir.model.fields,field_description:repair_order_group.field_repair_order__grouped_repair_ids
 #: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_form_inherit_group
 msgid "Grouped Repairs"
-msgstr ""
+msgstr "Združena popravila"
 
 #. module: repair_order_group
 #: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__id
@@ -106,12 +106,12 @@ msgstr "Št. popravil"
 #. module: repair_order_group
 #: model:ir.model.fields,field_description:repair_order_group.field_repair_order__group_id
 msgid "Repair Group"
-msgstr ""
+msgstr "Skupina popravil"
 
 #. module: repair_order_group
 #: model:ir.ui.menu,name:repair_order_group.menu_repair_order_group
 msgid "Repair Groups"
-msgstr ""
+msgstr "Skupine popravil"
 
 #. module: repair_order_group
 #: model:ir.model,name:repair_order_group.model_repair_order
@@ -122,12 +122,12 @@ msgstr "Nalog za popravilo"
 #: model:ir.model,name:repair_order_group.model_repair_order_group
 #: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_group_form
 msgid "Repair Order Group"
-msgstr ""
+msgstr "Skupina nalogov za popravilo"
 
 #. module: repair_order_group
 #: model:ir.actions.act_window,name:repair_order_group.action_repair_order_group
 msgid "Repair Order Groups"
-msgstr ""
+msgstr "Skupine nalogov za popravilo"
 
 #. module: repair_order_group
 #: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_group_form
@@ -138,6 +138,7 @@ msgstr "Popravila"
 #: model:ir.model.fields,help:repair_order_group.field_repair_order__group_id
 msgid "Repairs sharing the same group can be processed and quoted together."
 msgstr ""
+"Popravila, ki so v isti skupini, se lahko obdelajo in predračunajo skupaj."
 
 #. module: repair_order_group
 #. odoo-python
@@ -160,3 +161,7 @@ msgid ""
 "Concerned repair order(s):\n"
 "%(ref_str)s"
 msgstr ""
+"Za nalog za popravilo morate določiti stranko, da lahko ustvarite povezan "
+"predračun.\n"
+"Zadevni nalogi za popravilo:\n"
+"%(ref_str)s"
