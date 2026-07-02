@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-07-02 07:14+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,16 +15,17 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: repair_scheduled_date_calendar_view
 #: model:ir.model,name:repair_scheduled_date_calendar_view.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: repair_scheduled_date_calendar_view
 #: model_terms:ir.ui.view,arch_db:repair_scheduled_date_calendar_view.res_config_settings_view_form_inherit_repair_calendar
 msgid "Default Planned Order Duration"
-msgstr ""
+msgstr "Privzeto planirano trajanje naloga"
 
 #. module: repair_scheduled_date_calendar_view
 #: model:ir.model.fields,help:repair_scheduled_date_calendar_view.field_res_config_settings__planned_duration_default
@@ -32,39 +34,41 @@ msgid ""
 "Default planned duration for repair orders (in hours). Shown as hh:mm in the"
 " UI."
 msgstr ""
+"Privzeto planirano trajanje za naloge za popravila (v urah). Prikazano kot "
+"hh:mm v uporabniškem vmesniku."
 
 #. module: repair_scheduled_date_calendar_view
 #: model_terms:ir.ui.view,arch_db:repair_scheduled_date_calendar_view.view_repair_order_form_inherit_duration
 msgid "Order Duration"
-msgstr ""
+msgstr "Trajanje naloga"
 
 #. module: repair_scheduled_date_calendar_view
 #: model:ir.model.fields,field_description:repair_scheduled_date_calendar_view.field_repair_order__planned_duration
 msgid "Planned Duration"
-msgstr ""
+msgstr "Planirano trajanje"
 
 #. module: repair_scheduled_date_calendar_view
 #: model:ir.model.fields,field_description:repair_scheduled_date_calendar_view.field_res_config_settings__planned_duration_default
 msgid "Planned Duration Default"
-msgstr ""
+msgstr "Privzeto planirano trajanje"
 
 #. module: repair_scheduled_date_calendar_view
 #. odoo-python
 #: code:addons/repair_scheduled_date_calendar_view/models/repair_order.py:0
 msgid "Planned duration must be non-negative."
-msgstr ""
+msgstr "Planirano trajanje ne sme biti negativno."
 
 #. module: repair_scheduled_date_calendar_view
 #: model:ir.model.fields,help:repair_scheduled_date_calendar_view.field_repair_order__planned_duration
 msgid "Planned duration of the repair order in hours."
-msgstr ""
+msgstr "Planirano trajanje naloga za popravilo v urah."
 
 #. module: repair_scheduled_date_calendar_view
 #: model:ir.model,name:repair_scheduled_date_calendar_view.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Nalog za popravilo"
 
 #. module: repair_scheduled_date_calendar_view
 #: model_terms:ir.ui.view,arch_db:repair_scheduled_date_calendar_view.view_repair_order_calendar
 msgid "Repair Orders Calendar"
-msgstr ""
+msgstr "Koledar nalogov za popravila"
