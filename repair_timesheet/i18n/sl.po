@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-07-02 07:14+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,44 +15,45 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: repair_timesheet
 #: model:ir.model,name:repair_timesheet.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Analitična postavka"
 
 #. module: repair_timesheet
 #: model_terms:ir.ui.view,arch_db:repair_timesheet.repair_order_form_view_timesheet_inherit
 msgid "Duration (Hour(s))"
-msgstr ""
+msgstr "Trajanje (ura(e))"
 
 #. module: repair_timesheet
 #: model:ir.model.fields,field_description:repair_timesheet.field_account_analytic_line__repair_order_id
 msgid "Related Repair Order"
-msgstr ""
+msgstr "Povezani nalog za popravilo"
 
 #. module: repair_timesheet
 #: model:ir.model,name:repair_timesheet.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Nalog za popravilo"
 
 #. module: repair_timesheet
 #: model:ir.model.fields,help:repair_timesheet.field_account_analytic_line__repair_order_id
 msgid "The repair order related to this timesheet entry."
-msgstr ""
+msgstr "Nalog za popravilo povezan s tem vnosom časovnice."
 
 #. module: repair_timesheet
 #: model:ir.model.fields,field_description:repair_timesheet.field_repair_order__timesheet_ids
 #: model_terms:ir.ui.view,arch_db:repair_timesheet.repair_order_form_view_timesheet_inherit
 msgid "Timesheets"
-msgstr ""
+msgstr "Časovnice"
 
 #. module: repair_timesheet
 #: model:ir.model.fields,field_description:repair_timesheet.field_repair_order__timesheet_total_hours
 msgid "Total Hours"
-msgstr ""
+msgstr "Skupaj ur"
 
 #. module: repair_timesheet
 #: model:ir.model.fields,help:repair_timesheet.field_repair_order__timesheet_total_hours
 msgid "Total hours spent on this repair order."
-msgstr ""
+msgstr "Skupaj ur na tem nalogu za popravilo."
