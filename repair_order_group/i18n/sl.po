@@ -1,0 +1,156 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_order_group
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+
+#. module: repair_order_group
+#: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_form_inherit_group
+msgid "Add Grouped Repair"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,help:repair_order_group.field_repair_order__grouped_repair_ids
+msgid "All other repairs that belong to the same group."
+msgstr ""
+
+#. module: repair_order_group
+#: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_search_inherit_group
+msgid "By Group"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__company_id
+msgid "Company"
+msgstr ""
+
+#. module: repair_order_group
+#: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_form_inherit_group
+msgid "Create a new repair linked to the same group and partner."
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.actions.act_window,name:repair_order_group.action_repair_orders_by_group
+msgid "Group Repairs"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order__grouped_repair_ids
+#: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_form_inherit_group
+msgid "Grouped Repairs"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__id
+msgid "ID"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__name
+msgid "Name"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__repair_ids
+msgid "Repair"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__repair_count
+msgid "Repair Count"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order__group_id
+msgid "Repair Group"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.ui.menu,name:repair_order_group.menu_repair_order_group
+msgid "Repair Groups"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model,name:repair_order_group.model_repair_order
+msgid "Repair Order"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model,name:repair_order_group.model_repair_order_group
+#: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_group_form
+msgid "Repair Order Group"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.actions.act_window,name:repair_order_group.action_repair_order_group
+msgid "Repair Order Groups"
+msgstr ""
+
+#. module: repair_order_group
+#: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_group_form
+msgid "Repairs"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,help:repair_order_group.field_repair_order__group_id
+msgid "Repairs sharing the same group can be processed and quoted together."
+msgstr ""
+
+#. module: repair_order_group
+#. odoo-python
+#: code:addons/repair_order_group/models/repair_order.py:0
+msgid ""
+"You cannot create a quotation for a repair order that is already linked to an existing sale order.\n"
+"Concerned repair order(s):\n"
+"%(ref_str)s"
+msgstr ""
+
+#. module: repair_order_group
+#. odoo-python
+#: code:addons/repair_order_group/models/repair_order.py:0
+msgid ""
+"You need to define a customer for a repair order in order to create an associated quotation.\n"
+"Concerned repair order(s):\n"
+"%(ref_str)s"
+msgstr ""
