@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-07-02 07:14+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,16 +15,17 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: repair_quality_control
 #: model_terms:ir.ui.view,arch_db:repair_quality_control.view_repair_order_form_inherit
 msgid "<span class=\"o_stat_text\">Inspections</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Inšpekcijski pregledi</span>"
 
 #. module: repair_quality_control
 #: model_terms:ir.ui.view,arch_db:repair_quality_control.view_qc_inspection_form_inherit
 msgid "<span class=\"o_stat_text\">Repair order</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Servisni nalog</span>"
 
 #. module: repair_quality_control
 #: model:ir.model.fields,field_description:repair_quality_control.field_repair_order__auto_generate_qc_inspection
@@ -36,12 +38,12 @@ msgstr ""
 #. module: repair_quality_control
 #: model:ir.model,name:repair_quality_control.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: repair_quality_control
 #: model:ir.model,name:repair_quality_control.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: repair_quality_control
 #. odoo-python
@@ -77,12 +79,12 @@ msgstr ""
 #. module: repair_quality_control
 #: model:ir.model.fields,field_description:repair_quality_control.field_repair_order__inspection_ids
 msgid "Inspections"
-msgstr ""
+msgstr "Inšpekcije"
 
 #. module: repair_quality_control
 #: model:ir.model.fields.selection,name:repair_quality_control.selection__res_company__repair_generate_qc_inspection_state__confirmed
 msgid "On Confirm"
-msgstr ""
+msgstr "Ob potrditvi"
 
 #. module: repair_quality_control
 #: model:ir.model.fields.selection,name:repair_quality_control.selection__res_company__repair_generate_qc_inspection_state__done
@@ -92,22 +94,22 @@ msgstr ""
 #. module: repair_quality_control
 #: model:ir.model,name:repair_quality_control.model_qc_inspection
 msgid "Quality control inspection"
-msgstr ""
+msgstr "Inšpekcija nadzora kvalitete"
 
 #. module: repair_quality_control
 #: model:ir.model.fields,field_description:repair_quality_control.field_qc_inspection__repair_id
 msgid "Repair"
-msgstr ""
+msgstr "Popravilo"
 
 #. module: repair_quality_control
 #: model:ir.model,name:repair_quality_control.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Nalog za popravilo"
 
 #. module: repair_quality_control
 #: model:qc.trigger,name:repair_quality_control.qc_trigger_repair
 msgid "Repairs"
-msgstr ""
+msgstr "Popravila"
 
 #. module: repair_quality_control
 #: model:ir.model.fields,field_description:repair_quality_control.field_repair_order__show_button_create_qc_inspection
