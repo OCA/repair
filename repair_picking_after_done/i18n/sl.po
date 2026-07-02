@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-07-02 07:14+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_res_config_settings__auto_transfer_repair
 msgid "Automatic Transfer on Repair Completion"
-msgstr ""
+msgstr "Samodejna premestitev ob zaključku popravila"
 
 #. module: repair_picking_after_done
 #. odoo-python
@@ -28,6 +30,9 @@ msgid ""
 "this repair order. Please ensure that a product is assigned to the repair "
 "order before proceeding with the transfer."
 msgstr ""
+"Samodejne premestitve ni bilo mogoče dokončati, ker na tem nalogu za "
+"popravilo ni nastavljenega proizvoda. Zagotovite, da je nalogu za popravilo "
+"dodeljen proizvod preden lahko nadaljujete s premestitvijo."
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.res_config_settings_view_form_inherit
@@ -35,6 +40,8 @@ msgid ""
 "Automatically create and validate stock transfers for completed repair "
 "orders."
 msgstr ""
+"Samodejno ustvari in potrdi premestitve zalog za dokončane naloge za "
+"popravila."
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,help:repair_picking_after_done.field_res_config_settings__auto_transfer_repair
@@ -42,71 +49,72 @@ msgid ""
 "Automatically create and validate transfers for repair orders upon "
 "completion."
 msgstr ""
+"Samodejno ustvari in potrdi premestitve za naloge za popravila ob dokončanju."
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Prekliči"
 
 #. module: repair_picking_after_done
 #: model:ir.model,name:repair_picking_after_done.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.repair_type_form_inherit
 msgid "Create Transfer"
-msgstr ""
+msgstr "Ustvari premestitev"
 
 #. module: repair_picking_after_done
 #: model:ir.model,name:repair_picking_after_done.model_repair_move_transfer
 msgid "Create an internal transfer from repaired moves"
-msgstr ""
+msgstr "Ustvari interno premestitev iz postavk popravila"
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "Create transfer"
-msgstr ""
+msgstr "Ustvari premestitev"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__location_dest_id
 msgid "Destination location"
-msgstr ""
+msgstr "Ciljna lokacija"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__quantity
 msgid "Quantity to transfer"
-msgstr ""
+msgstr "Količina za premestitev"
 
 #. module: repair_picking_after_done
 #. odoo-python
@@ -115,35 +123,37 @@ msgid ""
 "Quantity to transfer cannot exceed the remaining quantity in the repair "
 "order."
 msgstr ""
+"Količina za premestitev ne sme presegati preostale količine v nalogu za "
+"popravilo."
 
 #. module: repair_picking_after_done
 #. odoo-python
 #: code:addons/repair_picking_after_done/wizards/repair_move_transfer.py:0
 msgid "Quantity to transfer must be greater than 0."
-msgstr ""
+msgstr "Količina za premestitev mora biti večja od 0."
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__remaining_quantity
 msgid "Remaining Quantity to Transfer"
-msgstr ""
+msgstr "Preostala količina za premestitev"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_order__remaining_quantity
 msgid "Remaining quantity to be transferred"
-msgstr ""
+msgstr "Preostala količina za premestitev"
 
 #. module: repair_picking_after_done
 #: model:ir.model,name:repair_picking_after_done.model_repair_order
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__repair_order_id
 msgid "Repair Order"
-msgstr ""
+msgstr "Nalog za popravilo"
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "Transfer Repaired Moves"
-msgstr ""
+msgstr "Premesti popravljene postavke"
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "or"
-msgstr ""
+msgstr "ali"
