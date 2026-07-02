@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-07-02 07:14+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,16 +15,17 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__product_uom_category_id
 msgid "Category"
-msgstr ""
+msgstr "Kategorija"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__company_id
 msgid "Company"
-msgstr ""
+msgstr "Družba"
 
 #. module: repair_service
 #: model:ir.model.fields,help:repair_service.field_repair_service__product_uom_category_id
@@ -31,74 +33,76 @@ msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
 msgstr ""
+"Pretvorba med merskimi enotami je možna le, če pripadajo isti kategoriji. "
+"Pretvorba bo izvedena na podlagi razmerij."
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__display_name
 #: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__product_id
 #: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__product_uom
 msgid "Product Uom"
-msgstr ""
+msgstr "EM proizvoda"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__product_uom_qty
 #: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 #: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
 msgid "Quantity"
-msgstr ""
+msgstr "Količina"
 
 #. module: repair_service
 #: model:ir.model,name:repair_service.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Nalog za popravilo"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__repair_id
 msgid "Repair Order Reference"
-msgstr ""
+msgstr "Sklic naloga za popravilo"
 
 #. module: repair_service
 #: model:ir.model,name:repair_service.model_repair_service
 msgid "Repair Service"
-msgstr ""
+msgstr "Popravilo"
 
 #. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_order__repair_service_ids
 #: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 #: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
 msgid "Services"
-msgstr ""
+msgstr "Storitve"
