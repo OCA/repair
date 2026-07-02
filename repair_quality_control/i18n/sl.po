@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-07-02 07:14+0000\n"
+"PO-Revision-Date: 2026-07-02 09:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -33,7 +33,7 @@ msgstr "<span class=\"o_stat_text\">Servisni nalog</span>"
 #: model:ir.model.fields,field_description:repair_quality_control.field_res_config_settings__repair_auto_generate_qc_inspection
 #: model_terms:ir.ui.view,arch_db:repair_quality_control.res_config_settings_view_form
 msgid "Auto-generate QC Inspection"
-msgstr ""
+msgstr "Samodejno ustvari inšpekcijski pregled kontrole kakovosti"
 
 #. module: repair_quality_control
 #: model:ir.model,name:repair_quality_control.model_res_company
@@ -50,7 +50,7 @@ msgstr "Nastavitve"
 #: code:addons/repair_quality_control/models/repair.py:0
 #: model_terms:ir.ui.view,arch_db:repair_quality_control.view_repair_order_form_inherit
 msgid "Create Inspection"
-msgstr ""
+msgstr "Ustvari inšpekcijski pregled"
 
 #. module: repair_quality_control
 #: model:ir.model.fields,field_description:repair_quality_control.field_repair_order__generate_qc_inspection_state
@@ -58,7 +58,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:repair_quality_control.field_res_config_settings__repair_generate_qc_inspection_state
 #: model_terms:ir.ui.view,arch_db:repair_quality_control.res_config_settings_view_form
 msgid "Generate QC Inspection State"
-msgstr ""
+msgstr "Stanje za ustvarjanje inšpekcijskega pregleda kontrole kakovosti"
 
 #. module: repair_quality_control
 #: model_terms:ir.ui.view,arch_db:repair_quality_control.res_config_settings_view_form
@@ -66,6 +66,8 @@ msgid ""
 "If checked, QC Inspections will be automatically created for Repair Order, "
 "on state changes"
 msgstr ""
+"Če je označeno, se bodo inšpekcijski pregledi kontrole kakovosti samodejno "
+"ustvarili za nalog za popravilo ob spremembah stanja"
 
 #. module: repair_quality_control
 #: model:ir.model.fields,help:repair_quality_control.field_repair_order__auto_generate_qc_inspection
@@ -75,6 +77,8 @@ msgid ""
 "If checked, QC Inspections will be automatically created for Repair Order, "
 "on state changes."
 msgstr ""
+"Če je označeno, se bodo inšpekcijski pregledi kontrole kakovosti samodejno "
+"ustvarili za nalog za popravilo ob spremembah stanja."
 
 #. module: repair_quality_control
 #: model:ir.model.fields,field_description:repair_quality_control.field_repair_order__inspection_ids
@@ -89,7 +93,7 @@ msgstr "Ob potrditvi"
 #. module: repair_quality_control
 #: model:ir.model.fields.selection,name:repair_quality_control.selection__res_company__repair_generate_qc_inspection_state__done
 msgid "On Done"
-msgstr ""
+msgstr "Ob zaključku"
 
 #. module: repair_quality_control
 #: model:ir.model,name:repair_quality_control.model_qc_inspection
@@ -114,7 +118,7 @@ msgstr "Popravila"
 #. module: repair_quality_control
 #: model:ir.model.fields,field_description:repair_quality_control.field_repair_order__show_button_create_qc_inspection
 msgid "Show Button Create Qc Inspection"
-msgstr ""
+msgstr "Prikaži gumb za ustvarjanje inšpekcijskega pregleda kontrole kakovosti"
 
 #. module: repair_quality_control
 #: model_terms:ir.ui.view,arch_db:repair_quality_control.res_config_settings_view_form
@@ -122,6 +126,8 @@ msgid ""
 "This field allows you to select the state of the Repair Order in which the "
 "QC Inspection will be generated"
 msgstr ""
+"To polje omogoča izbiro stanja naloga za popravilo, v katerem bo ustvarjen "
+"inšpekcijski pregled kontrole kakovosti"
 
 #. module: repair_quality_control
 #: model:ir.model.fields,help:repair_quality_control.field_repair_order__generate_qc_inspection_state
@@ -131,3 +137,5 @@ msgid ""
 "This field allows you to select the state of the Repair Order in which the "
 "QC Inspection will be generated."
 msgstr ""
+"To polje omogoča izbiro stanja naloga za popravilo, v katerem bo ustvarjen "
+"inšpekcijski pregled kontrole kakovosti."
