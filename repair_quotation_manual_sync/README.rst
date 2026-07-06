@@ -21,34 +21,65 @@ Repair Quotation Manual Sync
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Frepair-lightgray.png?logo=github
-    :target: https://github.com/OCA/repair/tree/17.0/repair_quotation_manual_sync
+    :target: https://github.com/OCA/repair/tree/19.0/repair_quotation_manual_sync
     :alt: OCA/repair
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/repair-17-0/repair-17-0-repair_quotation_manual_sync
+    :target: https://translation.odoo-community.org/projects/repair-19-0/repair-19-0-repair_quotation_manual_sync
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/repair&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/repair&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module introduces synchronization logic between Repair Orders and
-the related Quotations.
-
-1. Adds an "Invoiceable" checkbox on lines of a repair order to
-   determine which products are billable.
-2. Only lines marked as "Invoiceable" are included when creating the
-   quotation.
-3. Any changes in the Repair Order will trigger a banner in the
-   quotation if there is a mismatch.
-4. An "Synchronize Lines" button in the banner allows syncing the
-   quotation lines with the lines indicated as "Invoiceable" in the
-   repair order.
+This module makes the synchronization between a repair order and its
+quotation an explicit action instead of an automatic one. In standard
+Odoo every part added to or changed on a repair order is pushed to the
+linked quotation straight away; here the quotation only changes when a
+user asks for it, and each part carries an **Invoiceable** flag that
+decides whether it reaches the quotation at all. Whenever the two
+documents drift apart, a banner on the quotation reports it and offers a
+**Synchronize Lines** button that brings the quotation in line with the
+repair order. Synchronization applies to quotations that are still a
+draft or have been sent; the lines of the quotation created from the
+repair order itself are filled in automatically.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Use Cases / Context
+===================
+
+Standard Odoo keeps the quotation of a repair order in permanent
+lockstep with its parts. That is inconvenient while the repair is still
+being assessed: every part a technician tries out immediately alters a
+document the customer may already be reading, and parts that are not
+meant to be billed cannot be kept off it. This module separates the two
+documents, so the repair order can evolve freely and the quotation is
+only updated once the billable scope is settled.
+
+Usage
+=====
+
+To create a quotation out of a repair order, you need to:
+
+1. Go to *Repair > Repair Orders* and open a repair order.
+2. In the parts list, untick **Invoiceable** on every part that should
+   not be billed to the customer.
+3. Click **Create Quotation**. The quotation is created with one line
+   per invoiceable part.
+
+To carry later changes of the repair order over to its quotation:
+
+1. Add, remove or replace parts, change their quantities, or tick and
+   untick **Invoiceable**.
+2. Open the linked quotation. The banner reports that the repair order
+   and the quotation are no longer synchronized.
+3. Click **Synchronize Lines**. Lines are added, updated, or set to a
+   zero quantity, so that the quotation matches the invoiceable parts of
+   the repair order.
 
 Bug Tracker
 ===========
@@ -56,7 +87,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/repair/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/repair/issues/new?body=module:%20repair_quotation_manual_sync%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/repair/issues/new?body=module:%20repair_quotation_manual_sync%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -71,9 +102,9 @@ Authors
 Contributors
 ------------
 
-- `ForgeFlow <https://forgeflow.com>`__:
+-  `ForgeFlow <https://forgeflow.com>`__:
 
-     - Andreu Orensanz <andreu.orensanz@forgeflow.com>
+      -  Andreu Orensanz <andreu.orensanz@forgeflow.com>
 
 Maintainers
 -----------
@@ -88,6 +119,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/repair <https://github.com/OCA/repair/tree/17.0/repair_quotation_manual_sync>`_ project on GitHub.
+This module is part of the `OCA/repair <https://github.com/OCA/repair/tree/19.0/repair_quotation_manual_sync>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

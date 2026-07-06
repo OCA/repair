@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="repair.view_repair_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='move_ids']/tree/field[@name='lot_ids']"
+                expr="//field[@name='move_ids']/list/field[@name='lot_ids']"
                 position="after"
             >
                 <field name="is_repair_sale_confirmed" column_invisible="True" />

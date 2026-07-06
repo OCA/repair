@@ -10,14 +10,14 @@ class TestRepairQuotationManualSync(TransactionCase):
         self.SaleOrder = self.env["sale.order"]
         self.Product = self.env["product.product"]
         self.StockLocation = self.env["stock.location"]
-        self.Partner = self.env.ref("base.res_partner_1")
+        self.Partner = self.env["res.partner"].create({"name": "Test Partner"})
         self.location = self.StockLocation.create({"name": "Test Location"})
 
         # Create a stockable product instead of a service
         self.product = self.Product.create(
             {
                 "name": "Repair Product",
-                "type": "product",
+                "is_storable": True,
                 "invoice_policy": "order",
                 "list_price": 100.0,
                 "uom_id": self.env.ref("uom.product_uom_unit").id,
@@ -33,7 +33,6 @@ class TestRepairQuotationManualSync(TransactionCase):
 
         self.move = self.repair_order.move_ids.create(
             {
-                "name": "Repair Line",
                 "product_id": self.product.id,
                 "product_uom_qty": 1.0,
                 "product_uom": self.product.uom_id.id,
