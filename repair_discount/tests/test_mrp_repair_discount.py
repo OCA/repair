@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 class TestMrpRepairDiscount(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestMrpRepairDiscount, cls).setUpClass()
+        super().setUpClass()
 
         # Create product and service
         cls.product = cls.env["product.product"].create(

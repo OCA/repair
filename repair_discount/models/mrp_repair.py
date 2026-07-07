@@ -16,7 +16,7 @@ class RepairFee(models.Model):
 
     @api.depends("discount")
     def _compute_price_total_and_subtotal(self):
-        res = super(RepairFee, self)._compute_price_total_and_subtotal()
+        res = super()._compute_price_total_and_subtotal()
         for fee in self:
             discount_factor = 1 - fee.discount / 100.0
             fee.price_total *= discount_factor
@@ -34,7 +34,7 @@ class RepairLine(models.Model):
 
     @api.depends("discount")
     def _compute_price_total_and_subtotal(self):
-        res = super(RepairLine, self)._compute_price_total_and_subtotal()
+        res = super()._compute_price_total_and_subtotal()
         for line in self:
             discount_factor = 1 - line.discount / 100.0
             line.price_total *= discount_factor
@@ -46,7 +46,7 @@ class RepairOrder(models.Model):
     _inherit = "repair.order"
 
     def _create_invoices(self, group=False):
-        res = super(RepairOrder, self)._create_invoices(group)
+        res = super()._create_invoices(group)
         for repair in self.filtered(lambda _repair: _repair.invoice_method != "none"):
             operations = repair.operations
             fees_lines = repair.fees_lines
@@ -71,7 +71,7 @@ class RepairOrder(models.Model):
         "operations", "fees_lines", "operations.invoiced", "fees_lines.invoiced"
     )
     def _amount_tax(self):
-        res = super(RepairOrder, self)._amount_tax()
+        res = super()._amount_tax()
         for repair in self:
             taxed_amount = 0.0
             currency = repair.pricelist_id.currency_id
