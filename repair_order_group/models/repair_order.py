@@ -24,7 +24,7 @@ class RepairOrder(models.Model):
         check_company=True,
         index=True,
         readonly=True,
-        copy=False,
+        copy=True,
         help="Repairs sharing the same group can be processed and quoted together.",
     )
 

@@ -984,18 +984,11 @@ class TestRepairOrderGroup(TransactionCase):
             }
         )
 
-        self.env["repair.service"].create(
-            {
-                "repair_id": repair.id,
-                "product_id": self.product.id,
-            }
-        )
-
         duplicated = repair.copy()
 
         self.assertEqual(
             duplicated.group_id,
-            repair.group_id,
+            group,
             "Draft grouped repair should remain in the same group when duplicated.",
         )
 
@@ -1011,13 +1004,6 @@ class TestRepairOrderGroup(TransactionCase):
             }
         )
 
-        self.env["repair.service"].create(
-            {
-                "repair_id": repair.id,
-                "product_id": self.product.id,
-            }
-        )
-
         repair.action_validate()
         repair._action_repair_confirm()
 
@@ -1025,6 +1011,6 @@ class TestRepairOrderGroup(TransactionCase):
 
         self.assertFalse(
             duplicated.group_id,
-            "Non-draft grouped repair should not be assigned "
-            "to a group when duplicated.",
+            "Non-draft grouped repair should not remain in a repair group "
+            "when duplicated.",
         )
