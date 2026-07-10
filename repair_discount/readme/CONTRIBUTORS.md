@@ -4,3 +4,5 @@
 - Ignacio Ales López \<ignacio.ales@guadaltech.es\>
 - María Asunción Daza \<mariaasuncion.daza@guadaltech.es\>
 - Manuel Regidor \<manuel.regidor@sygel.es\>
+- [NuoBiT](https://www.nuobit.com):
+  - Deniz Gallo \<dgallo@nuobit.com\>

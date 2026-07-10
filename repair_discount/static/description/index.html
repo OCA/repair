@@ -370,8 +370,21 @@ ul.auto-toc {
 !! source digest: sha256:2e405b1de1f9101accc3209dfddc8763ec17be408d37712b1ab67dd70e1d2122
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/repair/tree/18.0/repair_discount"><img alt="OCA/repair" src="https://img.shields.io/badge/github-OCA%2Frepair-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/repair-18-0/repair-18-0-repair_discount"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/repair&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module extends the functionality of mrp repair adding new field
-discount on operations lines</p>
+<p>This module adds a discount (%) on the part lines of repair orders.</p>
+<p>Since Odoo 17.0, repair orders are no longer invoiced directly: billing
+goes through a sale order linked to the repair. The discount set on a
+part line is propagated to the discount of the corresponding sale order
+line, both when the quotation is created from the repair order and when
+parts are added to a repair already linked to a sale order.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li>The discount only applies to parts of type “Add”, as they are the only
+ones billed on the sale order.</li>
+<li>Repairs under warranty ignore the discount (the parts are already
+invoiced at zero price).</li>
+<li>Repair fees do not exist anymore in the core <tt class="docutils literal">repair</tt> module, so the
+discount on fee lines of previous versions has no equivalent.</li>
+</ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -410,6 +423,10 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Ignacio Ales López &lt;<a class="reference external" href="mailto:ignacio.ales&#64;guadaltech.es">ignacio.ales&#64;guadaltech.es</a>&gt;</li>
 <li>María Asunción Daza &lt;<a class="reference external" href="mailto:mariaasuncion.daza&#64;guadaltech.es">mariaasuncion.daza&#64;guadaltech.es</a>&gt;</li>
 <li>Manuel Regidor &lt;<a class="reference external" href="mailto:manuel.regidor&#64;sygel.es">manuel.regidor&#64;sygel.es</a>&gt;</li>
+<li><a class="reference external" href="https://www.nuobit.com">NuoBiT</a>:<ul>
+<li>Deniz Gallo &lt;<a class="reference external" href="mailto:dgallo&#64;nuobit.com">dgallo&#64;nuobit.com</a>&gt;</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
