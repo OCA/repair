@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [base_repair_config](base_repair_config/) | 18.0.1.0.0 | <a href='https://github.com/marcelsavegnago'><img src='https://github.com/marcelsavegnago.png' width='32' height='32' style='border-radius:50%;' alt='marcelsavegnago'/></a> | Provides general settings for the Repair App
 [partner_repair_button](partner_repair_button/) | 18.0.1.0.0 | <a href='https://github.com/AaronHForgeFlow'><img src='https://github.com/AaronHForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='AaronHForgeFlow'/></a> | Partner Repair Smart Button
+[repair_analytic](repair_analytic/) | 18.0.1.0.0 |  | Adds analytic distribution to repair orders
 [repair_order_group](repair_order_group/) | 18.0.1.0.1 |  | Group several repair orders and keep them in sync
 [repair_order_group_services](repair_order_group_services/) | 18.0.1.0.0 |  | Support for services in grouped repair orders
 [repair_order_line_sequence](repair_order_line_sequence/) | 18.0.1.0.0 |  | Allow to change line order in repairs
