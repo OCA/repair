@@ -1,0 +1,1 @@
+When creating or editing a repair order, you will find a new "Services" tab within the repair order form. In this tab, you can input and manage the services performed as part of the repair order. Once the repair order is confirmed, when you creating a sale order from the repair order, the services listed in the "Services" tab will be automatically added as sale order lines.
