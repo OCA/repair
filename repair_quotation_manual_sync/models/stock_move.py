@@ -37,7 +37,9 @@ class StockMove(models.Model):
     @api.depends(
         "repair_invoiceable",
         "sale_line_id",
+        "product_id",
         "product_uom_qty",
+        "sale_line_id.product_id",
         "sale_line_id.product_uom_qty",
     )
     def _compute_sync_flags(self):
@@ -51,7 +53,8 @@ class StockMove(models.Model):
                 )
             )
             move.repair_update_sync = move.sale_line_id and (
-                float_compare(
+                move.product_id != move.sale_line_id.product_id
+                or float_compare(
                     move.product_uom_qty,
                     move.sale_line_id.product_uom_qty,
                     precision_rounding=precision,
@@ -59,6 +62,21 @@ class StockMove(models.Model):
                 != 0
                 or not move.repair_invoiceable
             )
+
+    def write(self, vals):
+        sale_lines = {}
+        if "product_id" in vals:
+            for move in self:
+                if move.repair_id and move.sale_line_id:
+                    sale_lines[move.id] = move.sale_line_id
+        moves = self
+        if sale_lines:
+            moves = self.with_context(repair_lines_manual_sync=False)
+        res = super(StockMove, moves).write(vals)
+        for move in self.browse(sale_lines.keys()):
+            if not move.sale_line_id:
+                move.sale_line_id = sale_lines[move.id]
+        return res
 
     def _create_repair_sale_order_line(self):
         if not self.env.context.get("repair_lines_manual_sync", False):
@@ -70,8 +88,20 @@ class StockMove(models.Model):
     def _update_repair_sale_order_line(self):
         if not self.env.context.get("repair_lines_manual_sync", False):
             return True
+        moves_to_sync = self.filtered("repair_update_sync")
+        moves_product_changed = moves_to_sync.filtered(
+            lambda m: m.repair_line_type == "add"
+            and m.repair_invoiceable
+            and m.product_id != m.sale_line_id.product_id
+        )
+        sequences = {m.id: m.sale_line_id.sequence for m in moves_product_changed}
+        moves_product_changed.sale_line_id.unlink()
+        moves_product_changed.invalidate_recordset()
+        moves_product_changed._create_repair_sale_order_line()
+        for move in moves_product_changed:
+            move.sale_line_id.sequence = sequences[move.id]
         super(
-            StockMove, self.filtered("repair_update_sync")
+            StockMove, moves_to_sync - moves_product_changed
         )._update_repair_sale_order_line()
         moves_so_line_unlink = self.filtered(
             lambda m: m.sale_line_id
