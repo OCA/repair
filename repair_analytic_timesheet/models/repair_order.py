@@ -43,8 +43,9 @@ class RepairOrder(models.Model):
             vals_list.append(
                 {
                     "name": self.name,
-                    "date": fields.Date.context_today(self),
+                    "date": timesheet.date,
                     "unit_amount": timesheet.unit_amount,
+                    "product_uom_id": timesheet.product_uom_id.id,
                     "amount": timesheet.amount * float(percentage) / 100.0,
                     "employee_id": timesheet.employee_id.id
                     if timesheet.employee_id
