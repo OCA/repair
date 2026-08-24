@@ -4,7 +4,7 @@
 {
     "name": "Repair Analytic Timesheet",
     "summary": "Spreads timesheet costs through analytic distribution on repair orders",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "category": "Repair",
     "website": "https://github.com/OCA/repair",
     "author": "Escodoo, Odoo Community Association (OCA)",
