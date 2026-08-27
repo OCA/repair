@@ -7,7 +7,13 @@
         <field name="arch" type="xml">
             <group name="inventory" position="after">
                 <group name="refurbish" string="Refurbish">
-                    <field name="refurbish_product_id" />
+                    <field
+                        name="refurbish_product_id"
+                        context="{
+                            'default_is_storable': True,
+                            'default_type': 'consu',
+                        }"
+                    />
                 </group>
             </group>
         </field>

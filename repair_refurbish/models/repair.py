@@ -9,10 +9,19 @@ class RepairOrder(models.Model):
 
     to_refurbish = fields.Boolean()
     refurbish_location_dest_id = fields.Many2one(
-        string="Refurbished Delivery Location", comodel_name="stock.location"
+        string="Refurbished Delivery Location",
+        comodel_name="stock.location",
+        compute="_compute_refurbish_fields",
+        store=True,
+        readonly=False,
     )
     refurbish_product_id = fields.Many2one(
-        string="Refurbished product", comodel_name="product.product"
+        string="Refurbished Product",
+        comodel_name="product.product",
+        compute="_compute_refurbish_fields",
+        store=True,
+        readonly=False,
+        domain=[("type", "=", "consu"), ("is_storable", "=", True)],
     )
     refurbish_tracking = fields.Selection(
         string="Refurbished Product Tracking",
@@ -20,20 +29,23 @@ class RepairOrder(models.Model):
         readonly=False,
     )
     refurbish_lot_id = fields.Many2one(
-        string="Refurbished Lot", comodel_name="stock.lot"
+        string="Refurbished Lot",
+        comodel_name="stock.lot",
+        domain="[('product_id', '=', refurbish_product_id)]",
     )
     refurbish_move_id = fields.Many2one(
         string="Refurbished Inventory Move", comodel_name="stock.move"
     )
 
-    @api.onchange("to_refurbish", "product_id")
-    def _onchange_to_refurbish(self):
-        if self.to_refurbish:
-            self.refurbish_product_id = self.product_id.refurbish_product_id
-            self.refurbish_location_dest_id = self.location_id
-        else:
-            self.refurbish_product_id = False
-            self.refurbish_location_dest_id = False
+    @api.depends("to_refurbish", "product_id")
+    def _compute_refurbish_fields(self):
+        for order in self:
+            if order.to_refurbish:
+                order.refurbish_product_id = order.product_id.refurbish_product_id
+                order.refurbish_location_dest_id = order.location_id
+            else:
+                order.refurbish_product_id = False
+                order.refurbish_location_dest_id = False
 
     def _get_virtual_refurbish_location(self):
         self.ensure_one()
@@ -51,9 +63,7 @@ class RepairOrder(models.Model):
             "repair_id": self.id,
             "location_dest_id": self.refurbish_location_dest_id.id,
             "move_line_ids": [
-                (
-                    0,
-                    0,
+                fields.Command.create(
                     {
                         "product_id": self.refurbish_product_id.id,
                         "lot_id": self.refurbish_lot_id.id,
@@ -65,7 +75,7 @@ class RepairOrder(models.Model):
                         "result_package_id": False,
                         "location_id": refurbish_loc.id,
                         "location_dest_id": self.refurbish_location_dest_id.id,
-                    },
+                    }
                 )
             ],
         }
@@ -74,7 +84,7 @@ class RepairOrder(models.Model):
         to_refurbish_orders = self.filtered("to_refurbish")
         res = super(RepairOrder, (self - to_refurbish_orders)).action_repair_done()
         for repair in to_refurbish_orders:
-            refurbish_loc = self._get_virtual_refurbish_location()
+            refurbish_loc = repair._get_virtual_refurbish_location()
             super(
                 RepairOrder,
                 repair.with_context(
