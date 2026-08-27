@@ -11,6 +11,7 @@ class RepairService(models.Model):
     repair_id = fields.Many2one(
         "repair.order", "Repair Order Reference", ondelete="cascade", required=True
     )
+    sequence = fields.Integer(default=10)
     display_name = fields.Text(
         "Description",
         required=True,
