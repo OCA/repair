@@ -9,16 +9,12 @@
         </record>
     </data>
     <data noupdate="1">
-        <record forcecreate="True" id="property_stock_refurbish" model="ir.property">
-            <field name="name">property_stock_refurbish</field>
+        <record id="property_stock_refurbish" model="ir.default">
             <field
-                name="fields_id"
+                name="field_id"
                 search="[('model','=','product.template'),('name','=','property_stock_refurbish')]"
             />
-            <field
-                eval="'stock.location,'+str(stock_location_refurbish)"
-                name="value"
-            />
+            <field name="json_value" ref="stock_location_refurbish" />
         </record>
     </data>
 </odoo>

@@ -11,7 +11,13 @@
                     string="Refurbish"
                     invisible="product_variant_count &gt; 1"
                 >
-                    <field name="refurbish_product_id" />
+                    <field
+                        name="refurbish_product_id"
+                        context="{
+                            'default_is_storable': True,
+                            'default_type': 'consu',
+                        }"
+                    />
                 </group>
             </group>
         </field>
@@ -22,10 +28,7 @@
         <field name="inherit_id" ref="stock.view_template_property_form" />
         <field name="arch" type="xml">
             <field name="property_stock_production" position="after">
-                <field
-                    name="property_stock_refurbish"
-                    domain="[('usage','=','production')]"
-                />
+                <field name="property_stock_refurbish" />
             </field>
         </field>
     </record>
