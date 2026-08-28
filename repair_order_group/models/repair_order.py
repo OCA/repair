@@ -24,7 +24,7 @@ class RepairOrder(models.Model):
         check_company=True,
         index=True,
         readonly=True,
-        copy=False,
+        copy=True,
         help="Repairs sharing the same group can be processed and quoted together.",
     )
 
@@ -43,6 +43,19 @@ class RepairOrder(models.Model):
                 repair.grouped_repair_ids = False
                 continue
             repair.grouped_repair_ids = repair.group_id.repair_ids - repair
+
+    def copy(self, default=None):
+        """Keep the group only for draft repairs when duplicating.
+
+        Duplicating a grouped repair order:
+        - if original is in Draft -> duplicated repair stays in the same group
+        - otherwise -> duplicated repair is not assigned to any group
+        """
+        self.ensure_one()
+        default = dict(default or {})
+        if self.group_id and self.state != "draft":
+            default["group_id"] = False
+        return super().copy(default)
 
     def action_add_another_repair(self):
         """Create a new empty repair linked to the same group.
