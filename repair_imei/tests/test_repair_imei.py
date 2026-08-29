@@ -78,6 +78,8 @@ class TestRepairIMEI(TransactionCase):
         self.assertFalse(repair_model._imei_luhn_is_valid(self.invalid_imei))
         self.assertFalse(repair_model._imei_luhn_is_valid("12345"))
         self.assertFalse(repair_model._imei_luhn_is_valid("ABCD54203237518"))
+        self.assertFalse(repair_model._imei_luhn_is_valid(None))
+        self.assertFalse(repair_model._imei_luhn_is_valid(123456789012345))
 
     def test_02_parent_category_fallback_required(self):
         """Test 'parent' mode when category imei_required is True."""
@@ -134,6 +136,38 @@ class TestRepairIMEI(TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "product_id": self.product_explicit_no.id,
+                "imei_no": False,
+            }
+        )
+        self.assertFalse(repair.imei_required)
+
+    def test_06_onchange_imei_no_warning(self):
+        """Test UI onchange warning dictionary returns for invalid IMEI."""
+        repair = self.env["repair.order"].new(
+            {
+                "partner_id": self.partner.id,
+                "product_id": self.product_parent_optional.id,
+            }
+        )
+        # 1. Empty imei returns False
+        repair.imei_no = False
+        self.assertFalse(repair._onchange_imei_no_warning())
+
+        # 2. Valid imei returns False
+        repair.imei_no = self.valid_imei
+        self.assertFalse(repair._onchange_imei_no_warning())
+
+        # 3. Invalid imei returns warning dict
+        repair.imei_no = self.invalid_imei
+        res_warning = repair._onchange_imei_no_warning()
+        self.assertIn("warning", res_warning)
+
+    def test_07_no_product_set_imei_required_false(self):
+        """Test compute edge case when product_id is not set."""
+        repair = self.env["repair.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": False,
                 "imei_no": False,
             }
         )
