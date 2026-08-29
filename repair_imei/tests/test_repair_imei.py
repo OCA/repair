@@ -80,7 +80,7 @@ class TestRepairIMEI(TransactionCase):
         self.assertFalse(repair_model._imei_luhn_is_valid("ABCD54203237518"))
 
     def test_02_parent_category_fallback_required(self):
-        """Test template with 'parent' resolution when category imei_required is True."""
+        """Test 'parent' mode when category imei_required is True."""
         # Provide valid IMEI on creation so record creation succeeds
         repair = self.env["repair.order"].create(
             {
@@ -96,7 +96,7 @@ class TestRepairIMEI(TransactionCase):
             repair.write({"imei_no": False})
 
     def test_03_parent_category_fallback_optional(self):
-        """Test template with 'parent' resolution when category imei_required is False."""
+        """Test 'parent' mode when category imei_required is False."""
         repair = self.env["repair.order"].create(
             {
                 "partner_id": self.partner.id,

@@ -31,10 +31,14 @@ class RepairOrder(models.Model):
                 record.imei_required = False
                 continue
 
-            imei_settings = getattr(record.product_id, "imei_required", "parent") or "parent"
+            imei_settings = (
+                getattr(record.product_id, "imei_required", "parent") or "parent"
+            )
 
             if imei_settings == "parent" and record.product_id.categ_id:
-                cat_required = getattr(record.product_id.categ_id, "imei_required", False)
+                cat_required = getattr(
+                    record.product_id.categ_id, "imei_required", False
+                )
                 imei_settings = "yes" if cat_required else "no"
 
             record.imei_required = imei_settings == "yes"
@@ -70,9 +74,10 @@ class RepairOrder(models.Model):
                 "warning": {
                     "title": self.env._("Invalid IMEI Format"),
                     "message": self.env._(
-                        "The entered IMEI %s does not pass the standard Luhn checksum test.",
-                        self.imei_no
-                    )
+                        "The entered IMEI %s does not pass "
+                        "the standard Luhn checksum test.",
+                        self.imei_no,
+                    ),
                 }
             }
         return False
@@ -90,8 +95,11 @@ class RepairOrder(models.Model):
 
             if imei_clean and not self._imei_luhn_is_valid(imei_clean):
                 raise ValidationError(
-                    self.env._('''The IMEI number '%s' is invalid.
-                    Please enter a valid 15-digit IMEI.''',record.imei_no)
+                    self.env._(
+                        """The IMEI number '%s' is invalid.
+                    Please enter a valid 15-digit IMEI.""",
+                        record.imei_no,
+                    )
                 )
             duplicate = self.search(
                 [
