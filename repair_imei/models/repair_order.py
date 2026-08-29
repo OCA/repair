@@ -82,7 +82,7 @@ class RepairOrder(models.Model):
             }
         return False
 
-    @api.constrains("imei_no", "product_id")
+    @api.constrains("imei_no", "product_id", "state")
     def _check_valid_imei(self):
         for record in self:
             raw_imei = record.imei_no or ""
@@ -101,20 +101,22 @@ class RepairOrder(models.Model):
                         record.imei_no,
                     )
                 )
-            duplicate = self.search(
-                [
-                    ("id", "!=", record.id),
-                    ("imei_no", "=", imei_clean),
-                    ("state", "not in", ["cancel", "done"]),
-                ],
-                limit=1,
-            )
-            if duplicate:
-                raise ValidationError(
-                    self.env._(
-                        "An active repair order (%(order_name)s) already exists "
-                        "for IMEI No %(imei)s.",
-                        order_name=duplicate.name,
-                        imei=imei_clean,
-                    )
+
+            if imei_clean:
+                duplicate = self.search(
+                    [
+                        ("id", "!=", record.id),
+                        ("imei_no", "=", imei_clean),
+                        ("state", "not in", ["cancel", "done"]),
+                    ],
+                    limit=1,
                 )
+                if duplicate:
+                    raise ValidationError(
+                        self.env._(
+                            "An active repair order (%(order_name)s) already "
+                            "exists for IMEI No %(imei)s.",
+                            order_name=duplicate.name,
+                            imei=imei_clean,
+                        )
+                    )
