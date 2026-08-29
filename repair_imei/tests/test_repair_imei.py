@@ -172,3 +172,35 @@ class TestRepairIMEI(TransactionCase):
             }
         )
         self.assertFalse(repair.imei_required)
+
+    def test_08_duplicate_imei_raises_validation_error(self):
+        """Test that creating a second active repair order
+        with the same IMEI raises ValidationError."""
+        self.env["repair.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": self.product_explicit_yes.id,
+                "imei_no": self.valid_imei,
+            }
+        )
+        with self.assertRaises(ValidationError):
+            self.env["repair.order"].create(
+                {
+                    "partner_id": self.partner.id,
+                    "product_id": self.product_explicit_yes.id,
+                    "imei_no": self.valid_imei,
+                }
+            )
+
+    def test_09_invalid_imei_raises_validation_error(self):
+        """Test that writing an invalid Luhn checksum
+        IMEI raises ValidationError on constraint."""
+        repair = self.env["repair.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": self.product_parent_optional.id,
+                "imei_no": False,
+            }
+        )
+        with self.assertRaises(ValidationError):
+            repair.write({"imei_no": self.invalid_imei})
