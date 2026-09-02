@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="product.product_category_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='parent_id']" position="after">
-                <field name="imei_required" widget="radio" />
+                <field name="imei_required" />
             </xpath>
         </field>
     </record>
