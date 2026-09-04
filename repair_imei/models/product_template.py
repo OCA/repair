@@ -1,7 +1,7 @@
-# pylint: disable=abstract-method
-"""Extend product templates for IMEI fields."""
+# Copyright 2026 Coder4web
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
@@ -17,19 +17,6 @@ class ProductTemplate(models.Model):
         ],
         string="IMEI Required",
         default="parent",
-        compute="_compute_imei_required",
-        inverse="_inverse_imei_required",
-        store=True,
-        readonly=False,
         help="""Set requirement manually, or select 'Use Category Requirement'
          to inherit from product category.""",
     )
-
-    @api.depends("categ_id.imei_required")
-    def _compute_imei_required(self):
-        for template in self:
-            if not template.imei_required:
-                template.imei_required = "parent"
-
-    def _inverse_imei_required(self):
-        pass

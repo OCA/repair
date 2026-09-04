@@ -1,5 +1,5 @@
 {
-    "name": "Mobile IMEI Settings",
+    "name": "Repair IMEI",
     "summary": "Add IMEI tracking and settings for mobile devices in repairs",
     "version": "18.0.1.0.0",
     "category": "Services/Repair",
@@ -16,5 +16,4 @@
         "views/product_category_views.xml",
         "views/product_template_views.xml",
     ],
-    "assets": {},
 }

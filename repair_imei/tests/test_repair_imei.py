@@ -1,13 +1,11 @@
 # Copyright 2026 Coder4web
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-# pylint: disable=unsubscriptable-object
-"""Test suite for IMEI validation and tracking logic in repair orders."""
-
 from odoo.exceptions import ValidationError
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestRepairIMEI(TransactionCase):
     """Test suite for IMEI validation and tracking logic in repair orders."""
 
@@ -71,9 +69,8 @@ class TestRepairIMEI(TransactionCase):
         )
 
     def test_01_luhn_checksum_validation(self):
-        """Test the static Luhn algorithm implementation."""
         repair_model = self.env["repair.order"]
-        # pylint: disable=protected-access
+
         self.assertTrue(repair_model._imei_luhn_is_valid(self.valid_imei))
         self.assertFalse(repair_model._imei_luhn_is_valid(self.invalid_imei))
         self.assertFalse(repair_model._imei_luhn_is_valid("12345"))
@@ -82,8 +79,6 @@ class TestRepairIMEI(TransactionCase):
         self.assertFalse(repair_model._imei_luhn_is_valid(123456789012345))
 
     def test_02_parent_category_fallback_required(self):
-        """Test 'parent' mode when category imei_required is True."""
-        # Provide valid IMEI on creation so record creation succeeds
         repair = self.env["repair.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -93,12 +88,10 @@ class TestRepairIMEI(TransactionCase):
         )
         self.assertTrue(repair.imei_required)
 
-        # Confirm validation fails when IMEI is stripped
         with self.assertRaises(ValidationError):
             repair.write({"imei_number": False})
 
     def test_03_parent_category_fallback_optional(self):
-        """Test 'parent' mode when category imei_required is False."""
         repair = self.env["repair.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -109,8 +102,6 @@ class TestRepairIMEI(TransactionCase):
         self.assertFalse(repair.imei_required)
 
     def test_04_explicit_yes_override(self):
-        """Test template explicit 'yes' overrides category imei_required=False."""
-        # Provide valid IMEI on creation so record creation succeeds
         repair = self.env["repair.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -120,7 +111,6 @@ class TestRepairIMEI(TransactionCase):
         )
         self.assertTrue(repair.imei_required)
 
-        # Creating without IMEI must raise ValidationError
         with self.assertRaises(ValidationError):
             self.env["repair.order"].create(
                 {
@@ -131,7 +121,6 @@ class TestRepairIMEI(TransactionCase):
             )
 
     def test_05_explicit_no_override(self):
-        """Test template explicit 'no' overrides category imei_required=True."""
         repair = self.env["repair.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -142,28 +131,23 @@ class TestRepairIMEI(TransactionCase):
         self.assertFalse(repair.imei_required)
 
     def test_06_onchange_imei_number_warning(self):
-        """Test UI onchange warning dictionary returns for invalid IMEI."""
         repair = self.env["repair.order"].new(
             {
                 "partner_id": self.partner.id,
                 "product_id": self.product_parent_optional.id,
             }
         )
-        # 1. Empty imei returns False
         repair.imei_number = False
         self.assertFalse(repair._onchange_imei_number_warning())
 
-        # 2. Valid imei returns False
         repair.imei_number = self.valid_imei
         self.assertFalse(repair._onchange_imei_number_warning())
 
-        # 3. Invalid imei returns warning dict
         repair.imei_number = self.invalid_imei
         res_warning = repair._onchange_imei_number_warning()
         self.assertIn("warning", res_warning)
 
     def test_07_no_product_set_imei_required_false(self):
-        """Test compute edge case when product_id is not set."""
         repair = self.env["repair.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -174,8 +158,6 @@ class TestRepairIMEI(TransactionCase):
         self.assertFalse(repair.imei_required)
 
     def test_08_duplicate_imei_raises_validation_error(self):
-        """Test that creating a second active repair order
-        with the same IMEI raises ValidationError."""
         self.env["repair.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -193,8 +175,6 @@ class TestRepairIMEI(TransactionCase):
             )
 
     def test_09_invalid_imei_raises_validation_error(self):
-        """Test that writing an invalid Luhn checksum
-        IMEI raises ValidationError on constraint."""
         repair = self.env["repair.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -204,3 +184,39 @@ class TestRepairIMEI(TransactionCase):
         )
         with self.assertRaises(ValidationError):
             repair.write({"imei_number": self.invalid_imei})
+
+    def test_10_batch_create_duplicate_imei(self):
+        with self.assertRaises(ValidationError):
+            self.env["repair.order"].create(
+                [
+                    {
+                        "partner_id": self.partner.id,
+                        "product_id": self.product_explicit_yes.id,
+                        "imei_number": self.valid_imei,
+                    },
+                    {
+                        "partner_id": self.partner.id,
+                        "product_id": self.product_explicit_yes.id,
+                        "imei_number": self.valid_imei,
+                    },
+                ]
+            )
+
+    def test_11_imei_normalization_with_formatting(self):
+        repair1 = self.env["repair.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": self.product_explicit_yes.id,
+                "imei_number": "490154-2032-37518",
+            }
+        )
+        self.assertEqual(repair1.imei_number, self.valid_imei)
+
+        with self.assertRaises(ValidationError):
+            self.env["repair.order"].create(
+                {
+                    "partner_id": self.partner.id,
+                    "product_id": self.product_explicit_yes.id,
+                    "imei_number": "490154203237518",
+                }
+            )

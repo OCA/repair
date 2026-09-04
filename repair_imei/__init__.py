@@ -1,5 +1,4 @@
-"""This module use to repair mobile devices
-import all models defined inside the model folder
-"""
+# Copyright 2026 Coder4web
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from . import models

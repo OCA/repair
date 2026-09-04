@@ -2,7 +2,7 @@
 Repair IMEI Customization
 =========================
 
-This module extends Odoo's standard features to manage mobile and electronic device repairs by introducing mandatory IMEI tracking capabilities. It injects structured validation handlers into categories, product templates, and repair workflow orders to prevent unauthorized duplication or format errors during equipment servicing operations.
+This module extends Odoo's standard features to manage mobile and electronic device repairs by introducing mandatory IMEI tracking capabilities for customer-owned devices. Because these items are typically brought in directly by customers rather than pulled from internal stock (which uses `lot_id`), a dedicated character field is utilized. The module injects structured validation handlers into categories, product templates, and repair workflow orders to enforce global hardware uniqueness, prevent unauthorized duplication, and eliminate format errors during equipment servicing operations.
 
 **Table of contents**
 
@@ -26,8 +26,8 @@ To utilize this module:
 1. Go to the **Repair** application module dashboard.
 2. Create a new **Repair Order**.
 3. Select an article belonging to an IMEI-tracked category.
-4. Input the device's identifier into the newly added **IMEI Number** input field.
-5. The system automatically validates compliance against layout constraints and verifies uniqueness across existing database records.
+4. Input the customer-owned device's identifier into the dedicated **IMEI Number** input field.
+5. The system automatically normalizes input, validates compliance against the Luhn checksum layout constraints, and enforces global hardware uniqueness across all active repair orders in the database.
 
 Changelog
 =========
@@ -35,8 +35,8 @@ Changelog
 18.0.1.0.0
 ----------
 
-* Initial migration and release under the Odoo 18 framework lifecycle.
-* Implemented strict structural manifest declarations following OCA design specifications.
+* Initial release of the Repair IMEI Customization module.
+* Implemented strict structural manifest declarations, automated data normalization, and global uniqueness checks following OCA design specifications.
 
 Bug Tracker
 ===========
