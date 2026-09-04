@@ -88,14 +88,14 @@ class TestRepairIMEI(TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "product_id": self.product_parent_required.id,
-                "imei_no": self.valid_imei,
+                "imei_number": self.valid_imei,
             }
         )
         self.assertTrue(repair.imei_required)
 
         # Confirm validation fails when IMEI is stripped
         with self.assertRaises(ValidationError):
-            repair.write({"imei_no": False})
+            repair.write({"imei_number": False})
 
     def test_03_parent_category_fallback_optional(self):
         """Test 'parent' mode when category imei_required is False."""
@@ -103,7 +103,7 @@ class TestRepairIMEI(TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "product_id": self.product_parent_optional.id,
-                "imei_no": False,
+                "imei_number": False,
             }
         )
         self.assertFalse(repair.imei_required)
@@ -115,7 +115,7 @@ class TestRepairIMEI(TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "product_id": self.product_explicit_yes.id,
-                "imei_no": self.valid_imei,
+                "imei_number": self.valid_imei,
             }
         )
         self.assertTrue(repair.imei_required)
@@ -126,7 +126,7 @@ class TestRepairIMEI(TransactionCase):
                 {
                     "partner_id": self.partner.id,
                     "product_id": self.product_explicit_yes.id,
-                    "imei_no": False,
+                    "imei_number": False,
                 }
             )
 
@@ -136,12 +136,12 @@ class TestRepairIMEI(TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "product_id": self.product_explicit_no.id,
-                "imei_no": False,
+                "imei_number": False,
             }
         )
         self.assertFalse(repair.imei_required)
 
-    def test_06_onchange_imei_no_warning(self):
+    def test_06_onchange_imei_number_warning(self):
         """Test UI onchange warning dictionary returns for invalid IMEI."""
         repair = self.env["repair.order"].new(
             {
@@ -150,16 +150,16 @@ class TestRepairIMEI(TransactionCase):
             }
         )
         # 1. Empty imei returns False
-        repair.imei_no = False
-        self.assertFalse(repair._onchange_imei_no_warning())
+        repair.imei_number = False
+        self.assertFalse(repair._onchange_imei_number_warning())
 
         # 2. Valid imei returns False
-        repair.imei_no = self.valid_imei
-        self.assertFalse(repair._onchange_imei_no_warning())
+        repair.imei_number = self.valid_imei
+        self.assertFalse(repair._onchange_imei_number_warning())
 
         # 3. Invalid imei returns warning dict
-        repair.imei_no = self.invalid_imei
-        res_warning = repair._onchange_imei_no_warning()
+        repair.imei_number = self.invalid_imei
+        res_warning = repair._onchange_imei_number_warning()
         self.assertIn("warning", res_warning)
 
     def test_07_no_product_set_imei_required_false(self):
@@ -168,7 +168,7 @@ class TestRepairIMEI(TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "product_id": False,
-                "imei_no": False,
+                "imei_number": False,
             }
         )
         self.assertFalse(repair.imei_required)
@@ -180,7 +180,7 @@ class TestRepairIMEI(TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "product_id": self.product_explicit_yes.id,
-                "imei_no": self.valid_imei,
+                "imei_number": self.valid_imei,
             }
         )
         with self.assertRaises(ValidationError):
@@ -188,7 +188,7 @@ class TestRepairIMEI(TransactionCase):
                 {
                     "partner_id": self.partner.id,
                     "product_id": self.product_explicit_yes.id,
-                    "imei_no": self.valid_imei,
+                    "imei_number": self.valid_imei,
                 }
             )
 
@@ -199,8 +199,8 @@ class TestRepairIMEI(TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "product_id": self.product_parent_optional.id,
-                "imei_no": False,
+                "imei_number": False,
             }
         )
         with self.assertRaises(ValidationError):
-            repair.write({"imei_no": self.invalid_imei})
+            repair.write({"imei_number": self.invalid_imei})

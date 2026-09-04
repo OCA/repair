@@ -18,6 +18,7 @@ class ProductTemplate(models.Model):
         string="IMEI Required",
         default="parent",
         compute="_compute_imei_required",
+        inverse="_inverse_imei_required",
         store=True,
         readonly=False,
         help="""Set requirement manually, or select 'Use Category Requirement'
@@ -27,7 +28,8 @@ class ProductTemplate(models.Model):
     @api.depends("categ_id.imei_required")
     def _compute_imei_required(self):
         for template in self:
-            if template.categ_id and template.categ_id.imei_required:
-                template.imei_required = "yes"
-            else:
-                template.imei_required = "no"
+            if not template.imei_required:
+                template.imei_required = "parent"
+
+    def _inverse_imei_required(self):
+        pass
