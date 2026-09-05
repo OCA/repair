@@ -133,9 +133,9 @@ class RepairOrder(models.Model):
             ("state", "not in", ["cancel", "done"]),
         ]
 
-        grouped_data = self.env["repair.order"].read_group(
+        grouped_data = self.read_group(
             domain,
-            ["imei_number", "id:count"],
+            ["imei_number"],
             ["imei_number"],
         )
 
