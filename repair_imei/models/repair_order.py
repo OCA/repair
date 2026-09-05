@@ -1,6 +1,6 @@
 # Copyright 2026 Coder4web
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from re import sub
+import re
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
@@ -27,7 +27,7 @@ class RepairOrder(models.Model):
         if not imei:
             return imei
 
-        return sub(r"\D", "", imei)
+        return re.sub(r"\D", "", imei)
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -132,12 +132,6 @@ class RepairOrder(models.Model):
             ("imei_number", "in", records_to_check.mapped("imei_number")),
             ("state", "not in", ["cancel", "done"]),
         ]
-
-        grouped_data = self.env["repair.order"].read_group(
-            domain,
-            ["imei_number", "id:count"],
-            ["imei_number"],
-        )
 
         grouped_data = self.env["repair.order"].read_group(
             domain,

@@ -1,5 +1,5 @@
 =========================
-Repair IMEI Customization
+Repair IMEI
 =========================
 
 This module extends Odoo's standard features to manage mobile and electronic device repairs by introducing mandatory IMEI tracking capabilities for customer-owned devices. Because these items are typically brought in directly by customers rather than pulled from internal stock (which uses `lot_id`), a dedicated character field is utilized. The module injects structured validation handlers into categories, product templates, and repair workflow orders to enforce global hardware uniqueness, prevent unauthorized duplication, and eliminate format errors during equipment servicing operations.
@@ -35,8 +35,8 @@ Changelog
 18.0.1.0.0
 ----------
 
-* Initial release of the Repair IMEI Customization module.
-* Implemented strict structural manifest declarations, automated data normalization, and global uniqueness checks following OCA design specifications.
+* Initial release of the Repair IMEI module.
+* Added mandatory IMEI tracking, Luhn validation, data normalization, and uniqueness enforcement for repair orders.
 
 Bug Tracker
 ===========
