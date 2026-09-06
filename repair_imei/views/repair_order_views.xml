@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_repair_order_form_inherit_imei" model="ir.ui.view">
+        <field name="name">repair.order.form.inherit.imei</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="imei_required" invisible="1" />
+                <field
+                    name="imei_number"
+                    placeholder="e.g. 356938035643809"
+                    required="imei_required"
+                    readonly="state != 'draft'"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_repair_order_search_inherit_imei" model="ir.ui.view">
+        <field name="name">repair.order.search.inherit.imei</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="imei_number" string="IMEI Number" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
