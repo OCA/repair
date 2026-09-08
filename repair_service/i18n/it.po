@@ -1,0 +1,107 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_service
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-09-15 08:42+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__product_uom_category_id
+msgid "Category"
+msgstr "Categoria"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: repair_service
+#: model:ir.model.fields,help:repair_service.field_repair_service__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+"Le conversioni tra unità di misura possono avvenire solo se appartengono "
+"alla stessa categoria. La conversione verrà effettuata in base alle "
+"proporzioni."
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__display_name
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__id
+msgid "ID"
+msgstr "ID"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__product_id
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__product_uom
+msgid "Product Uom"
+msgstr "UdM prodotto"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__product_uom_qty
+#: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: repair_service
+#: model:ir.model,name:repair_service.model_repair_order
+msgid "Repair Order"
+msgstr "Ordine di riparazione"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__repair_id
+msgid "Repair Order Reference"
+msgstr "Riferimento ordine riparazione"
+
+#. module: repair_service
+#: model:ir.model,name:repair_service.model_repair_service
+msgid "Repair Service"
+msgstr "Servizio riparazione"
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_order__repair_service_ids
+#: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
+msgid "Services"
+msgstr "Servizi"
+
+#~ msgid "repair.service"
+#~ msgstr "repair.service"
