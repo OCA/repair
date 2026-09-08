@@ -1,7 +1,8 @@
 [project]
 name = "odoo-addons-oca-repair"
-version = "19.0.20251219.0"
+version = "19.0.20260908.0"
 dependencies = [
+    "odoo-addon-base_repair_config==19.0.*",
     "odoo-addon-repair_security==19.0.*",
 ]
 classifiers=[
