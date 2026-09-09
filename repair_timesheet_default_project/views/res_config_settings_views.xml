@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Escodoo - Cristiano Mafra Junior <cristiano.mafra@escodoo.com.br>
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.repair.timesheet.default.project</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="base_repair_config.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='repair_setting_container']" position="inside">
+                <setting
+                    id="repair_timesheet_default_project"
+                    string="Repair Timesheets Default Project"
+                    help="Project and Task used to pre-fill new timesheet lines on Repair Orders"
+                >
+                    <div class="content-group">
+                        <div class="row mt16">
+                            <label
+                                string="Default Project"
+                                for="repair_timesheet_default_project_id"
+                                class="col-lg-3 o_light_label"
+                            />
+                            <field name="repair_timesheet_default_project_id" />
+                        </div>
+                        <div class="row mt8">
+                            <label
+                                string="Default Task"
+                                for="repair_timesheet_default_task_id"
+                                class="col-lg-3 o_light_label"
+                            />
+                            <field name="repair_timesheet_default_task_id" />
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
