@@ -22,6 +22,12 @@ msgid "Add Grouped Repair"
 msgstr "Aggiungere riparazione raggruppata"
 
 #. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_res_company__add_grouped_repair_state_ids
+#: model:ir.model.fields,field_description:repair_order_group.field_res_config_settings__add_grouped_repair_state_ids
+msgid "Add Grouped Repair Available In"
+msgstr ""
+
+#. module: repair_order_group
 #: model:ir.model.fields,help:repair_order_group.field_repair_order__grouped_repair_ids
 msgid "All other repairs that belong to the same group."
 msgstr "Tutte le altre riparazioni che appartengono allo stesso gruppo."
@@ -32,9 +38,19 @@ msgid "By Group"
 msgstr "Per gruppo"
 
 #. module: repair_order_group
+#: model:ir.model,name:repair_order_group.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: repair_order_group
 #: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__company_id
 msgid "Company"
 msgstr "Azienda"
+
+#. module: repair_order_group
+#: model:ir.model,name:repair_order_group.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
 
 #. module: repair_order_group
 #: model_terms:ir.ui.view,arch_db:repair_order_group.view_repair_order_form_inherit_group
@@ -144,7 +160,36 @@ msgstr ""
 #. odoo-python
 #: code:addons/repair_order_group/models/repair_order.py:0
 msgid ""
-"You cannot create a quotation for a repair order that is already linked to an existing sale order.\n"
+"Several open sale orders are already linked to repair orders from the same "
+"repair group and warehouse.\n"
+"Concerned repair order(s):\n"
+"%(ref_str)s"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order__show_add_grouped_repair
+msgid "Show Add Grouped Repair"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,help:repair_order_group.field_repair_order__show_add_grouped_repair
+msgid "Technical field used to control the Add Grouped Repair button."
+msgstr ""
+
+#. module: repair_order_group
+#. odoo-python
+#: code:addons/repair_order_group/models/repair_order.py:0
+msgid ""
+"You cannot add a grouped repair in the current repair state or when the "
+"related sale order is confirmed or cancelled."
+msgstr ""
+
+#. module: repair_order_group
+#. odoo-python
+#: code:addons/repair_order_group/models/repair_order.py:0
+msgid ""
+"You cannot create a quotation for a repair order that is already linked to "
+"an existing sale order.\n"
 "Concerned repair order(s):\n"
 "%(ref_str)s"
 msgstr ""
@@ -157,7 +202,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/repair_order_group/models/repair_order.py:0
 msgid ""
-"You need to define a customer for a repair order in order to create an associated quotation.\n"
+"You need to define a customer for a repair order in order to create an "
+"associated quotation.\n"
 "Concerned repair order(s):\n"
 "%(ref_str)s"
 msgstr ""

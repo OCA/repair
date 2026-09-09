@@ -1,6 +1,6 @@
 # Copyright (C) 2025 Cetmix OÜ
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
+from odoo import Command
 from odoo.exceptions import UserError
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
@@ -14,8 +14,24 @@ class TestRepairOrderGroup(TransactionCase):
     def setUpClass(cls):
         """Set up test data."""
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
         cls.company = cls.env.company
+        cls.draft_state = cls.env["ir.model.fields.selection"].search(
+            [
+                ("field_id.model", "=", "repair.order"),
+                ("field_id.name", "=", "state"),
+                ("value", "=", "draft"),
+            ],
+            limit=1,
+        )
+        cls.company.write(
+            {
+                "add_grouped_repair_state_ids": [
+                    Command.set(cls.draft_state.ids),
+                ],
+            }
+        )
         cls.partner = cls.env["res.partner"].create({"name": "Test Customer"})
         cls.another_partner = cls.env["res.partner"].create(
             {"name": "Another Customer"}
@@ -659,3 +675,299 @@ class TestRepairOrderGroup(TransactionCase):
 
         repair.action_repair_cancel()
         self.assertEqual(repair.state, "cancel")
+
+    # ------------------------------------------------------------------ #
+    #  Tests for task 5417: configurable "Add Grouped Repair" visibility  #
+    # ------------------------------------------------------------------ #
+
+    def _set_allowed_states(self, *state_codes):
+        """Configure states where Add Grouped Repair is allowed."""
+        states = self.env["ir.model.fields.selection"].search(
+            [
+                ("field_id.model", "=", "repair.order"),
+                ("field_id.name", "=", "state"),
+                ("value", "in", list(state_codes)),
+            ]
+        )
+        self.company.write(
+            {
+                "add_grouped_repair_state_ids": [
+                    Command.set(states.ids),
+                ],
+            }
+        )
+
+    def _create_repair(self):
+        """Create a draft repair order with the default test partner."""
+        return self.env["repair.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": self.product.id,
+                "picking_type_id": self.picking_type.id,
+            }
+        )
+
+    def _create_part_move(self, repair, product=None):
+        """Create an added part move for a repair order."""
+        product = product or self.product
+        return self.env["stock.move"].create(
+            {
+                "name": product.display_name,
+                "company_id": repair.company_id.id,
+                "repair_id": repair.id,
+                "repair_line_type": "add",
+                "product_id": product.id,
+                "product_uom": product.uom_id.id,
+                "product_uom_qty": 1.0,
+            }
+        )
+
+    def test_22_add_grouped_repair_visible_in_default_draft_state(self):
+        """Button is visible in draft state with default configuration."""
+        repair = self._create_repair()
+
+        self.assertEqual(repair.state, "draft")
+        self.assertTrue(repair.show_add_grouped_repair)
+        self.assertTrue(repair._can_add_grouped_repair())
+
+    def test_23_add_grouped_repair_hidden_in_disallowed_state(self):
+        """Button is hidden when current repair state is not configured."""
+        self._set_allowed_states("draft")
+
+        repair = self._create_repair()
+        repair._action_repair_confirm()
+
+        self.assertEqual(repair.state, "confirmed")
+        self.assertFalse(repair.show_add_grouped_repair)
+        self.assertFalse(repair._can_add_grouped_repair())
+
+    def test_24_add_grouped_repair_hidden_when_sale_order_confirmed(self):
+        """Confirmed sale order blocks adding grouped repairs."""
+        self._set_allowed_states("draft", "confirmed", "under_repair")
+
+        repair = self._create_repair()
+        sale_order = self.env["sale.order"].create({"partner_id": self.partner.id})
+        sale_order.action_confirm()
+        repair.sale_order_id = sale_order
+
+        self.assertEqual(sale_order.state, "sale")
+        self.assertFalse(repair.show_add_grouped_repair)
+        self.assertFalse(repair._can_add_grouped_repair())
+
+    def test_25_add_grouped_repair_hidden_when_sale_order_cancelled(self):
+        """Cancelled sale order blocks adding grouped repairs."""
+        self._set_allowed_states("draft", "confirmed", "under_repair")
+
+        repair = self._create_repair()
+        sale_order = self.env["sale.order"].create({"partner_id": self.partner.id})
+        sale_order.action_cancel()
+        repair.sale_order_id = sale_order
+
+        self.assertEqual(sale_order.state, "cancel")
+        self.assertFalse(repair.show_add_grouped_repair)
+        self.assertFalse(repair._can_add_grouped_repair())
+
+    def test_26_add_grouped_repair_hidden_when_no_state_is_allowed(self):
+        """Button is hidden when all state settings are disabled."""
+        self._set_allowed_states()
+
+        repair = self._create_repair()
+
+        self.assertFalse(repair.show_add_grouped_repair)
+        self.assertFalse(repair._can_add_grouped_repair())
+
+    def test_27_add_grouped_repair_visible_in_confirmed_state_when_allowed(self):
+        """Button is visible in confirmed state when it is configured."""
+        self._set_allowed_states("draft", "confirmed")
+
+        repair = self._create_repair()
+        repair._action_repair_confirm()
+
+        self.assertEqual(repair.state, "confirmed")
+        self.assertTrue(repair.show_add_grouped_repair)
+        self.assertTrue(repair._can_add_grouped_repair())
+
+    def test_28_add_grouped_repair_action_raises_when_not_allowed(self):
+        """Backend guard prevents adding grouped repairs when not allowed."""
+        self._set_allowed_states()
+
+        repair = self._create_repair()
+
+        with self.assertRaises(UserError):
+            repair.action_add_another_repair()
+
+        self.assertFalse(repair.show_add_grouped_repair)
+        self.assertFalse(repair._can_add_grouped_repair())
+
+    def test_29_add_grouped_repair_action_creates_repair_when_allowed(self):
+        """Backend action creates a grouped repair when rules allow it."""
+        self._set_allowed_states("draft")
+
+        repair = self._create_repair()
+        action = repair.action_add_another_repair()
+        new_repair = self.env["repair.order"].browse(action["res_id"])
+
+        self.assertTrue(repair.group_id)
+        self.assertEqual(new_repair.group_id, repair.group_id)
+        self.assertEqual(new_repair.partner_id, repair.partner_id)
+
+    def test_30_default_grouped_repair_state_is_draft(self):
+        """New companies use draft as default Add Grouped Repair state."""
+        company = self.env["res.company"].create(
+            {
+                "name": "Grouped Repair Default Company",
+            }
+        )
+
+        self.assertEqual(
+            company.add_grouped_repair_state_ids.mapped("value"),
+            ["draft"],
+        )
+
+    def test_31_add_grouped_repair_action_reuses_existing_group(self):
+        """Adding grouped repair reuses an existing repair group."""
+        self._set_allowed_states("draft")
+
+        group = self.env["repair.order.group"].create(
+            {
+                "partner_id": self.partner.id,
+            }
+        )
+        repair = self.env["repair.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": self.product.id,
+                "picking_type_id": self.picking_type.id,
+                "group_id": group.id,
+            }
+        )
+
+        action = repair.action_add_another_repair()
+        new_repair = self.env["repair.order"].browse(action["res_id"])
+
+        self.assertEqual(repair.group_id, group)
+        self.assertEqual(new_repair.group_id, group)
+        self.assertEqual(group.repair_count, 2)
+
+    def test_32_grouped_sale_order_creation_requires_partner(self):
+        """Grouped quotation creation raises when grouped repair has no partner."""
+        group = self.env["repair.order.group"].create({})
+        repair = self.env["repair.order"].create(
+            {
+                "product_id": self.product.id,
+                "picking_type_id": self.picking_type.id,
+                "group_id": group.id,
+            }
+        )
+
+        with self.assertRaises(UserError) as error:
+            repair.action_create_sale_order()
+
+        self.assertIn("define a customer", str(error.exception))
+        self.assertIn(repair.name, str(error.exception))
+
+    def test_33_link_to_existing_group_sale_order_returns_false_without_so(self):
+        """Existing quotation helper returns False when repairs have no open SO."""
+        self._set_allowed_states("draft")
+
+        repair = self._create_repair()
+        action = repair.action_add_another_repair()
+        new_repair = self.env["repair.order"].browse(action["res_id"])
+
+        self.assertFalse((repair | new_repair)._link_to_existing_group_sale_order())
+        self.assertFalse(repair.sale_order_id)
+        self.assertFalse(new_repair.sale_order_id)
+
+    def test_34_reuse_open_group_quotation_for_new_repair_parts(self):
+        """New grouped repair reuses open quotation and keeps old parts."""
+        self._set_allowed_states("draft")
+
+        repair = self._create_repair()
+        first_move = self._create_part_move(repair)
+
+        repair.action_create_sale_order()
+        sale_order = repair.sale_order_id
+
+        self.assertTrue(sale_order)
+        self.assertEqual(first_move.sale_line_id.order_id, sale_order)
+
+        action = repair.action_add_another_repair()
+        new_repair = self.env["repair.order"].browse(action["res_id"])
+
+        second_product = self.env["product.product"].create(
+            {
+                "name": "Second Grouped Repair Part",
+                "type": "consu",
+                "list_price": 50.0,
+            }
+        )
+        second_move = self._create_part_move(new_repair, second_product)
+
+        new_repair.action_create_sale_order()
+
+        repair.invalidate_recordset()
+        new_repair.invalidate_recordset()
+        sale_order.invalidate_recordset()
+        first_move.invalidate_recordset()
+        second_move.invalidate_recordset()
+
+        self.assertEqual(repair.sale_order_id, sale_order)
+        self.assertEqual(new_repair.sale_order_id, sale_order)
+        self.assertEqual(first_move.sale_line_id.order_id, sale_order)
+        self.assertEqual(second_move.sale_line_id.order_id, sale_order)
+        self.assertIn(self.product, sale_order.order_line.product_id)
+        self.assertIn(second_product, sale_order.order_line.product_id)
+
+    def test_35_existing_group_sale_order_without_repairs_to_add(self):
+        """Existing quotation helper succeeds when all repairs already have SO."""
+        repair = self._create_repair()
+        self._create_part_move(repair)
+
+        repair.action_create_sale_order()
+
+        self.assertTrue(repair.sale_order_id)
+        self.assertTrue(repair._link_to_existing_group_sale_order())
+
+    def test_36_link_to_existing_group_sale_order_raises_for_multiple_sos(self):
+        """Existing quotation helper rejects multiple open SOs in one group."""
+        group = self.env["repair.order.group"].create(
+            {
+                "partner_id": self.partner.id,
+            }
+        )
+        repair_1 = self.env["repair.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": self.product.id,
+                "picking_type_id": self.picking_type.id,
+                "group_id": group.id,
+            }
+        )
+        repair_2 = self.env["repair.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": self.product.id,
+                "picking_type_id": self.picking_type.id,
+                "group_id": group.id,
+            }
+        )
+        sale_order_1, sale_order_2 = self.env["sale.order"].create(
+            [
+                {
+                    "partner_id": self.partner.id,
+                },
+                {
+                    "partner_id": self.partner.id,
+                },
+            ]
+        )
+
+        repair_1.sale_order_id = sale_order_1
+        repair_2.sale_order_id = sale_order_2
+
+        with self.assertRaises(UserError) as error:
+            (repair_1 | repair_2)._link_to_existing_group_sale_order()
+
+        self.assertIn("Several open sale orders", str(error.exception))
+        self.assertIn(repair_1.name, str(error.exception))
+        self.assertIn(repair_2.name, str(error.exception))

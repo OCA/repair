@@ -1,7 +1,7 @@
 # Copyright (C) 2025 Cetmix OÜ
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -35,6 +35,29 @@ class RepairOrder(models.Model):
         help="All other repairs that belong to the same group.",
     )
 
+    show_add_grouped_repair = fields.Boolean(
+        compute="_compute_show_add_grouped_repair",
+        help="Technical field used to control the Add Grouped Repair button.",
+    )
+
+    def _can_add_grouped_repair(self):
+        """Return True if this repair can be added to a repair group."""
+        self.ensure_one()
+        allowed_states = set(
+            self.company_id.sudo().add_grouped_repair_state_ids.mapped("value")
+        )
+        return self.state in allowed_states and self.sale_order_id.state not in (
+            "sale",
+            "cancel",
+        )
+
+    @api.depends(
+        "state", "sale_order_id.state", "company_id.add_grouped_repair_state_ids"
+    )
+    def _compute_show_add_grouped_repair(self):
+        for repair in self:
+            repair.show_add_grouped_repair = repair._can_add_grouped_repair()
+
     @api.depends("group_id", "group_id.repair_ids")
     def _compute_grouped_repair_ids(self):
         """Compute other repairs in the same group (excluding current repair)."""
@@ -53,10 +76,19 @@ class RepairOrder(models.Model):
         partner, company, and locations, but not copy any parts or products.
         """
         self.ensure_one()
+
+        if not self._can_add_grouped_repair():
+            raise UserError(
+                self.env._(
+                    "You cannot add a grouped repair in the current repair "
+                    "state or when the related sale order is confirmed "
+                    "or cancelled."
+                )
+            )
+
         if not self.group_id:
             self.group_id = self.env["repair.order.group"].create({})
 
-        # Create new empty repair record within the same group
         new_repair = self.env["repair.order"].create(
             {
                 "group_id": self.group_id.id,
@@ -183,7 +215,7 @@ class RepairOrder(models.Model):
         grouped = self.filtered(lambda r: r.group_id)
         ungrouped = self - grouped
 
-        # No groups at all → fallback to core logic
+        # No groups at all -> fallback to core logic
         if not grouped:
             return super().action_create_sale_order()
 
@@ -192,7 +224,7 @@ class RepairOrder(models.Model):
         if concerned:
             ref_str = "\n".join(concerned.mapped("name"))
             raise UserError(
-                _(
+                self.env._(
                     "You cannot create a quotation for a repair order that is "
                     "already linked to an existing sale order.\n"
                     "Concerned repair order(s):\n%(ref_str)s",
@@ -204,7 +236,7 @@ class RepairOrder(models.Model):
         if no_partner:
             ref_str = "\n".join(no_partner.mapped("name"))
             raise UserError(
-                _(
+                self.env._(
                     "You need to define a customer for a repair order in order to "
                     "create an associated quotation.\n"
                     "Concerned repair order(s):\n%(ref_str)s",
@@ -236,6 +268,9 @@ class RepairOrder(models.Model):
 
             # Create a separate SO per warehouse ID
             for warehouse_id, repairs in repairs_by_warehouse.items():
+                if repairs._link_to_existing_group_sale_order():
+                    continue
+
                 so_vals_list.append(
                     {
                         "company_id": _group.company_id.id,
@@ -258,3 +293,32 @@ class RepairOrder(models.Model):
 
         # Return standard action - it will find all SOs linked to repairs
         return self.action_view_sale_order()
+
+    def _link_to_existing_group_sale_order(self):
+        """Link repairs without SO to the existing open group quotation."""
+        sale_orders = self.sale_order_id.filtered(
+            lambda so: so.state not in ("sale", "cancel")
+        )
+        if not sale_orders:
+            return False
+
+        if len(sale_orders) > 1:
+            ref_str = "\n".join(self.filtered("sale_order_id").mapped("name"))
+            raise UserError(
+                self.env._(
+                    "Several open sale orders are already linked to repair "
+                    "orders from the same repair group and warehouse.\n"
+                    "Concerned repair order(s):\n%(ref_str)s",
+                    ref_str=ref_str,
+                )
+            )
+
+        repairs_to_add = self.filtered(lambda repair: not repair.sale_order_id)
+        if repairs_to_add:
+            sale_orders.write(
+                {"repair_order_ids": [(4, repair.id) for repair in repairs_to_add]}
+            )
+            repairs_to_add.move_ids._create_repair_sale_order_line()
+            repairs_to_add._post_create_grouped_hook()
+
+        return True

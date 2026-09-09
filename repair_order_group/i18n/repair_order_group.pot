@@ -19,6 +19,12 @@ msgid "Add Grouped Repair"
 msgstr ""
 
 #. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_res_company__add_grouped_repair_state_ids
+#: model:ir.model.fields,field_description:repair_order_group.field_res_config_settings__add_grouped_repair_state_ids
+msgid "Add Grouped Repair Available In"
+msgstr ""
+
+#. module: repair_order_group
 #: model:ir.model.fields,help:repair_order_group.field_repair_order__grouped_repair_ids
 msgid "All other repairs that belong to the same group."
 msgstr ""
@@ -29,8 +35,18 @@ msgid "By Group"
 msgstr ""
 
 #. module: repair_order_group
+#: model:ir.model,name:repair_order_group.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: repair_order_group
 #: model:ir.model.fields,field_description:repair_order_group.field_repair_order_group__company_id
 msgid "Company"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model,name:repair_order_group.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: repair_order_group
@@ -133,6 +149,33 @@ msgstr ""
 #. module: repair_order_group
 #: model:ir.model.fields,help:repair_order_group.field_repair_order__group_id
 msgid "Repairs sharing the same group can be processed and quoted together."
+msgstr ""
+
+#. module: repair_order_group
+#. odoo-python
+#: code:addons/repair_order_group/models/repair_order.py:0
+msgid ""
+"Several open sale orders are already linked to repair orders from the same repair group and warehouse.\n"
+"Concerned repair order(s):\n"
+"%(ref_str)s"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,field_description:repair_order_group.field_repair_order__show_add_grouped_repair
+msgid "Show Add Grouped Repair"
+msgstr ""
+
+#. module: repair_order_group
+#: model:ir.model.fields,help:repair_order_group.field_repair_order__show_add_grouped_repair
+msgid "Technical field used to control the Add Grouped Repair button."
+msgstr ""
+
+#. module: repair_order_group
+#. odoo-python
+#: code:addons/repair_order_group/models/repair_order.py:0
+msgid ""
+"You cannot add a grouped repair in the current repair state or when the "
+"related sale order is confirmed or cancelled."
 msgstr ""
 
 #. module: repair_order_group
