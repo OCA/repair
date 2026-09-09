@@ -51,7 +51,7 @@ class TestRepairAnalyticDistributionTimesheet(TransactionCase):
             }
         )
 
-    def _add_timesheet(self, repair, project, hours=2.0):
+    def _add_timesheet(self, repair, project, hours=2.0, date=None):
         """`amount` is not settable directly: hr_timesheet recomputes it
         from `unit_amount * employee_id.hourly_cost` on create/write
         (see `hr_timesheet.models.hr_timesheet._timesheet_postprocess_values`),
@@ -66,6 +66,7 @@ class TestRepairAnalyticDistributionTimesheet(TransactionCase):
                 "employee_id": self.employee.id,
                 "unit_amount": hours,
                 "company_id": repair.company_id.id,
+                **({"date": date} if date else {}),
             }
         )
 
@@ -229,3 +230,39 @@ class TestRepairAnalyticDistributionTimesheet(TransactionCase):
 
         action = repair.action_view_analytic_lines()
         self.assertIn(("project_id", "=", False), action["domain"])
+
+    def test_distribution_line_keeps_timesheet_date(self):
+        """The distribution line must be booked on the date the work was
+        done, not on the date the repair happened to be completed.
+        Otherwise the cost lands in the wrong accounting period whenever
+        a repair spans a period boundary."""
+        repair = self._make_repair()
+        timesheet = self._add_timesheet(
+            repair, self.project_spread, hours=2.0, date="2024-01-15"
+        )
+        self._complete_repair(repair)
+
+        lines = self._distribution_lines(repair)
+        self.assertTrue(lines)
+        self.assertEqual(
+            lines.mapped("date"),
+            [timesheet.date] * len(lines),
+            "Distribution line must inherit the timesheet date.",
+        )
+
+    def test_distribution_line_keeps_timesheet_uom(self):
+        """unit_amount is a number of hours, so the line must carry the
+        timesheet's UoM; without it the quantity is unitless and analytic
+        reports cannot aggregate it."""
+        repair = self._make_repair()
+        timesheet = self._add_timesheet(repair, self.project_spread, hours=2.0)
+        self._complete_repair(repair)
+
+        lines = self._distribution_lines(repair)
+        self.assertTrue(lines)
+        self.assertTrue(timesheet.product_uom_id)
+        self.assertEqual(
+            lines.product_uom_id,
+            timesheet.product_uom_id,
+            "Distribution line must inherit the timesheet UoM.",
+        )

@@ -24,7 +24,7 @@ addon | version | maintainers | summary
 [base_repair_config](base_repair_config/) | 18.0.1.0.0 | <a href='https://github.com/marcelsavegnago'><img src='https://github.com/marcelsavegnago.png' width='32' height='32' style='border-radius:50%;' alt='marcelsavegnago'/></a> | Provides general settings for the Repair App
 [partner_repair_button](partner_repair_button/) | 18.0.1.0.0 | <a href='https://github.com/AaronHForgeFlow'><img src='https://github.com/AaronHForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='AaronHForgeFlow'/></a> | Partner Repair Smart Button
 [repair_analytic](repair_analytic/) | 18.0.1.0.0 |  | Adds analytic distribution to repair orders
-[repair_analytic_timesheet](repair_analytic_timesheet/) | 18.0.1.0.0 |  | Spreads timesheet costs through analytic distribution on repair orders
+[repair_analytic_timesheet](repair_analytic_timesheet/) | 18.0.1.0.1 |  | Spreads timesheet costs through analytic distribution on repair orders
 [repair_order_group](repair_order_group/) | 18.0.1.0.1 |  | Group several repair orders and keep them in sync
 [repair_order_group_services](repair_order_group_services/) | 18.0.1.0.0 |  | Support for services in grouped repair orders
 [repair_order_line_sequence](repair_order_line_sequence/) | 18.0.1.0.0 |  | Allow to change line order in repairs
@@ -33,7 +33,7 @@ addon | version | maintainers | summary
 [repair_picking_after_done](repair_picking_after_done/) | 18.0.1.0.0 |  | Transfer repaired move to another location directly from repair order
 [repair_quality_control](repair_quality_control/) | 18.0.1.0.0 | <a href='https://github.com/peluko00'><img src='https://github.com/peluko00.png' width='32' height='32' style='border-radius:50%;' alt='peluko00'/></a> | Create quality controls from repair order
 [repair_scheduled_date_calendar_view](repair_scheduled_date_calendar_view/) | 18.0.1.0.0 |  | Repair order calendar view based on scheduled data
-[repair_service](repair_service/) | 18.0.1.2.3 |  | Adds services to repair orders, so that they can be added as sale order lines.
+[repair_service](repair_service/) | 18.0.1.2.4 |  | Adds services to repair orders, so that they can be added as sale order lines.
 [repair_stock](repair_stock/) | 18.0.1.0.0 |  | Repair Stock
 [repair_timesheet](repair_timesheet/) | 18.0.1.0.0 | <a href='https://github.com/ppyczko'><img src='https://github.com/ppyczko.png' width='32' height='32' style='border-radius:50%;' alt='ppyczko'/></a> | Repair Timesheet
 [repair_type](repair_type/) | 18.0.1.0.1 |  | Repair type

@@ -96,6 +96,11 @@ msgid "Repair Service"
 msgstr ""
 
 #. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_order__repair_service_ids
 #: model_terms:ir.ui.view,arch_db:repair_service.report_repairorder_inherit_services
 #: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
