@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_repair_sync_banner" model="ir.ui.view">
+        <field name="name">sale.order.form - repair_quotation_manual_sync</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form//sheet" position="before">
+                <field name="needs_repair_sync" invisible="1" />
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    invisible="not needs_repair_sync"
+                >
+                    <p>
+                        <i class="fa fa-info-circle" />
+                        <span class="oe_inline">
+                            Repair Order and Quotation are not synchronized.
+                            Would you like to synchronize this Sale Order with the repair lines?
+                        </span>
+                    </p>
+                    <button
+                        name="action_sync_repair_lines"
+                        type="object"
+                        string="Synchronize Lines"
+                        icon="fa-refresh"
+                        class="btn-link ps-0"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
