@@ -34,9 +34,21 @@ class ProductTemplate(models.Model):
         "categ_id.parent_id",
     )
     def _compute_is_imei_required(self):
+        """Compute whether IMEI tracking is required for the product.
+
+        By default, 'is_imei_required' is set to False.
+        1. It first checks the 'imei_required' field at the product level.
+           If set to 'yes', it sets 'is_imei_required' to True.
+        2. If set to 'parent', it calls the '_get_computed_imei_required'
+           function on the product category to traverse the hierarchy
+           and resolve the requirement value.
+        """
         for template in self:
             val = template.imei_required
-            if val == "parent" and template.categ_id:
-                val = template.categ_id._get_computed_imei_required()
-
-            template.is_imei_required = val == "yes"
+            template.is_imei_required = False
+            if val == "yes":
+                template.is_imei_required = True
+            elif val == "parent" and template.categ_id:
+                template.is_imei_required = (
+                    template.categ_id._get_computed_imei_required()
+                )

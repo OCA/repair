@@ -12,11 +12,19 @@ This module extends Odoo's standard features to manage mobile and electronic dev
 Configuration
 =============
 
+The module allows configuring IMEI requirements at both the product category and product template levels to provide maximum flexibility:
+
+* **Product Category Level**: Set `IMEI Required` on a category as a global default for all products belonging to it or its child categories. 
+* **Product Template Level (`imei_required`)**: Each product template offers three selection states:
+  * **Yes**: Explicitly forces IMEI tracking to be enabled for the product, regardless of category settings.
+  * **No**: Explicitly disables IMEI tracking for the product.
+  * **Parent**: Inherits the IMEI requirement dynamically from the product category hierarchy (walking up `parent_id` chains until a definitive requirement is found).
+
 To configure this module:
 
 1. Navigate to **Inventory > Configuration > Products > Product Categories**.
-2. Select or create a target category.
-3. Enable the **IMEI Mandatory** field restriction to require checking rules for linked items.
+2. Select or create a target category and enable the **IMEI Required** field.
+3. On individual **Product Templates**, set the **IMEI Required** field to `Yes`, `No`, or `Parent` depending on your tracking needs.
 
 Usage
 =====
