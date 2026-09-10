@@ -10,7 +10,6 @@ class ProductCategory(models.Model):
     imei_required = fields.Boolean(
         string="IMEI Required",
         default=False,
-        required=True,
         help="Set requirement manually, or inherit from parent category.",
     )
 
