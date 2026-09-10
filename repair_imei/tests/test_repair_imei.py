@@ -18,14 +18,14 @@ class TestRepairIMEI(TransactionCase):
         cls.category_imei_required = cls.env["product.category"].create(
             {
                 "name": "Mobile Phones (IMEI Mandatory)",
-                "imei_required": "yes",
+                "imei_required": True,
             }
         )
 
         cls.category_imei_optional = cls.env["product.category"].create(
             {
                 "name": "Accessories (IMEI Optional)",
-                "imei_required": "no",
+                "imei_required": False,
             }
         )
 
