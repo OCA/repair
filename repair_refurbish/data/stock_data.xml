@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="stock_location_refurbish" model="stock.location">
+            <field name="name">Refurbish</field>
+            <field name="usage">production</field>
+            <field name="company_id" />
+        </record>
+    </data>
+    <data noupdate="1">
+        <function
+            model="ir.default"
+            name="set"
+            eval="('product.template', 'property_stock_refurbish', obj().env.ref('repair_refurbish.stock_location_refurbish').id)"
+        />
+    </data>
+</odoo>
