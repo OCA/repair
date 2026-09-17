@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Escodoo - Cristiano Mafra Junior <cristiano.mafra@escodoo.com.br>
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="repair_order_form_view_timesheet_default_project" model="ir.ui.view">
+        <field name="name">repair.order.form.view.timesheet.default.project</field>
+        <field name="model">repair.order</field>
+        <field
+            name="inherit_id"
+            ref="repair_timesheet.repair_order_form_view_timesheet_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_ids']" position="before">
+                <field name="repair_timesheet_default_project_id" invisible="1" />
+                <field name="repair_timesheet_default_task_id" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']" position="attributes">
+                <attribute
+                    name="context"
+                >{'default_project_id': repair_timesheet_default_project_id, 'default_task_id': repair_timesheet_default_task_id}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
