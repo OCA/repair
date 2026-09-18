@@ -14,17 +14,17 @@ class ProductCategory(models.Model):
     )
 
     def _get_computed_imei_required(self):
-        """Recursively walk up category parents to resolve 'parent' setting.
-
-        Resolution order:
-        1. Checks the current category's 'imei_required' value.
-        2. If the current value is False and a parent category exists,
-           it recursively checks the parent's value.
-        3. Continues bubbling up the hierarchy until it finds a True value
-           or reaches the top of the category tree.
-        """
         self.ensure_one()
-        val = self.imei_required
-        if not val and self.parent_id:
-            return self.parent_id._get_computed_imei_required()
-        return val if val else False
+        if not self.parent_path:
+            return self.imei_required or False
+
+        ancestor_ids = [int(p) for p in self.parent_path.split("/") if p]
+        ancestors = {
+            cat.id: cat for cat in self.env["product.category"].browse(ancestor_ids)
+        }
+        for catg_id in reversed(ancestor_ids):
+            catg = ancestors.get(catg_id)
+            if catg and catg.imei_required:
+                return True
+
+        return False

@@ -219,3 +219,43 @@ class TestRepairIMEI(TransactionCase):
                     "imei_number": "490154203237518",
                 }
             )
+
+    def test_12_deep_category_hierarchy_inheritance(self):
+        # Create a 3-level deep hierarchy: Root (True) -> Child -> Grandchild
+        cat_root = self.env["product.category"].create(
+            {
+                "name": "Root IMEI Required",
+                "imei_required": True,
+            }
+        )
+        cat_child = self.env["product.category"].create(
+            {
+                "name": "Sub Category",
+                "parent_id": cat_root.id,
+                "imei_required": False,
+            }
+        )
+        cat_grandchild = self.env["product.category"].create(
+            {
+                "name": "Deep Grandchild",
+                "parent_id": cat_child.id,
+                "imei_required": False,
+            }
+        )
+
+        product = self.env["product.product"].create(
+            {
+                "name": "Deep Nested Product",
+                "categ_id": cat_grandchild.id,
+                "imei_required": "parent",
+            }
+        )
+
+        repair = self.env["repair.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": product.id,
+                "imei_number": self.valid_imei,
+            }
+        )
+        self.assertTrue(repair.is_imei_required)
