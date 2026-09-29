@@ -117,6 +117,10 @@ Contributors
 
 - ``Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>``\ \_
 
+- `Versada <https://versada.eu>`__:
+
+  - Paulius Sladkevičius <paulius@versada.eu>
+
 Maintainers
 -----------
 
