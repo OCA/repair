@@ -84,7 +84,9 @@ class MrpInventoryProcure(models.TransientModel):
             self._prepare_stock_move_vals(picking)
         )
         picking.action_assign()
-        if self.repair_order_id.lot_id:
+        # No move line exists when nothing could be reserved (e.g. the stock is
+        # already reserved elsewhere); there is then nothing to set the lot on.
+        if self.repair_order_id.lot_id and stock_move.move_line_ids:
             stock_move.move_line_ids[0].write(
                 {"lot_id": self.repair_order_id.lot_id.id}
             )
