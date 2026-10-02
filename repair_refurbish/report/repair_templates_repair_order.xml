@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_repairorder" inherit_id="repair.report_repairorder">
+        <xpath expr="//div[@id='informations']/div[1]" position="inside">
+            <p t-if="o.to_refurbish and o.refurbish_product_id" class="m-0">
+                <strong>Refurbished Product:</strong>
+                <span t-field="o.refurbish_product_id" />
+            </p>
+            <p
+                t-if="o.to_refurbish and o.refurbish_lot_id"
+                class="m-0"
+                groups="stock.group_production_lot"
+            >
+                <strong>Refurbished Lot/Serial:</strong>
+                <span t-field="o.refurbish_lot_id" />
+            </p>
+        </xpath>
+    </template>
+</odoo>

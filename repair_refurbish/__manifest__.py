@@ -15,5 +15,6 @@
         "data/stock_data.xml",
         "views/product_template_view.xml",
         "views/product_product_view.xml",
+        "report/repair_templates_repair_order.xml",
     ],
 }
