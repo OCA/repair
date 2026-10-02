@@ -2,3 +2,4 @@
 - Lois Rilo \<<lois.rilo@forgeflow.com>\>
 - Akim Juillerat \<<akim.juillerat@camptocamp.com>\>
 - Bhavesh Odedra \<<bodedra@opensourceintegrators.com>\>
+- David Jiménez \<<david.jimenez@forgeflow.com>\>
