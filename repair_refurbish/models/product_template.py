@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class ProductTemplate(models.Model):
@@ -45,4 +46,7 @@ class ProductTemplate(models.Model):
         products = self.env["product.product"].search(
             [("refurbish_product_id", operator, value)], limit=None
         )
-        return [("id", "in", products.mapped("product_tmpl_id").ids)]
+        return Domain([("id", "in", products.product_tmpl_id.ids)])
+
+    def _get_related_fields_variant_template(self):
+        return super()._get_related_fields_variant_template() + ["refurbish_product_id"]

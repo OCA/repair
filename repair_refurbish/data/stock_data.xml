@@ -3,7 +3,6 @@
     <data>
         <record id="stock_location_refurbish" model="stock.location">
             <field name="name">Refurbish</field>
-            <field name="location_id" ref="stock.stock_location_locations_virtual" />
             <field name="usage">production</field>
             <field name="company_id" />
         </record>

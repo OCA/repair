@@ -17,7 +17,6 @@ class TestRepairRefurbish(BaseCommon):
 
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.stock_location_stock = cls.env.ref("stock.stock_location_stock")
-        cls.customer_location = cls.env.ref("stock.stock_location_customers")
         cls.refurbish_loc = cls.env.ref("repair_refurbish.stock_location_refurbish")
 
         cls.refurbish_product = cls.product_obj.create(
@@ -49,6 +48,19 @@ class TestRepairRefurbish(BaseCommon):
             }
         ).action_apply_inventory()
         return quantity
+
+    def test_create_template_with_refurbish_product(self):
+        template = self.env["product.template"].create(
+            {
+                "name": "Awesome Monitor",
+                "is_storable": True,
+                "refurbish_product_id": self.refurbish_product.id,
+            }
+        )
+        self.assertEqual(template.refurbish_product_id, self.refurbish_product)
+        self.assertEqual(
+            template.product_variant_ids.refurbish_product_id, self.refurbish_product
+        )
 
     def test_01_repair_refurbish(self):
         """Tests that locations are properly set with a product to
@@ -114,8 +126,6 @@ class TestRepairRefurbish(BaseCommon):
                             "product_uom_qty": 1.0,
                             "state": "draft",
                             "repair_line_type": "add",
-                            "location_id": self.stock_location_stock.id,
-                            "location_dest_id": self.customer_location.id,
                         }
                     )
                 ],
