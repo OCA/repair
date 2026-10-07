@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='parent_id']" position="after">
                 <field name="imei_required" />
+                <field name="inherit_imei_required" />
             </xpath>
         </field>
     </record>
