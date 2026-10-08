@@ -65,10 +65,18 @@ class RepairOrder(models.Model):
                         "result_package_id": False,
                         "location_id": refurbish_loc.id,
                         "location_dest_id": self.refurbish_location_dest_id.id,
+                        "consume_line_ids": [
+                            (6, 0, self._get_refurbish_consume_lines().ids)
+                        ],
                     },
                 )
             ],
         }
+
+    def _get_refurbish_consume_lines(self):
+        self.ensure_one()
+        done_moves = self.move_ids.filtered(lambda m: m.state == "done")
+        return (self.move_id | done_moves).move_line_ids
 
     def action_repair_done(self):
         to_refurbish_orders = self.filtered("to_refurbish")
@@ -83,6 +91,7 @@ class RepairOrder(models.Model):
                 ),
             ).action_repair_done()
             if repair.to_refurbish:
+                repair.move_id.move_line_ids.consume_line_ids = False
                 move = self.env["stock.move"].create(
                     repair._get_refurbish_stock_move_dict()
                 )
