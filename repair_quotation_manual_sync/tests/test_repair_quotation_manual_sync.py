@@ -78,3 +78,17 @@ class TestRepairQuotationManualSync(TransactionCase):
         self.repair_order.action_create_sale_order()
         self.repair_order.sale_order_id.action_confirm()
         self.assertTrue(self.move.is_repair_sale_confirmed)
+
+    def test_06_sync_banner_clears_after_unsyncing_a_line(self):
+        self.repair_order.action_create_sale_order()
+        sale_order = self.repair_order.sale_order_id
+        self.move.repair_invoiceable = False
+        sale_order._compute_needs_repair_sync()
+        self.assertTrue(sale_order.needs_repair_sync)
+        sale_order.action_sync_repair_lines()
+        self.assertEqual(self.move.sale_line_id.product_uom_qty, 0.0)
+        sale_order._compute_needs_repair_sync()
+        self.assertFalse(
+            sale_order.needs_repair_sync,
+            "Banner should clear once the zeroed line has been synced.",
+        )

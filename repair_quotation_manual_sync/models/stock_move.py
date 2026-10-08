@@ -53,14 +53,25 @@ class StockMove(models.Model):
                 )
             )
             move.repair_update_sync = move.sale_line_id and (
-                move.product_id != move.sale_line_id.product_id
-                or float_compare(
-                    move.product_uom_qty,
-                    move.sale_line_id.product_uom_qty,
-                    precision_rounding=precision,
+                (
+                    move.repair_invoiceable
+                    and (
+                        move.product_id != move.sale_line_id.product_id
+                        or float_compare(
+                            move.product_uom_qty,
+                            move.sale_line_id.product_uom_qty,
+                            precision_rounding=precision,
+                        )
+                        != 0
+                    )
                 )
-                != 0
-                or not move.repair_invoiceable
+                or (
+                    not move.repair_invoiceable
+                    and not float_is_zero(
+                        move.sale_line_id.product_uom_qty,
+                        precision_rounding=precision,
+                    )
+                )
             )
 
     def write(self, vals):
