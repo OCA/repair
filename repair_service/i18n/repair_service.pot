@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,20 +14,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: repair_service
-#: model:ir.model.fields,field_description:repair_service.field_repair_service__product_uom_category_id
-msgid "Category"
-msgstr ""
-
-#. module: repair_service
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__company_id
 msgid "Company"
-msgstr ""
-
-#. module: repair_service
-#: model:ir.model.fields,help:repair_service.field_repair_service__product_uom_category_id
-msgid ""
-"Conversion between Units of Measure can only occur if they belong to the "
-"same category. The conversion will be made based on the ratios."
 msgstr ""
 
 #. module: repair_service
@@ -46,6 +34,12 @@ msgid "Description"
 msgstr ""
 
 #. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_order__id
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__id
 msgid "ID"
 msgstr ""
@@ -74,6 +68,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:repair_service.field_repair_service__product_uom_qty
 #: model_terms:ir.ui.view,arch_db:repair_service.view_repair_order_form_inherit
 msgid "Quantity"
+msgstr ""
+
+#. module: repair_service
+#: model:ir.model.fields,field_description:repair_service.field_repair_service__relative_uom_id
+msgid "Reference Unit"
 msgstr ""
 
 #. module: repair_service
