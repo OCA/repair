@@ -1,0 +1,8 @@
+<odoo>
+    <record id="repair_service_rule_multi_company" model="ir.rule">
+        <field name="name">Repair Service multi-company</field>
+        <field name="model_id" ref="repair_service.model_repair_service" />
+        <field name="domain_force">[('repair_id.company_id', 'in', company_ids)]</field>
+        <field name="global" eval="True" />
+    </record>
+</odoo>
