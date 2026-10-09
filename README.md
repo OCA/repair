@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [base_repair_config](base_repair_config/) | 19.0.1.0.0 | <a href='https://github.com/marcelsavegnago'><img src='https://github.com/marcelsavegnago.png' width='32' height='32' style='border-radius:50%;' alt='marcelsavegnago'/></a> | Provides general settings for the Repair App
 [repair_security](repair_security/) | 19.0.1.0.0 |  | Create security groups for Repair
+[repair_service](repair_service/) | 19.0.1.0.0 |  | Adds services to repair orders, so that they can be added as sale order lines.
 
 [//]: # (end addons)
 
