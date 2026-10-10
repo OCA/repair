@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-09-12 07:46+0000\n"
+"PO-Revision-Date: 2026-10-10 11:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -26,7 +26,7 @@ msgstr "Dodaj združeno popravilo"
 #: model:ir.model.fields,field_description:repair_order_group.field_res_company__add_grouped_repair_state_ids
 #: model:ir.model.fields,field_description:repair_order_group.field_res_config_settings__add_grouped_repair_state_ids
 msgid "Add Grouped Repair Available In"
-msgstr ""
+msgstr "Dodajanje združenega popravila je na voljo v stanjih"
 
 #. module: repair_order_group
 #: model:ir.model.fields,help:repair_order_group.field_repair_order__grouped_repair_ids
@@ -165,16 +165,20 @@ msgid ""
 "Concerned repair order(s):\n"
 "%(ref_str)s"
 msgstr ""
+"Več odprtih prodajnih nalogov je že povezanih z nalogi za popravilo iz iste "
+"skupine popravil in skladišča.\n"
+"Zadevni nalogi za popravilo:\n"
+"%(ref_str)s"
 
 #. module: repair_order_group
 #: model:ir.model.fields,field_description:repair_order_group.field_repair_order__show_add_grouped_repair
 msgid "Show Add Grouped Repair"
-msgstr ""
+msgstr "Prikaži dodajanje združenega popravila"
 
 #. module: repair_order_group
 #: model:ir.model.fields,help:repair_order_group.field_repair_order__show_add_grouped_repair
 msgid "Technical field used to control the Add Grouped Repair button."
-msgstr ""
+msgstr "Tehnično polje za upravljanje gumba Dodaj združeno popravilo."
 
 #. module: repair_order_group
 #. odoo-python
@@ -183,6 +187,8 @@ msgid ""
 "You cannot add a grouped repair in the current repair state or when the "
 "related sale order is confirmed or cancelled."
 msgstr ""
+"Združenega popravila ne morete dodati v trenutnem stanju popravila ali ko je "
+"povezani prodajni nalog potrjen ali preklican."
 
 #. module: repair_order_group
 #. odoo-python
