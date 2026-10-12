@@ -151,3 +151,34 @@ class TestRepairTransfer(TransactionCase):
         self.env["ir.config_parameter"].set_param("repair.auto_transfer_repair", True)
         with self.assertRaises(ValidationError):
             self.repair_order_no_product.action_validate()
+
+    def test_repair_transfer_no_reservation(self):
+        """Do not crash when the transfer move can't reserve any quant.
+
+        If the quantity to transfer is already reserved by another stock
+        operation, action_assign() creates no move line on the transfer,
+        so setting the lot on move_line_ids[0] used to raise
+        IndexError: tuple index out of range.
+        """
+        self.setUpRepairOrder(self.repair_r1)
+
+        # Reserve away all the available stock with an unrelated move, so
+        # the transfer wizard's own move can't reserve anything.
+        competing_move = self.env["stock.move"].create(
+            {
+                "name": "Competing reservation",
+                "product_id": self.product_with_lot.id,
+                "location_id": self.repair_r1.location_id.id,
+                "location_dest_id": self.env.ref("stock.stock_location_customers").id,
+                "product_uom_qty": 5.0,
+                "product_uom": self.product_with_lot.uom_id.id,
+            }
+        )
+        competing_move._action_confirm()
+        competing_move._action_assign()
+        self.assertEqual(competing_move.state, "assigned")
+
+        # No quantity left free to reserve: action_assign() creates no
+        # move line on the transfer, and this call must not raise.
+        self.createTransfer(self.repair_r1, 1.0)
+        self.assertEqual(len(self.repair_r1.picking_ids), 1)

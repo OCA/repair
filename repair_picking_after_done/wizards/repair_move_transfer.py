@@ -84,7 +84,7 @@ class MrpInventoryProcure(models.TransientModel):
             self._prepare_stock_move_vals(picking)
         )
         picking.action_assign()
-        if self.repair_order_id.lot_id:
+        if self.repair_order_id.lot_id and stock_move.move_line_ids:
             stock_move.move_line_ids[0].write(
                 {"lot_id": self.repair_order_id.lot_id.id}
             )
