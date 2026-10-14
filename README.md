@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [base_repair_config](base_repair_config/) | 19.0.1.0.0 | <a href='https://github.com/marcelsavegnago'><img src='https://github.com/marcelsavegnago.png' width='32' height='32' style='border-radius:50%;' alt='marcelsavegnago'/></a> | Provides general settings for the Repair App
+[repair_quotation_manual_sync](repair_quotation_manual_sync/) | 19.0.1.0.0 |  | Manually Synchronize Repair Orders with their Quotations
 [repair_security](repair_security/) | 19.0.1.0.0 |  | Create security groups for Repair
 [repair_service](repair_service/) | 19.0.1.0.0 |  | Adds services to repair orders, so that they can be added as sale order lines.
 [repair_stock_move_menu](repair_stock_move_menu/) | 19.0.1.0.0 |  | Adds a menu to obtain a list with repair moves
