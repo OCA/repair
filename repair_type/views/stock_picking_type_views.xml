@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="repair_type_view_picking_type_form" model="ir.ui.view">
+        <field name="name">stock.picking.type.inherit.repair.type</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="repair.repair_view_picking_type_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='default_location_dest_id']" position="before">
+                <field
+                    name="default_add_location_src_id"
+                    options="{'no_create': True}"
+                    invisible="code != 'repair_operation'"
+                    required="code == 'repair_operation'"
+                />
+            </xpath>
+
+            <xpath
+                expr="//field[@name='default_remove_location_dest_id']"
+                position="before"
+            >
+                <field
+                    name="default_remove_location_src_id"
+                    options="{'no_create': True}"
+                    invisible="code != 'repair_operation'"
+                    required="code == 'repair_operation'"
+                />
+            </xpath>
+
+            <xpath
+                expr="//field[@name='default_recycle_location_dest_id']"
+                position="before"
+            >
+                <field
+                    name="default_recycle_location_src_id"
+                    options="{'no_create': True}"
+                    invisible="code != 'repair_operation'"
+                    required="code == 'repair_operation'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
