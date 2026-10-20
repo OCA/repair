@@ -1,0 +1,6 @@
+- Create/edit a product and set traceability by 'By Lots' option.
+- Update quantity for that product and assign Lot/Serial number.
+- Go to Repairs > Repair Orders.
+- Create a new repair order
+- Select Lot/Serial number in the Lot/Serial field
+- Repair order will use the specific lot when processing
