@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_partner_form_repair_button" model="ir.ui.view">
+        <field name="name">res.partner.form.repair.button</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    name="action_view_repairs"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-wrench"
+                    groups="stock.group_stock_user"
+                    invisible="repair_count == 0"
+                >
+                    <field
+                        name="repair_count"
+                        widget="statinfo"
+                        string="Repairs"
+                        groups="stock.group_stock_user"
+                    />
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>
