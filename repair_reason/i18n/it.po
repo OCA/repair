@@ -1,0 +1,94 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_reason
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-04-03 12:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: repair_reason
+#: model:ir.model.fields,field_description:repair_reason.field_repair_reason__active
+msgid "Active"
+msgstr "Attiva"
+
+#. module: repair_reason
+#: model_terms:ir.ui.view,arch_db:repair_reason.view_repair_order_root_cause_form
+msgid "Archived"
+msgstr "In archivio"
+
+#. module: repair_reason
+#: model:ir.model.fields,field_description:repair_reason.field_repair_reason__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: repair_reason
+#: model:ir.model.fields,field_description:repair_reason.field_repair_reason__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: repair_reason
+#: model:ir.model.fields,field_description:repair_reason.field_repair_reason__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: repair_reason
+#: model:ir.model.fields,field_description:repair_reason.field_repair_reason__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: repair_reason
+#: model:ir.model.fields,field_description:repair_reason.field_repair_reason__id
+msgid "ID"
+msgstr "ID"
+
+#. module: repair_reason
+#: model:ir.model.fields,field_description:repair_reason.field_repair_reason____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: repair_reason
+#: model:ir.model.fields,field_description:repair_reason.field_repair_reason__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: repair_reason
+#: model:ir.model.fields,field_description:repair_reason.field_repair_reason__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: repair_reason
+#: model:ir.model,name:repair_reason.model_repair_order
+msgid "Repair Order"
+msgstr "Ordine di riparazione"
+
+#. module: repair_reason
+#: model:ir.actions.act_window,name:repair_reason.action_repair_order_root_cause_form
+#: model:ir.ui.menu,name:repair_reason.menu_repair_order_root_cause
+msgid "Repair Order Root Causes"
+msgstr "Causa radice ordine di riparazione"
+
+#. module: repair_reason
+#: model:ir.model,name:repair_reason.model_repair_reason
+msgid "Repair Reason"
+msgstr "Motivo riparazione"
+
+#. module: repair_reason
+#: model:ir.model.fields,field_description:repair_reason.field_repair_order__repair_reason_id
+#: model:ir.model.fields,field_description:repair_reason.field_repair_reason__name
+msgid "Root Cause"
+msgstr "Causa radice"
+
+#. module: repair_reason
+#: model:ir.model.fields,field_description:repair_reason.field_repair_reason__sequence
+msgid "Sequence"
+msgstr "Sequenza"
