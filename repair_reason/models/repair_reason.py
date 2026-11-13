@@ -2,7 +2,6 @@ from odoo import fields, models
 
 
 class RepairReason(models.Model):
-
     _name = "repair.reason"
     _description = "Repair Reason"
     _order = "sequence, id"

@@ -66,5 +66,4 @@
             eval="[(4, ref('stock.group_stock_user')), (4, ref('stock.group_stock_manager'))]"
         />
     </record>
-
 </odoo>
