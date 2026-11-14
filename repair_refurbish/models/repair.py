@@ -37,7 +37,7 @@ class RepairOrder(models.Model):
         string="Refurbished Inventory Move", comodel_name="stock.move"
     )
 
-    @api.depends("to_refurbish", "product_id")
+    @api.depends("to_refurbish", "product_id", "location_id")
     def _compute_refurbish_fields(self):
         for order in self:
             if order.to_refurbish:

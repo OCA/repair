@@ -141,3 +141,22 @@ class TestRepairRefurbish(BaseCommon):
         self.assertEqual(len(repaired_move), 1)
         self.assertEqual(repaired_move.location_id, self.stock_location_stock)
         self.assertEqual(repaired_move.location_dest_id, self.stock_location_stock)
+
+    def test_03_refurbish_location_follows_repair_location(self):
+        """Changing the repair location after ticking To Refurbish updates the
+        refurbished delivery location."""
+        self.env.user.groups_id += self.env.ref("stock.group_stock_multi_locations")
+        shelf = self.env["stock.location"].create(
+            {"name": "Shelf 1", "location_id": self.stock_location_stock.id}
+        )
+        repair_form = tests.Form(self.repair_obj)
+        repair_form.product_id = self.product
+        repair_form.picking_type_id = self.warehouse.repair_type_id
+        repair_form.to_refurbish = True
+        self.assertEqual(
+            repair_form.refurbish_location_dest_id, self.stock_location_stock
+        )
+        repair_form.location_id = shelf
+        self.assertEqual(repair_form.refurbish_location_dest_id, shelf)
+        repair = repair_form.save()
+        self.assertEqual(repair.refurbish_location_dest_id, shelf)
