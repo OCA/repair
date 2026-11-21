@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template id="report_repairorder" inherit_id="repair.report_repairorder">
-        <xpath expr="//table[hasclass('table-sm')]" position="before">
+        <xpath expr="//div[hasclass('oe_structure')][3]" position="after">
             <t
                 t-foreach="o.comment_template_ids.filtered(lambda x: x.position == 'before_lines')"
                 t-as="comment_template_top"
@@ -9,7 +9,7 @@
                 <div t-out="comment_template_top.text" />
             </t>
         </xpath>
-        <xpath expr="//p[@t-field='o.quotation_notes']" position="after">
+        <xpath expr="//div[@t-if='o.internal_notes']" position="after">
             <t
                 t-foreach="o.comment_template_ids.filtered(lambda x: x.position == 'after_lines')"
                 t-as="comment_template_bottom"

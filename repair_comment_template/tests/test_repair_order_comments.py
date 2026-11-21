@@ -1,7 +1,7 @@
 # Copyright 2025 Vicent Cubells - Trey, Kilobytes de Soluciones
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form, TransactionCase
 
 
 class TestRepariCommentsTemplate(TransactionCase):
@@ -28,21 +28,12 @@ class TestRepariCommentsTemplate(TransactionCase):
                 "name": "Test product",
             }
         )
-        self.service = self.env["product.product"].create(
-            {
-                "name": "Test service",
-                "type": "service",
-                "list_price": 10,
-            }
-        )
         self.repair_order = self._create_repair_order()
 
     def _create_repair_order(self):
         repair_form = Form(self.env["repair.order"])
         repair_form.partner_id = self.partner
         repair_form.product_id = self.product
-        with repair_form.operations.new() as line_form:
-            line_form.product_id = self.service
         return repair_form.save()
 
     def _create_comment(self, models, position):
