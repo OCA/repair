@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <template id="report_repairorder" inherit_id="repair.report_repairorder">
         <xpath expr="//table[hasclass('table-sm')]" position="before">
             <t
@@ -19,5 +18,4 @@
             </t>
         </xpath>
     </template>
-
 </odoo>
