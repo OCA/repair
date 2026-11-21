@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="repair_order_form_add_comment">
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Comments" name="comments">
+                    <field
+                        name="comment_template_ids"
+                        context="{'default_models': 'repair.order'}"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

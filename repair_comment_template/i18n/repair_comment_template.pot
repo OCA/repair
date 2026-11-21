@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_comment_template
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: repair_comment_template
+#: model:ir.model.fields,field_description:repair_comment_template.field_repair_order__comment_template_ids
+msgid "Comment Template"
+msgstr ""
+
+#. module: repair_comment_template
+#: model_terms:ir.ui.view,arch_db:repair_comment_template.repair_order_form_add_comment
+msgid "Comments"
+msgstr ""
+
+#. module: repair_comment_template
+#: model:ir.ui.menu,name:repair_comment_template.menu_base_comment_template_repair
+msgid "Document Comments"
+msgstr ""
+
+#. module: repair_comment_template
+#: model:ir.model,name:repair_comment_template.model_repair_order
+msgid "Repair Order"
+msgstr ""
+
+#. module: repair_comment_template
+#: model:ir.actions.act_window,name:repair_comment_template.action_repair_order_comment_template
+msgid "Repair Orders Comments"
+msgstr ""
